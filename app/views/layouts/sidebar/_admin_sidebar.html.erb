@@ -1,0 +1,81 @@
+<!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <%= link_to admin_dashboard_index_path ,class: "sidebar-brand d-flex align-items-center justify-content-center" do%>
+                <div class="sidebar-brand-icon rotate-n-15">
+                </div>
+                <div class="sidebar-brand-text mx-3"><%= t ('welcome.student.title.bee_lab_title') %></div>
+            <% end %>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <%= link_to admin_dashboard_index_path ,class: "nav-link" do %>
+                    <i class="fas fa-fw fa-tachometer-alt ml-4 pl-1 ml-md-0"></i>
+                    <span><%= t ('dashboard.title') %></span>
+                <% end %> 
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Student Search -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-user-graduate ml-4 pl-1 ml-md-0"></i>
+                    <span><%= t('welcome.privacy policy.top_page_link.text1') %></span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <%= link_to t('welcome.privacy policy.checkbox_text.text2'),admin_student_manage_student_search_path, class: "collapse-item"	%>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Company Search -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="far fa-fw fa-building ml-4 pl-1 ml-md-0"></i>
+                    <span><%= t('welcome.privacy policy.top_page_link.text2') %></span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <%= link_to t('btn.company_search'), admin_company_manage_company_search_path, class: "collapse-item"	%>
+                        <%= link_to t('btn.event_search'), admin_company_manage_event_search_path, class: "collapse-item"	%>
+                        <%= link_to t('search.admin_vacancy'), admin_company_manage_vacancy_search_path, class: "collapse-item"%>
+                    </div>
+                </div>
+            </li>
+
+            <!-- setting for student and company -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin_setting"
+                    aria-expanded="true" aria-controls="admin_setting">
+                    <i class="fas fa-fw fa-cog ml-4 pl-1 ml-md-0"></i>
+                    <span><%= t'admin.setting.title' %></span>
+                </a>
+                <div id="admin_setting" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <%= link_to t('admin.setting.student_title'),admin_admin_student_setting_path, class: "collapse-item"	%>
+                        <%= link_to t('admin.setting.company_title'),admin_admin_company_setting_path, class: "collapse-item"	%>
+                        <%= link_to t('admin.setting.db_backup_title'),admin_backup_db_index_path, class: "collapse-item"%>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->      

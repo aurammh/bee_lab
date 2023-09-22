@@ -1,0 +1,89 @@
+ja:
+  activerecord:
+    models:
+      admin: Admin
+    attributes:
+      admin:
+        email: メールアドレス
+        last_name: 姓（漢字）
+        first_name: 名（漢字）
+        password: パスワード
+        password_confirmation: パスワードの確認
+        current_password: 現在のパスワード
+  errors:  
+    messages:
+      accepted: 選択されていません
+      blank: "を入力してください。"
+      taken: ", %{value}, すでに使用されている。"
+      too_long: "%{count} 文字以下にする必要があります。"
+      wrong_length: "長さが間違っています (%{count} 桁である必要があります)。"
+      invalid: "無効です。"
+      is_wrong: "間違っている" 
+      confirmation: 新しいパスワードとパスワードの確認入力が一致しません。  
+  search:
+    start_date: 開始日
+    end_date: 終了日
+    date_label: 登録日
+    keyword_search: キーワード検索
+    uncomplete_register_status: 本登録未完了
+    complete_register_status: 本登録完了
+    search_title: 結果一覧
+    event_date_label: 開催日
+    post_date_label: 掲載日
+    application_deadline: 申込締切日
+    vacancy_status: 採用情報
+    event_status: イベント情報
+    exist_status: あり
+    non_exist_status: なし
+    total_count: 総数 
+    company_count: 社
+    event_count: 件
+    excel_title: 企業結果一覧
+    excel_download: ダウンロード
+    excel_file_name: 企業結果一覧
+    excel_file_student: 学生結果一覧
+    admin_graduate_date: 卒業予定年月
+    admin_vacancy: 採用情報検索
+    admin_prefecture_area: 住所エリア（県）
+    admin_delete_msg: データは全て削除され、元に戻すことは出来ませんがよろしいですか？
+    event_category: イベントカテゴリー
+  dashboard:
+    title: 管理者関連
+    temp_std_total: (仮)登録
+    fully_std_total: 本登録
+    fully_com_total: 無料登録
+    payment_com_total: 有料登録
+    vacancy_com_total: 採用情報
+    event_com_total: イベント情報
+    chart_title: の登録データ情報
+    ranking_title: Ranking
+    ranking_subtitle: Ranking Subtile
+    ranking_logo_text: Ranking Text
+    ranking_title: 今月の気に入るリスト
+    company_rank_title: 企業リスト
+    student_rank_title: 学生リスト
+    student_gender_chart_title: 性別より分析情報
+    student_region_chart_title: 地域別より分析情報
+    student_schooltype_chart_title: 学校種別より分析情報
+    student_pandoinfo_chart_title: Pando登録より分析情報
+    company_favourite_link_title: 興味あり企業一覧>>>>
+    student_favourite_link_title: 興味あり学生一覧>>>>
+    favourite_com_count: 興味あり数
+  admin:
+    permission_type:
+      login_enable: ログイン可
+      vacancy_create: 採用情報可
+      event_create: イベント機能可
+    setting:
+      assessment_title: 個別診断結果
+      implemented: 実施
+      not_implemented: 未実施
+      admin_pwd_change: パスワードが変更されました。
+      active_login_msg: "ログイン情報が無効になっております。管理者に連絡してください。"
+      title: ユーザ設定
+      student_title: 学生設定
+      company_title: 企業設定
+      active_text: ログイン可
+      change_complete_msg: 該当ユーザのログイン設定が変更されました。
+      change_msg_title: ログイン不可設定変更
+      company_id: ログインＩＤ

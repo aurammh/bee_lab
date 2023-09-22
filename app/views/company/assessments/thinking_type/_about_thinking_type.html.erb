@@ -1,0 +1,36 @@
+<button type="button" class="col-12 custom-btn px-4 py-2 text-decoration-none text-white" data-toggle="modal" data-target="#about-thinking-modal">
+    <%= t('company_assessment.thinking.about_btn_text')%>
+</button>
+<div class="modal fade pl-0" id="about-thinking-modal" tabindex="-1" role="dialog" aria-labelledby="about-thinking-modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header com-bg-color text-white">
+                <h3 class="modal-title" id="exampleModalLongTitle"><%= t('company_assessment.thinking.about.about_modal_title') %></h3>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body student-assessment">
+                <%= image_tag "student/student_brain_cover.jpg", class: "img-fluid potential-img", alt: "Responsive image" %>   
+                <div class="assessment_popup">
+                    <div class="form-card bg-white mt-1 mb-2 py-1 px-2 company_type">
+                        <div class="text-justify mt-md-2 mt-sm-4">
+                            <p><%= t('company_assessment.thinking.about.paragraph_1') %></p>
+                            <p><%= t('company_assessment.thinking.about.paragraph_2') %></p>
+                            <p><%= t('company_assessment.thinking.about.paragraph_3') %></p>
+                        </div>
+                        <div class="border-box text-justify p-3">
+                            <span><%= t('company_assessment.thinking.about.border_box_title') %></span>
+                            <p><%= t('company_assessment.thinking.about.border_box_paragraph_1') %></p>
+                            <span><%= t('company_assessment.thinking.about.border_box_paragraph_2') %></span>
+                            <%= image_tag "student/student_brain_about.jpg", class: "img-fluid px-0 my-3 col-12", alt: "Responsive image" %>   
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-btn com-bg-color px-4 py-2 text-decoration-none text-white" data-dismiss="modal"><%= t('common.close')%></button>
+            </div>
+        </div>
+    </div>
+</div>

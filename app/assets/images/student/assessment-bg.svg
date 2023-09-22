@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1679.844" height="402.477" viewBox="0 0 1679.844 402.477">
+  <g id="Group_1910" data-name="Group 1910" transform="translate(-129 -1193.307)">
+    <g id="Group_1842" data-name="Group 1842" transform="translate(-31.794 725.307)">
+      <circle id="Ellipse_72" data-name="Ellipse 72" cx="20" cy="20" r="20" transform="translate(331 753.856)" fill="rgba(217,245,231,0.52)"/>
+      <g id="Group_1841" data-name="Group 1841" transform="translate(1296 468)">
+        <circle id="Ellipse_63" data-name="Ellipse 63" cx="30" cy="30" r="30" transform="translate(0 124.804)" fill="rgba(222,233,255,0.36)" opacity="0.61"/>
+        <path id="Polygon_9" data-name="Polygon 9" d="M46.538,0a10,10,0,0,1,8.616,4.925l11.527,19.57a10,10,0,0,1,0,10.151L55.154,54.215a10,10,0,0,1-8.616,4.925h-23.4a10,10,0,0,1-8.616-4.925L2.99,34.645a10,10,0,0,1,0-10.151L14.517,4.925A10,10,0,0,1,23.133,0Z" transform="translate(439.891 288.565) rotate(30)" fill="#f5bb45" opacity="0.31"/>
+        <path id="Path_3283" data-name="Path 3283" d="M205.05,7.132a11.005,11.005,0,0,1,8.982,5.558l68.719,117.5a11.009,11.009,0,0,1,.359,10.726L222.1,253.906a9.347,9.347,0,0,1-8.631,4.945L83.488,254.33a11.005,11.005,0,0,1-8.982-5.558L5.786,131.271a11.009,11.009,0,0,1-.359-10.726L66.44,7.557a9.347,9.347,0,0,1,8.631-4.945Z" transform="translate(299.699 36.132) rotate(30)" fill="#cedc7c" opacity="0.31"/>
+        <circle id="Ellipse_82" data-name="Ellipse 82" cx="30" cy="30" r="30" transform="translate(428.321 0)" fill="rgba(222,233,255,0.36)"/>
+      </g>
+      <ellipse id="Ellipse_73" data-name="Ellipse 73" cx="36.609" cy="36.609" rx="36.609" ry="36.609" transform="translate(1064.242 468)" fill="#ffc69f" opacity="0.15"/>
+      <path id="Polygon_11" data-name="Polygon 11" d="M25.138,0a10,10,0,0,1,8.616,4.925l4.394,7.46a10,10,0,0,1,0,10.151L33.755,30a10,10,0,0,1-8.616,4.925H16A10,10,0,0,1,7.384,30L2.99,22.535a10,10,0,0,1,0-10.151l4.394-7.46A10,10,0,0,1,16,0Z" transform="translate(1055.321 490.471) rotate(30)" fill="#f5bb45" opacity="0.15"/>
+      <path id="Polygon_12" data-name="Polygon 12" d="M57.033,0a10,10,0,0,1,8.62,4.931L80.69,30.5a10,10,0,0,1,0,10.138L65.653,66.208a10,10,0,0,1-8.62,4.931H26.638a10,10,0,0,1-8.62-4.931L2.981,40.639a10,10,0,0,1,0-10.138L18.018,4.931A10,10,0,0,1,26.638,0Z" transform="translate(249.589 501.104) rotate(51)" fill="rgba(164,205,236,0.7)" opacity="0.41"/>
+    </g>
+    <g id="Group_1909" data-name="Group 1909">
+      <circle id="Ellipse_74" data-name="Ellipse 74" cx="24" cy="24" r="24" transform="translate(818.206 1528.817)" fill="#fce8e8"/>
+      <path id="Polygon_14" data-name="Polygon 14" d="M67.461,0a10,10,0,0,1,8.674,5.024l18.682,32.57a10,10,0,0,1,0,9.951L76.135,80.115a10,10,0,0,1-8.674,5.024H30.21a10,10,0,0,1-8.674-5.024L2.854,47.545a10,10,0,0,1,0-9.951L21.536,5.024A10,10,0,0,1,30.21,0Z" transform="matrix(0.545, 0.839, -0.839, 0.545, 200.404, 1433.358)" fill="#f5bb45" opacity="0.29"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,116 @@
+<button type="button" class="col-12 custom-btn px-4 py-2 text-decoration-none text-white" data-toggle="modal" data-target="#result-thinking-modal">
+    <%= t('company_assessment.thinking.result_btn_text')%>
+</button>
+<div class="modal fade pl-0" id="result-thinking-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable assessment_popup" role="document">
+        <div class="modal-content">
+            <div class="modal-header com-bg-color text-white">
+                <h3 class="modal-title" id="exampleModalLongTitle"><%= t('company_assessment.thinking.result.result_modal_title') %></h3>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                 <%= image_tag "student/student_brain_cover.jpg", class: "img-fluid ", alt: "Responsive image" %>  
+                <div class="assessment_popup">
+                    <div class="form-card bg-white mt-1 mb-2 py-1 px-2">
+                        <div class="text-justify">
+                            <%# part A %>
+                            <div class = "mb-4 mt-3">
+                                <span class="std-border-color pl-1 font-weight-bold font-italic text-dark"><%= t('company_assessment.thinking.result.sub_title_1') %></span>
+                                <div class = "row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-4 mt-2 mt-md-0 mb-3 mb-lg-0 mb-md-0 d-flex align-items-center justify-content-center">
+                                        <%= image_tag "student/student_brain_result_01.jpg", class: "img-fluid d-block", alt: "Responsive image" %>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-8 mt-3">
+                                        <span><%= t('company_assessment.thinking.result.title_1') %></span>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_1') %></p>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_1') %></p>
+                                        <span><%= t('company_assessment.thinking.result.title_2') %></span>
+                                        <p class="text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_2') %></p>
+                                        <p class = "my-2 font-weight-bold text-danger"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_2') %></p>  
+                                    </div>
+                                </div>
+                            </div>
+                            <%# part B %>
+                            <div class = "mb-4">
+                                <span class="std-border-color pl-1 font-weight-bold font-italic text-dark"><%= t('company_assessment.thinking.result.sub_title_2') %></span>
+                                <div class = "row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-4 mt-2 mt-md-0 mb-3 mb-lg-0 mb-md-0 d-flex align-items-center justify-content-center">
+                                        <%= image_tag "student/student_brain_result_02.jpg", class: "img-fluid  d-block", alt: "Responsive image"  %>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-8 mt-3">
+                                        <span><%= t('company_assessment.thinking.result.title_3') %></span>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_3') %></p>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_3') %></p>
+                                        <span><%= t('company_assessment.thinking.result.title_4') %></span>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_4') %></p>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_4') %></p>
+                                        <p class = "my-2 font-weight-bold text-danger"><%= t('company_assessment.thinking.result.paragraph_tx3_for_title_4') %></p> 
+                                    </div>
+                                </div>
+                            </div>
+                            <%# Part C %>
+                            <div class = "mb-4">
+                                <span class="std-border-color pl-1 font-weight-bold font-italic text-dark"> <%= t('company_assessment.thinking.result.sub_title_3') %></span>
+                                <div class = "row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-4 mt-2 mt-md-0 mb-3 mb-lg-0 mb-md-0 d-flex align-items-center justify-content-center">
+                                        <%= image_tag "student/student_brain_result_03.jpg", class: "img-fluid  d-block", alt: "Responsive image"%>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-8 mt-3">
+                                        <span><%= t('company_assessment.thinking.result.title_5') %></span>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_5') %></p>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_5') %></p>
+                                        <span><%= t('company_assessment.thinking.result.title_6') %></span>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_6') %></p>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_6') %></p>
+                                        <p class = "my-2 font-weight-bold text-danger"><%= t('company_assessment.thinking.result.paragraph_tx3_for_title_6') %></p> 
+                                    </div>
+                                </div>
+                            </div>
+                            <%# Part D %>
+                            <div class = "mb-4">
+                                <span class="std-border-color pl-1 font-weight-bold font-italic text-dark"> <%= t('company_assessment.thinking.result.sub_title_4') %></span>
+                                <div class = "row mb-3">
+                                    <div class="col-12 col-md-4 col-lg-4 mt-2 mt-md-0 mb-3 mb-lg-0 mb-md-0 d-flex align-items-center justify-content-center">
+                                        <%= image_tag "student/student_brain_result_04.jpg", class: "img-fluid  d-block", alt: "Responsive image" %>
+                                    </div>
+                                    <div class="col-12 col-md-8 col-lg-8 mt-3">
+                                        <span><%= t('company_assessment.thinking.result.title_7') %></span>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_7') %></p>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_7') %></p>
+                                        <span><%= t('company_assessment.thinking.result.title_8') %></span>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_8') %></p>
+                                        <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx2_for_title_8') %></p>
+                                        <p class = "my-2 font-weight-bold text-danger"><%= t('company_assessment.thinking.result.paragraph_tx3_for_title_8') %></p> 
+                                    </div>
+                                </div>
+                            </div>
+                            <%# chart part%>
+                            <div>
+                                <h5 class="std-border-color sub-title font-weight-bold px-2 ">
+                                    <%= t('company_assessment.thinking.result.main_title_2') %>
+                               </h5>
+                                <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_1') %></p>
+                                <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_2') %></p>
+                                <p class="font-weight-bold text-dark"><%= t('company_assessment.thinking.result.example_text') %></p>
+                                <%= image_tag "student/student_brain_result_05.jpg", class: "img-fluid ", alt: "Responsive image" %>   
+                                <div class="d-flex justify-content-center align-items-center mb-xl-5 mb-md-3"></div>
+                                <p><%= t('company_assessment.thinking.result.paragraph_3') %></p>
+                                <p><%= t('company_assessment.thinking.result.paragraph_4') %></p>
+                                <p><%= t('company_assessment.thinking.result.title_9') %></p>
+                                <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_9') %></p>
+                                <p><%= t('company_assessment.thinking.result.title_10') %></p>
+                                <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_tx1_for_title_10') %></p>
+                                <p class = "text-indent"><%= t('company_assessment.thinking.result.paragraph_5') %></p>
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-btn px-4 py-2 text-decoration-none text-white" data-dismiss="modal"><%= t('common.close')%></button>
+            </div>
+        </div>
+    </div>
+</div>

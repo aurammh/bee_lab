@@ -1,0 +1,128 @@
+<script type="text/javascript">
+  var BASE_URL = '<%= root_url %>';
+</script>
+<%= form_for('',url: admin_company_manage_event_search_path, method: :get) do |form| %>
+    <div class="px-sm-4 admin-event-search">
+        <div class="col-12 mt-3 mb-4 mb-lg-5 ">
+            <div class="row d-lg-flex justify-content-start shadow bg-white py-4 py-lg-3 px-2 px-lg-4">           
+                <div class="col-12 col-md-4 col-lg-4 mb-3 mt-3 mt-sm-0"> 
+                    <%=  select_tag :date_type,options_for_select([[t('search.event_date_label'), 'event_start_date'], [t('search.post_date_label'), 'post_start_date'], [t('search.application_deadline'), 'application_deadline'], [t('search.date_label'), 'created_at']], selected: params[:date_type]),  class: 'form-control shadow-none errors' %>  
+                </div> 
+                <div class="col-12 col-md-4 col-lg-4 pb-3">
+                    <div class="date-wrapper datepicker">
+                        <%= form.text_field :startDate, "data-input": "", id: "start_date",  class: "form-control shadow-none errors", placeholder: t('search.start_date'), value: (params[:startDate])%>
+                        <a class="icon" title="toggle" data-toggle>
+                        <i class="far fa-calendar-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 pb-3">
+                    <div class="date-wrapper datepicker">
+                        <%= form.text_field :endDate,  "data-input": "", id: "end_date", class: "form-control shadow-none errors", placeholder: t('search.end_date'), value: (params[:endDate])%>
+                        <a class="icon" title="toggle" data-toggle>
+                            <i class="far fa-calendar-alt"></i>
+                        </a>
+                    </div>
+                </div>  
+                <div class="col-12 col-md-4 col-lg-4  mb-2 pb-3"> 
+                    <%= select_tag :category, options_for_select(event_category_options, :selected => params[:category]), {:multiple => true, :class => "form-control shadow-none errors",:id => "event_category",data: {:placeholder => t('search.event_category')} } %>
+                </div> 
+                <div class="col-12 col-md-4 col-lg-4 px-3">
+                        <%= form.text_field :keyword, id: "end_date", class: "form-control shadow-none errors", value: (params[:keyword]), placeholder: t('search.keyword_search') %>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 my-3 my-md-0">
+                    <%= form.submit t( 'btn.student_search'), :class => 'admin-search-btn py-1 w-100 com-bg-color text-white', :id => 'search' %>
+                </div>
+            </div>      
+        </div>
+    
+        <div class="search-result company-dashboard col-12 px-3 pb-5 mb-5">
+            <div class="row p-2 shadow bg-white info-box">
+            <div class="col-8 col-xl-10 mb-3">
+                <h1><%= t('search.search_title') %></h1>
+            </div>
+            <div class="col-11 col-md-4 col-xl-2 mb-3 pt-2 border com-border-color com-font-color text-center mx-3 mx-md-0 shadow-sm">
+                <h3><%= t('search.total_count') %> <%=   @results_event.total_count %> <%= t('search.event_count') %> </h3>
+            </div>
+                <% if @results_event.present? %>
+                    <div class="d-none d-md-block w-100">   
+                        <table class="table table-bordered table-responsive-md">
+                            <thead class="com-bg-color text-white">
+                                <tr>
+                                    <th class="w-12" scope="col"><%= Company::Company.human_attribute_name('company_name') %></th>
+                                    <th class="w-12" scope="col"><%= Company::Event.human_attribute_name('event_name') %></th>
+                                    <th class="w-20" scope="col"> <%= t('event.title.event_category') %></th>
+                                    <th class="w-20" scope="col"><%= t('event.title.event_date') %></th>
+                                    <th class="w-12" scope="col"><%= Company::Event.human_attribute_name('venue') %></th>
+                                    <th class="w-12" scope="col"><%= t('search.date_label') %></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @results_event.each_with_index do |event,index| %>
+                                <tr data-link="<%= admin_company_manage_event_details_path(:eventid => event.id) %>">
+                                    <td class="text-break"><%= event.company_name %></td>
+                                    <td class="text-break"><%= event.event_name %></td>
+                                    <td class="text-break">
+                                    <% unless event.category.nil? %>
+                                            <% event.category.each do |v| %>
+                                                <% if v != nil %>
+                                                    <%= t("event.category.#{Company::Event.event_categories.key(v)}") %>
+                                                    <% if event.category.length > 1 && event.category.last != v %>
+                                                        <%= ',' %>
+                                                    <% end %>
+                                                <% end %>
+                                            <% end %>
+                                        <% end %>
+                                    </td>
+                                    <td class="text-break"><%= l event.event_start_date %>～<%= l event.event_end_date %></td>
+                                    <td class="text-break"><%= event.venue %></td>
+                                    <td><%= l(event.created_at.strftime('%Y-%m-%d').to_date, default: '-')%></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 my-2 px-4 d-content d-md-none">
+                        <% @results_event.each_with_index do |event,index| %>
+                            <div class="mobile-table row std-info-box p-3 my-4 rounded" data-link="<%= admin_company_manage_event_details_path(:eventid => event.id) %>">                                                   
+                                <span class="h6 com-font-color col-4"><%= Company::Company.human_attribute_name('company_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= event.company_name %></span><br>
+                                <span class="h6 com-font-color col-4"><%= Company::Event.human_attribute_name('event_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= event.event_name %></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('event.title.event_category') %></span>
+                                <span class="col-8 text-muted text-break">
+                                    <% unless event.category.nil? %>
+                                        <% event.category.each do |v| %>
+                                            <% if v != nil %>
+                                                <%= t("event.category.#{Company::Event.event_categories.key(v)}") %>
+                                                    <% if event.category.length > 1 && event.category.last != v %>
+                                                        <%= ',' %>
+                                                    <% end %>
+                                                <% end %>
+                                            <% end %>
+                                    <% end %>
+                                </span><br>
+                                <span class="h6 com-font-color col-4"><%= t('event.title.event_date') %></span>
+                                <span class="col-8 text-muted text-break"><%= l event.event_start_date %>～<%= l event.event_end_date %></span><br>
+                                <span class="h6 com-font-color col-4"><%= Company::Event.human_attribute_name('venue') %></span>
+                                <span class="col-8 text-muted text-break"><%= event.venue %></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('search.date_label') %></span>
+                                <span class="col-8 text-muted text-break"><%= l(event.created_at.strftime('%Y-%m-%d').to_date, default: '-')%></span><br>
+                            </div>
+                        <% end %>                          
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mt-2 mx-2">
+                        <%= paginate @results_event %>
+                    </div>
+                <% else %>
+                <div class="h3 col-12 mb-3">
+                        <%= t('search.no_result') %>
+                    </div>
+                <% end %> 
+            </div>
+        </div>
+    </div>    
+<% end %>
+<%= javascript_pack_tag "admin/admin_search.js" %>
+<%= javascript_pack_tag 'common.js'%>
+<%= javascript_pack_tag "student/event_search.js" %>

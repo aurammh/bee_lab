@@ -1,0 +1,23 @@
+<% if  @resource.user_type.eql?2%>
+<p><%= "#{@resource.last_name} #{@resource.first_name}" %> <%= t('confirmations.welcome_user') %></p>
+<% else %>
+<p><%=@resource.company_name %> <%= t('confirmations.welcome_user') %></p>
+<% end %>
+<p><%= t('confirmations.thank_u_register') %></p>
+<p><%= t('confirmations.required_info') %></p>
+<p>-----------------------------------------------------------------<p>
+<p><%= t('mailer.paragraph5') %><p>
+<p><%= t('mailer.paragraph1') %><br>（<%= link_to t('confirmations.login_link'), confirmation_url(@resource, confirmation_token: @token) %>）</p>
+<p><%= t('mailer.paragraph2') %><p>
+<% if  @resource.user_type.eql?2%>
+<p><%= t('confirmations.login_email') %> ：<%= @resource.email %> </p>
+<% else %>
+<p><%= t('confirmations.login_id') %> ：<%= @resource.user_name %>  </p>
+<% end %>
+
+<p><%= t('confirmations.login_url') %></p>
+<p>-----------------------------------------------------------------<p>
+<p><%= t('mailer.paragraph3') %></p>
+<p><%= t('mailer.paragraph4') %></p>
+<p><%= t('mailer.paragraph6') %></p>
+<p><%= t('mailer.paragraph7') %></p> 

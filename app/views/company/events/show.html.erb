@@ -1,0 +1,76 @@
+<section class="event-detail h-50  d-flex flex-column align-items-center mt-5 pt-5">
+    <div class="col-11 bg-white py-5 mt-4 shadow event-info-box mb-5">
+        <div class="row px-lg-4 mb-3 px-3 pt-3">
+            <div class="com-font-color h3"><%= t('event.title.event_information')%></div>
+            <% unless current_user.user_type == 2 %>
+                <div class="ml-auto d-lg-flex">
+                    <div class=" text-center mr-lg-3">
+                        <%= link_to (t 'btn.edit'), edit_company_event_path(@company_event) , class: "custom-btn px-4 py-2 text-decoration-none text-white" %> 
+                    </div>                 
+                </div>
+            <% end %>
+        </div>
+        <div class="row px-2 px-lg-4">
+            <div class="col-12 col-lg-3">
+                <%  if @company_event.event_image.attached? %>
+                    <%= image_tag (@company_event.event_image), :class=> "w-100" %>
+                <% else %>
+                    <div class="upload-preview">
+                    <%= image_tag "avatar/preview.svg"%>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-12 col-md-12 col-lg-9">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('event_start_date') %></span>
+                        <span class="text-secondary"><%= @company_event.event_start_date %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('event_end_date') %></span>
+                        <span class="text-secondary"><%= @company_event.event_end_date %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('event_name') %></span>
+                        <span class="text-secondary text-break"><%= @company_event.event_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('venue') %></span>
+                        <span class="text-secondary text-break"><%= @company_event.venue %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('category') %></span>
+                        <span class="text-secondary text-break">
+                            <% unless @company_event.category.nil? %>
+                                <% @company_event.category.each do |v| %>
+                                    <% if v != nil %>
+                                        <%= t("event.category.#{Company::Event.event_categories.key(v)}") %>
+                                        <% if @company_event.category.length > 1 && @company_event.category.last != v %>
+                                            <%= ',' %>
+                                        <% end %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('post_start_date') %></span>
+                        <span class="text-secondary"><%= @company_event.post_start_date %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('post_end_date') %></span>
+                        <span class="text-secondary"><%= @company_event.post_end_date %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('application_deadline') %></span>
+                        <span class="text-secondary"><%= @company_event.application_deadline %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Event.human_attribute_name('event_content') %></span>
+                        <span class="text-secondary text-break"><%= @company_event.event_content %></span>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>

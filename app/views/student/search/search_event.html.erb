@@ -1,0 +1,80 @@
+<%= form_for( '',url: student_search_event_path, :method => "get") do |form| %>
+<section class="search container-fluid d-flex flex-column align-items-center px-0 mt-5 pt-0 pt-lg-5">   
+    <div class="col-11 bg-white p-4 mt-4 shadow info-box mb-4 mb-lg-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-5 col-lg-3 mb-2"> 
+                <%= select_tag :category, options_for_select(event_category_options, :selected => params[:category]), {:multiple => true, :class => "form-control form-select shadow-none errors",:id => "event_category",data: {:placeholder => t('event.placeholder.category')+t('common.default_placeholder')} } %>
+            </div> 
+            <div class="col-12 col-md-5 col-lg-3 mb-2">
+                <%= submit_tag t('btn.event_search') , :class => "custom-btn w-100 std-bg-color text-white" %>
+            </div>  
+        </div>      
+    </div>  
+    <div class="px-0 col-11 row mb-5">
+        <div class="search-filter d-md-flex d-lg-block justify-content-around  px-0 col-12 col-lg-2">
+            <div class="col-12 col-md-5 col-lg-12 px-0 px-3 py-4 shadow bg-white mb-3 info-box">
+                <div class="mb-3 std-font-color"><span><%= t('search.filter_by') %></span></div>
+                <%= link_to t('search.clear'), student_search_event_path, class: "text-center custom-btn w-100 mb-2 text-decoration-none text-muted d-inline-block" %>
+                <%= form.submit t('search.apply'), class: "custom-btn w-100 bg-white mb-2 text-muted" %>
+            </div>
+        </div> 
+        <div class="search-result px-0 ml-0 pl-lg-4 col-12 col-lg-10 pb-5 mb-5 pl-md-2">
+            <div class="row p-2 mx-0 shadow bg-white info-box">
+                <div class="col-12 mb-3">
+                    <h1><%= t('title.result') %></h1>
+                </div>
+                <% @events.each do |event| %>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 mb-2 p-1">
+                        <%= link_to (student_event_details_path(event)), class: "text-decoration-none" do %>
+                            <div class="row mx-0 info-box shadow">                            
+                                <div class="col-12 px-0 profile-image">
+                                    <div class="profile-name position-absolute std-bg-color col-6 d-flex align-items-center text-truncate">
+                                        <h5 class="text-white warp-text mb-0"><%= event.event_name %></h5>
+                                    </div>
+                                    <div class="fav-ico position-absolute text-white col-2 "><i class="pr-1 fa-heart fa <%= @event_favourite_arr.include?(event.id) ? 'active' : 'inactive' %>"></i></div>
+                                    <div class="join-icon position-absolute text-white col-2 "><i class="pr-1 fa-handshake fa <%= @join_event_arr.include?(event.id) ? 'active' : 'inactive' %>"></i></div>
+                                    <% if event.event_image.attached? %>
+                                        <%= image_tag (event.event_image), :class=> "img-responsive" %>
+                                    <% else %>        
+                                        <%= image_tag "avatar/event.jpg", :class=> "Responsive image" %>
+                                    <% end %>
+                                </div>
+                                <div class="col-12 profile-info my-3 d-flex flex-column">
+                                    <label class="h6 mb-0 std-tile-color"><%= t ('event.title.event_date')%></label>
+                                    <span class="mb-2"><%= event.event_start_date %>～<%= event.event_end_date %></span>
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Event.human_attribute_name('category') %></label>
+                                    <span class="mb-2">
+                                        <% unless event.category.nil? %>
+                                            <% event.category.each do |v| %>
+                                                <% if v != nil %>
+                                                    <%= t("event.category.#{Company::Event.event_categories.key(v)}") %>
+                                                    <% if event.category.length > 1 && event.category.last != v %>
+                                                        <%= ',' %>
+                                                    <% end %>
+                                                <% end %>
+                                            <% end %>
+                                        <% end %>
+                                    </span>
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Event.human_attribute_name('venue') %></label>
+                                    <span class="mb-2 text-break"><%= event.venue %></span>
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Event.human_attribute_name('application_deadline') %></label>
+                                    <span class="mb-2"><%= event.application_deadline %></span>
+                                </div> 
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+                <% unless @events.present?  %>
+                    <div class="col-12 m-2">
+                        <h3> <%= (t "search.no_result") %></h3>
+                    </div>
+                <% end %>
+                <div class="col-12 d-flex justify-content-center p-4">
+                    <%= paginate @events%>
+                </div>
+            </div>  
+        </div>
+    </div>
+</section>
+<% end %>
+<%= javascript_pack_tag "student/event_search.js" %>

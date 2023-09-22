@@ -1,0 +1,157 @@
+<script type="text/javascript">
+  var BASE_URL = '<%= root_url %>';
+</script>
+<%= form_with(url: company_students_search_path, method: :get) do |form| %>
+<section class="search container-fluid d-flex flex-column align-items-center mt-5 pt-0 pt-lg-5 px-0">   
+
+    <%# first Panel Start %>
+    <div class="col-11 bg-white p-3  p-lg-4 mt-0 mt-lg-4 shadow info-box mb-4 mb-lg-5">
+        <div class="row d-lg-flex justify-content-center">
+            <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <%=  select_tag :m_region_id,
+                options_from_collection_for_select(region_options, 'id', 'region_name',params[:m_region_id]),
+                :prompt => t('select.view_area'),
+                :class => 'form-control shadow-none errors' %>
+            </div>  
+            <div class="col-12 col-md-4 col-lg-3 mb-2">
+                <%= form.submit t( 'btn.student_search'), :class => 'custom-btn w-100 com-bg-color text-white' %>
+            </div>  
+        </div>      
+    </div>
+    
+    <%# first Panel End %>
+
+    <%# Second Panel Start %>   
+    <div class="px-0 col-11 row mb-5">
+        <div class="search-filter d-lg-block px-0 ml-0 col-12 col-lg-2">
+        <div class="d-inline-block col-md-12 px-0">
+            <div class="float-left col-12 col-md-5 col-lg-12 px-3 py-4 shadow bg-white mb-3 mb-lg-3 info-box">
+                <div class="mb-3 com-font-color"><span><%= t( 'search.filter_by') %></span></div>
+                <%= link_to t( 'search.clear'), company_students_search_path, class: "text-center custom-btn text-decoration-none w-100 mb-2 text-muted d-inline-block" %>
+                <%= form.submit t( 'search.apply'), class: "custom-btn w-100 bg-white mb-2 text-muted" %>
+            </div>
+            <%# Region Detail Search %>
+            <div class="float-right col-12 col-md-6 col-lg-12 d-inline-block px-0 shadow bg-white mb-3 info-box">
+                <div class="filter-title com-bg-color text-white text-center">
+                  <%= t( 'title.location_detail') %>
+                    <%= form.hidden_field :locationDetail_param, :multiple => true,:value => @locationDetails_pararms,
+                    id: "locationDetail_param"%> 
+                </div>       
+                <div>
+                    <div class="radio-margin p-3 d-flex flex-column">                    
+                        <div class="locationdetail-main">
+                            <div class="location-detail">
+                            </div>
+                        </div> 
+                    </div>
+                </div>                
+            </div> 
+        </div>
+        <div class="d-inline-block col-md-12 px-0">  
+            <%# Job Type Search %>
+            <div class="float-left col-12 col-md-5 col-lg-12 d-inline-block px-0 shadow bg-white mb-3 info-box">
+                <div class="filter-title com-bg-color text-white text-center">
+                     <%= t( 'title.japanese_level') %> 
+                </div>       
+                <div>
+                    <div class="radio-margin p-3 d-flex flex-column">                    
+                        <% occupation_options.each_with_index do |detail,index| %>
+                            <div class="simple-chkbox com-chk">
+                                <input type="checkbox" name="jobcategory_id[]" id = <%=index%> value=<%= detail['id']%> <%= params[:jobcategory_id].include?(detail['id'].to_s) ? 'checked' : 'unchecked' %>>
+                                <%= detail[1] %>
+                                <label for=<%=index%> class="px-0"><%= detail.occupation_name %></label>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>                
+            </div>
+
+            <%# Gender Search %>
+            <div class="float-right col-12 col-md-6 col-lg-12 d-inline-block px-0 shadow bg-white mb-3 info-box">
+                <div class="filter-title com-bg-color text-white text-center">
+                    <%= Student::Student.human_attribute_name('gender') %>
+                </div>       
+                <div>
+                    <div class="radio-margin p-3 d-flex flex-column company-gender"> 
+                        <%= form.collection_radio_buttons :gender, Student::Student.genders.map { |k,v| [v,t("student.gender.#{k}")] }, :first, :second, checked:  params[:gender] %>
+                    </div>
+                </div>                
+            </div>
+        </div>    
+
+        </div> 
+
+        <%# Student Detail List %>
+        <div class="search-result px-0 ml-0 pl-lg-4 col-12 col-lg-10 pb-5 mb-5 pl-md-2">
+            <div class="row p-2 mx-0 shadow bg-white info-box">
+                <div class="col-12 mb-3">
+                    <h1><%= t( 'title.student_result') %> </h1>
+                </div>
+                <% @results.each do |user| %>
+                    <% unless user.gender==nil || user.birthday==nil %>                      
+                            <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 mb-2 p-1">
+                                <%= link_to (company_student_details_path(user)), class: "text-decoration-none" do%>   
+                                <div class="row mx-0 info-box shadow">
+                                    <div class="col-12 px-0 profile-image">
+                                        <div class="profile-name position-absolute com-bg-color col-6 d-flex align-items-center text-truncate">
+                                            <h5 class="text-white warp-text mb-0"><%= user.last_name  %>  <%=user.first_name %> </h5>
+                                        </div>                        
+                                        <div class="fav-ico position-absolute text-white col-2"><i class="pr-1 fa-heart fa <%= @student_favourite_arr.include?(user.id) ? 'active' : 'inactive' %>"></i></div>
+                                        <% if user.image.attached? %>
+                                            <%= image_tag (user.image), :class=> "Responsive image" %>
+                                        <% else %>
+                                            <% if user.gender == 1 %>
+                                                <%= image_tag "avatar/female.svg", :class=> "Responsive image" %>
+                                                
+                                            <% else %>
+                                                <%= image_tag "avatar/male.svg", :class=> "Responsive image" %> 
+                                            <% end %>
+                                        <% end %>      
+                                    </div>
+                                    <div class="col-12 profile-info my-3 d-flex flex-column">                            
+                                        <label class="h6 mb-0 com-tile-color"><%= Student::Student.human_attribute_name('gender')%></label>
+                                        <span class="mb-2"><%= t("student.gender.#{user.gender}")%></span>
+
+                                        <label class="h6 mb-0 com-tile-color"><%= Student::Student.human_attribute_name('birthday')%></label>
+                                        <span class="mb-2"><%= user.birthday %></span>
+
+                                        <label class="h6 mb-0 com-tile-color"><%= Student::Student.human_attribute_name('school_name')%></label>
+                                        <span class="mb-2"><%= user.school_name %></span>
+
+                                        <label class="h6 mb-0 com-tile-color"><%= Student::Student.human_attribute_name('school_type')%></label>
+                                        <span class="mb-2"><%=  t("student.school_type.#{user.school_type}") %></span>
+
+                                        <label class="h6 mb-0 com-tile-color"><%= Student::Student.human_attribute_name('qualification_type_id') %></label>
+                                        <span class="mb-2">
+                                            <%= get_qualification_category(user.qualification_type_id) %>
+                                        </span>
+
+                                        <label class="h6 mb-0 com-tile-color"><%= Student::Student.human_attribute_name('qualification_category_id')%></label>
+                                        <span class="mb-2">
+                                            <%= get_qualificaion_type(user.qualification_category_id) %>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <%end%>    
+                            </div>
+                    <%end%>
+                <% end %>
+
+                <% unless @results.present? %>
+                    <div class="h3 col-12 mb-3">
+                        <%= t('search.no_result') %>
+                    </div>
+                <% end %>
+
+                <div class="col-12 d-flex justify-content-center p-4">
+                <%= paginate @results %>
+              </div>
+
+            </div>  
+        </div>
+    </div>    
+    <%# Second Panel End %>
+</section>
+<% end %>
+<%= javascript_pack_tag "company/company.js" %>

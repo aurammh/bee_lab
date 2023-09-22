@@ -1,0 +1,53 @@
+<section class="student-detail container-fluid h-50  d-flex flex-column align-items-center mt-2 pt-2">
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5">
+        <div class="h3"> <%= t ('common.favourite_vacancy') %><br><hr class="title-hr"></div> 
+        <div class="d-none d-md-block d-sm-none">                  
+            <table class="table table-bordered table-responsive-md">
+                <thead class="std-bg-color text-white">
+                    <tr>
+                        <th><%= t('title.occupation_name') %></th>
+                        <th><%= t('title.industry_name') %></th>
+                        <th><%= Company::Company.human_attribute_name('company_name') %></th>
+                        <th><%= t('title.target_city') %></th>
+                        <th><%= Company::Vacancy.human_attribute_name('required_applicants')%></th>
+                        <th><%= Company::Vacancy.human_attribute_name('basic_salary') %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_favourite_vacancy_list.each_with_index do |all_favourite_vacancy| %>
+                        <tr data-link="<%= company_vacancy_path(:id => all_favourite_vacancy.id) %>">
+                            <td><%= all_favourite_vacancy.occupation_name %></td>
+                            <td><%= all_favourite_vacancy.industry_name %></td>
+                            <td><%= all_favourite_vacancy.company_name %></td>
+                            <td><%= all_favourite_vacancy.postalcode_city %></td>
+                            <td><%= all_favourite_vacancy.required_applicants %><%= t('unit.persons')%></td>
+                            <td><%= all_favourite_vacancy.basic_salary %><%= t "unit.money" %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+            <% @all_favourite_vacancy_list.each_with_index do |all_favourite_vacancy| %>
+                <div class="mobile-table row std-info-box shadow p-2 m-3" data-link="<%= company_vacancy_path(:id => all_favourite_vacancy.id) %>">                                                   
+                    <span class="h6 std-font-color col-4"><%= t('title.occupation_name') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_vacancy.occupation_name %></span><br>
+                    <span class="h6 std-font-color col-4"><%= t('title.industry_name') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_vacancy.industry_name %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('company_name') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_vacancy.company_name %></span><br>
+                    <span class="h6 std-font-color col-4"><%= t('title.target_city') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_vacancy.postalcode_city %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Vacancy.human_attribute_name('required_applicants')%></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_vacancy.required_applicants %><%= t('unit.persons')%></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Vacancy.human_attribute_name('basic_salary') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_vacancy.basic_salary %><%= t "unit.money" %></span><br>                       
+                </div>
+            <% end %>                           
+        </div>
+        <div class="col-12 d-flex justify-content-center p-4">
+            <%= paginate @all_favourite_vacancy_list %>
+        </div>
+    </div>
+</section>
+<%= javascript_pack_tag 'common.js'%>

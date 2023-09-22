@@ -1,0 +1,350 @@
+<%= form_with(model: @student_edit, url: admin_student_manage_path(@student_edit), method: :post) do |form| %>
+<div class="row mt-3 px-2 px-sm-4 student-registration d-flex justify-content-center">
+    <section class="register-container col-11 col-sm-12 mb-5 px-4 px-md-5">    
+        <%# First Panel Start %>
+        <div class="d-container shadow py-4 bg-white" style="border-radius: 0.8rem">
+            <div class="col-12 pb-4 pt-3">
+                <span class="h4 std-font-color"><%=t('student.title.personal_information')%></span>
+            </div>
+            <%# Student Image %>
+            <div class="col-12 col-sm-5 col-md-6 mb-3">
+                <div class="d-flex">
+                    <%= form.label :user_logo, class: "form-label"  %>
+                </div>
+                <% if @student_edit.image.attached? && @student_edit.image.persisted? %>
+                    <span class="chosen-text img-name text-break"><%= @student_edit.image.filename %></span>
+                <% else %>
+                    <span class="chosen-text text-break"><%=t('common.profile_upload_text')%></span>
+                <% end %>
+            </div> 
+
+            <div class="col-12 col-sm-7 px-4 px-sm-0 pl-2 col-md-6 mb-3">
+                <div class="d-flex">
+                    <%= form.label :user_logo, class: "form-label"  %>
+                </div>
+                <div class="student-profile-upload btn std-bg-color px-1 px-sm-2 text-white">
+                    <%= form.hidden_field :image_data, :value => false , id: "image_data" %>
+                    <%= form.hidden_field :imageFlag, :value => false , id: "imageFlag" %>
+                    <span><%=t('common.profile_upload')%></span>                
+                    <%= form.file_field :image,accept: "image/png,image/gif,image/jpeg,image/jpg", :class=> "input-file", :id => "image", "data-existed": form.object.image.attached?%>
+                </div>
+                <button type="button" id="img-remove" class="col-4 col-lg-2 btn btn-danger px-0 px-sm-2"><%=t('common.profile_delete')%></button>
+            </div>
+            <%# image upload modal start%>
+            <%= render "image_crop" =%>
+            <%# image upload modal end%>
+            <div class="col-12 col-md-6 mb-3">
+                <div  class="d-flex">
+                    <%= form.label :last_name, class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+               <%= form.text_field :last_name, id: "last_name", class: "form-control shadow-none errors text-upper",placeholder: t('student.placeholder.last_name') %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:last_name)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div  class="d-flex">
+                    <%= form.label :first_name, class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+               <%= form.text_field :first_name, id: "first_name", class: "form-control shadow-none errors text-upper",placeholder: t('student.placeholder.first_name') %>
+               <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:first_name)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div  class="d-flex">
+                    <%= form.label :last_name_kana, class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_field :last_name_kana, id: "last_name_kana", class: "form-control shadow-none errors text-upper",placeholder: t('student.placeholder.last_name_kana') %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:last_name_kana)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div  class="d-flex">
+                    <%= form.label :first_name_kana, class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_field :first_name_kana, id: "first_name_kana", class: "form-control shadow-none errors text-upper",placeholder: t('student.placeholder.first_name_kana') %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:first_name_kana)[0] %></p>
+            </div>            
+            <div class="col-12 col-md-6 mb-3">
+                <div  class="d-flex">
+                    <%= form.label :birthday, class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <div class="date-wrapper datepicker">
+                    <%= form.text_field :birthday, "data-input": "", id: "birthday", class: "form-control shadow-none errors" %>
+                    <a class="icon" title="toggle" data-toggle>
+                        <i class="far fa-calendar-alt"></i>
+                    </a>
+                </div>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:birthday)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div  class="d-flex">
+                    <%= form.label :nick_name, class: "form-label" %><%= form.label t('student.title.nickname_remark')%>
+                </div>
+                <%= form.text_field :nick_name, id: "nick_name", class: "form-control shadow-none errors",placeholder: t('student.placeholder.nick_name') %>
+            </div>      
+            <div class="col-12 mb-3">
+                <div class="radio-margin">
+                    <div class="d-flex">
+                        <%= form.label :gender, class: "form-label"  %>
+                    </div>
+                    <%= form.collection_radio_buttons :gender, gender_options, :first, :second, checked:  @student_edit.gender %>
+                </div>
+            </div>            
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :email, class: "form-label" %>
+                <%= form.email_field :email, id: "email", value: @user.email ,class: "form-control shadow-none errors", readonly: true%>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :email_two, class: "form-label" %>
+                <%= form.text_field :email_two, id: "email_two", class:  "form-control shadow-none errors", placeholder: t('student.placeholder.email') %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:email_two)[0] %></p>
+            </div>
+            <div class="col-12 mb-3">
+                <label class="h6">
+                    <%=t('student.title.cmt_label')%>
+                </label>
+            </div>
+            <div class="col-12  mb-3 mr-5">
+                <div class="d-flex">
+                    <%= form.label :phone_no, class: "form-label" %><%= form.label t('student.title.remark')%>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_field :phone_no, id: "phone_no", class:  "form-control shadow-none errors only-num-stud", placeholder:t('placeholder.phone_no'),maxlength: 20 %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:phone_no)[0] %></p>
+            </div> 
+            <%# postal code start%>  
+            <div class="col-12 col-md-6 mb-3">
+                <div class="d-flex">
+                   <%= form.label :postal_code, class: "form-label"  %><%= form.label t('student.title.remark')%>
+                   <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                 <%= form.text_field :postal_code, class: "form-control shadow-none errors", maxlength: 7,id: "postalcode" %> 
+                 <p class="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:postal_code)[0] %></p>            
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div class="d-flex">
+                   <%= form.label :region_name, class: "form-label"  %>
+                   <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.hidden_field :postal_region_id,value: @student_edit.m_region_id ,id: "region_id" %>
+                <%= form.text_field :region_name, class: "form-control shadow-none errors",id: "region",readonly: true %>
+                 <p class="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:region_name)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+               <div class="d-flex">
+                    <%= form.label :prefecture_name, class: "form-label"  %>
+                   <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.hidden_field :postal_prefecture_id,value: @student_edit.m_prefecture_id ,id: "prefecture_id" %>
+                <%= form.text_field :prefecture_name, class: "form-control shadow-none errors",id: "prefecture",readonly: true %>
+                <p class="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:prefecture_name)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div class="d-flex">
+                   <%= form.label :postalcode_city, class: "form-label"  %>
+                   <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_field :postalcode_city, class: "form-control shadow-none errors",id: "city", readonly: true%>
+                <p class="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:postalcode_city)[0] %></p>
+            </div>
+            <%# postal code end%>  
+            <div class="col-12  mb-3">
+                <div class="d-flex">
+                    <%= form.label :address, class: "form-label mr-2"  %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_area :address, class: "form-control shadow-none errors",rows: 4, maxlength: 255, id: "address" %>
+                <p class="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:address)[0] %></p>
+            </div>
+            <div class="col-12 mb-3 display_address">
+                <div class="d-flex">
+                    <%= form.label :display_address, class: "form-label mr-2"  %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_area :display_address, class: "form-control shadow-none errors", maxlength: 255 ,id: "display_address" ,readonly: true%>
+                <p class="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:display_address)[0] %></p>
+            </div>      
+        </div>
+        <%# First Panel End %>
+
+        <%# Second Panel Start %>
+        <div class="d-container shadow py-4 bg-white mt-5" style="border-radius: 0.8rem">
+            <div class="col-12 pb-4 pt-3">
+                <span class="h4 std-font-color"><%= t('student.title.school_info') %></span>
+            </div>                    
+            <div class="col-12 col-md-6 mb-3">
+                <div class="d-flex">
+                    <%= form.label :school_type , class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.select(:school_type, school_type_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors",:id => "school_type"}) %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:school_type)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div class="d-flex">
+                    <%= form.label :school_name , class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_field :school_name,id: "school_name" , :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.school_name') %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:school_name)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div class="d-flex">
+                    <%= form.label :department_name , class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.text_field :department_name,id: "department_name" , :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.department_name') %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:department_name)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div class="d-flex">
+                    <%= form.label :subject_system , class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <%= form.select(:subject_system, subject_system_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors",:id => "subject_system"}) %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:subject_system)[0] %></p>
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :qualification_category_id, class: "form-label" %><%= form.label t('student.title.combo_remark')%>
+                <%= form.collection_select(:qualification_category_id ,qualification_options , :id ,:qualification_category, { :include_blank => false}, selected: form.object.qualification_category_id,multiple: true, :class=> "form-control form-select shadow-none errors ",data: {:placeholder => t('student.placeholder.qualification_category')+t('common.default_placeholder')}) %>
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :qualification_type_id, class: "form-label" %><%= form.label t('student.title.combo_remark')%>
+                <%= form.collection_select(:qualification_type_id ,qualification_details_options , :id ,:qualification_type, { :include_blank => false}, selected: form.object.qualification_type_id,multiple: true, :class=> "form-control form-select shadow-none errors ",data: {:placeholder => t('student.placeholder.qualification_type')+t('common.default_placeholder')}) %>
+            </div>
+            
+            <div class="col-12 col-md-12 col-lg-6 mb-3">
+                <div class="d-flex">
+                    <%= form.label :graduation_date, class: "form-label" %>
+                    <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                </div>
+                <div class="date-wrapper" id="graduation_date_picker">
+                    <%= form.text_field :graduation_date, "data-input": "", id: "graduation_date", :class=> "form-control shadow-none errors", data: {:placeholder => t('student.placeholder.graduation_date')+t('common.default_placeholder')}  %>
+                    <a class="icon" title="toggle" data-toggle>
+                        <i class="far fa-calendar-alt"></i>
+                    </a>
+                </div>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:graduation_date)[0] %></p>
+            </div>                   
+        </div>
+        <%# Second Panel End %>
+
+        <%# Third Panel Start %>
+        <div class="d-container shadow py-4 bg-white mt-5" style="border-radius: 0.8rem">
+            <div class="col-12 pb-4 pt-3">
+                <span class="h4 std-font-color"><%= t('student.title.job_info') %></span>
+            </div>                    
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :desire_industry_type_id , class: "form-label"%><%= form.label t('student.title.combo_remark')%>
+                <%= form.collection_select(:desire_industry_type_id,industry_type_options , :id ,:industry_name, { :include_blank => false}, selected: form.object.desire_industry_type_id,multiple: true, :class=> "form-control form-select shadow-none errors ",data: {:placeholder => t('student.placeholder.industry_type')+t('common.default_placeholder')}) %>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :desire_job_type_id , class: "form-label"%><%= form.label t('student.title.combo_remark')%>
+                <%= form.collection_select(:desire_job_type_id,occupation_options , :id ,:occupation_name, { :include_blank => false}, selected: form.object.desire_job_type_id,multiple: true, :class=> "form-control form-select shadow-none errors ",data: {:placeholder => t('student.placeholder.job_type')+t('common.default_placeholder')}) %>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :m_region_id , class: "form-label" %>
+                <%= form.collection_select(:m_region_id ,region_options , :id ,:region_name, { :include_blank => ( t'select.not_select')}, selected: form.object.m_region_id, :class=> "form-control form-select shadow-none errors ",data: {:placeholder => t('student.placeholder.region')+t('common.default_placeholder')}) %>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :m_prefecture_id , class: "form-label" %><%= form.label t('student.title.combo_remark')%>
+                <%= form.collection_select(:m_prefecture_id,prefecture_options , :id ,:prefecture_name, { :include_blank => false}, selected: form.object.m_prefecture_id,multiple: true, :class=> "form-control form-select shadow-none errors ",data: {:placeholder => t('student.placeholder.prefecture')+t('common.default_placeholder')}) %>
+            </div>
+            
+            <div class="col-12 col-md-12 col-lg-6 mb-3">
+                <%= form.label :transfer , class: "form-label" %>
+                <%= form.select(:transfer, ['可能', '不可能','エリア内のみ','未定'], {:include_blank => ( t'select.not_select'), selected: form.object.transfer}, { :class => 'form-control form-select shadow-none errors',:placeholder => t('student.placeholder.transfer')+t('common.default_placeholder') }) %>
+            </div>
+            <div class="col-12 mb-3">
+                <%= form.label :job_info , class: "form-label" %>
+                <%= form.text_area :job_info, id: "job_info", :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.job_info'), maxlength: 255, rows: 4 %>
+            </div>             
+        </div>
+        <%# Third Panel End %>
+
+        <%# Fourth Panel Start %>
+        <div class="d-container shadow py-4 bg-white mt-5" style="border-radius: 0.8rem">
+            <div class="col-12 pb-4 pt-3">
+                <span class="h4 std-font-color"><%= t('student.title.activity_info') %></span>
+            </div>                    
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :club_name , class: "form-label" %>
+                <%= form.text_field :club_name, id: "club_name", :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.club_name'), maxlength: 60 %>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :club_position , class: "form-label" %>
+                <%= form.text_field :club_position, id: "club_position", :class=> "form-control shadow-none errors ", placeholder:  t('student.placeholder.club_position'), maxlength: 60 %>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6 mb-3">
+                <%= form.label :club_detail_activity , class: "form-label" %>
+                <%= form.text_field :club_detail_activity, id: "club_detail_activity", :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.club_detail_activity'), maxlength: 60 %>
+            </div>
+            <div class="col-12 mt-2">
+                <%= form.label :outside_school_activity , class: "form-label", id: "outside_school_activity" %>
+                <div>
+                    <ul class="stylish-custom-chkbox">
+                        <%= form.fields_for :outside_school_activity  do |f| %>   
+                            <% Student::Student.outside_activities.each do |k,v| %>
+                                <li> 
+                                    <%= f.check_box "#{v}", { :checked => @student_edit.outside_school_activity.nil?  ? false : @student_edit.outside_school_activity[v-1] == 1  } %>
+                                    <%= f.label "#{v}", t("student.outside_activity.#{k}"), id: "outside_school_activity_#{v}" %>
+                                </li>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>              
+            <div class="col-12 mb-3">
+                <%= form.label :club_guide , class: "form-label" %>
+                <%= form.text_area :club_guide, id: "club_guide", :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.club_guide'), maxlength: 255, rows: 4 %>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :is_beelab_activity_participate , class: "form-label" %>
+                <%= form.select(:is_beelab_activity_participate, is_beelab_activity_participate_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control shadow-none errors", :id => "is_beelab_activity_participate"}) %>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :beelab_college_achievements , class: "form-label" %>
+                <%= form.text_field :beelab_college_achievements, id: "beelab_college_achievements", :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.beelab_college_achievements'), maxlength: 60 %>
+            </div>
+            <div class="col-12 mb-3">
+                <%= form.label :sns_blog_for_pr , class: "form-label" %>
+                <%= form.text_area :sns_blog_for_pr, id: "sns_blog_for_pr", :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.sns_blog_for_pr'), maxlength: 255, rows: 4 %>
+            </div>   
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.label :pando_info , class: "form-label" %>
+                <%= form.text_field :pando_info, id: "pando_info", :class=> "form-control shadow-none errors ", placeholder: t('student.placeholder.pando_info') , maxlength: 60 %>
+                <p class ="ms-invalid-feedback mt-1"><%= @student_edit.errors.full_messages_for(:pando_info)[0] %></p>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <%= form.hidden_field :haveFileFlag, :value => false , id: "haveFileFlag" %>
+                <%= form.label :attachment_for_pr , class: "form-label" %>
+                <%= form.file_field :attachment_for_pr,accept: 'application/pdf', :class=> "form-control shadow-none errors upload-file", :id => "upload","data-existed": form.object.attachment_for_pr.attached? %>
+                <div>
+                    <label for="upload" class="form-control shadow-none warp-text">
+                        <% if form.object.attachment_for_pr.attached? && form.object.attachment_for_pr.persisted? %>
+                            <span class="file-chosen"><%= form.object.attachment_for_pr.filename %></span>
+                        <% else %>
+                            <span class="file-chosen"><%= t('student.title.pdf_text') %></span>
+                        <% end %>
+                        <button type="button" class="close" id="remove_file">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </label>
+                </div>
+            </div>                   
+        </div>
+        <%# Fourth Panel End %>
+            
+        <div class="actions d-flex justify-content-center mt-5">
+            <%= form.submit t('btn.update'), :class => 'custom-btn text-white' %>
+        </div>      
+    </section>  
+</div>    
+<% end %>
+<%= javascript_pack_tag "common.js" %>
+<%= javascript_pack_tag "student/students.js" %>
+<%= javascript_pack_tag "postalcode.js" %>

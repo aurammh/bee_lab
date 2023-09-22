@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center pt-3 px-sm-4">
+    <div class="col-12 bg-white py-sm-4 py-lg-5 px-sm-4 px-lg-5 shadow std-info-box mb-3">
+        <% if @favourite_company_list.present? %>       
+            <div class="d-none d-md-block d-sm-none">                  
+                <table class="table table-bordered table-responsive-md">
+                    <thead class="com-bg-color text-white">
+                        <tr>
+                            <th><%= Company::Company.human_attribute_name('company_name') %></th>
+                            <th><%= t('dashboard.favourite_com_count') %></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @favourite_company_list.each_with_index do |favourite_company,index| %>
+                        <tr data-link="<%= admin_company_manage_company_details_path(:company_id => favourite_company.company_id) %>">
+                                <td class="text-break"><%= favourite_company.company_name %></td>
+                                <td class="text-break"><%= favourite_company.fav_count %></td>
+                            </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 my-2 d-content d-md-none">
+                <% @favourite_company_list.each_with_index do |favourite_company,index| %>
+                <div class="mobile-table row std-info-box p-3 my-4 rounded" data-link="<%= admin_company_manage_company_details_path(:company_id => favourite_company.company_id) %>">                                          
+                            <span class="h6 com-font-color col-4"><%= Company::Company.human_attribute_name('company_name') %></span>
+                            <span class="col-8 text-muted text-break"><%= favourite_company.company_name %></span><br>
+                            <span class="h6 com-font-color col-4"><%= t('dashboard.favourite_com_count') %></span>
+                            <span class="col-8 text-muted text-break"><%= favourite_company.fav_count %></span><br>                       
+                        </div>
+                <% end %>                          
+            </div>
+        <% else %>
+        <div class="col-12 m-2">
+        <h3><%= t('search.no_result') %></h3>
+        </div>
+        <%end%>
+    </div>
+</div>
+<%= javascript_pack_tag 'common.js'%>

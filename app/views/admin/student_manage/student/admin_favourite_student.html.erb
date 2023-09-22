@@ -1,0 +1,42 @@
+<script type="text/javascript">
+  var BASE_URL = '<%= root_url %>';
+</script>
+<div class="d-flex justify-content-center pt-3 px-sm-4">
+<div class="col-12 bg-white py-sm-4 py-lg-5 px-sm-4 px-lg-5 shadow std-info-box mb-3">
+    <% if @favourite_student_list.present? %>       
+        <div class="d-none d-md-block d-sm-none">                  
+            <table class="table table-bordered table-responsive-md">
+                <thead class="std-bg-color text-white">
+                    <tr>
+                        <th scope="col"><%= t('student.student_show.name')%></th>
+                        <th><%= t('dashboard.favourite_com_count') %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @favourite_student_list.each_with_index do |favourite_student,index| %>
+                      <tr data-link="<%= admin_student_manage_student_details_path(:userid => favourite_student.student_id) %>">
+                            <td class="text-break"><%= favourite_student.student_name %></td>
+                            <td class="text-break"><%= favourite_student.fav_count %></td>
+                        </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+            <% @favourite_student_list.each_with_index do |favourite_student,index| %>
+              <div class="mobile-table row std-info-box p-3 my-4 rounded" data-link="<%= admin_student_manage_student_details_path(:userid => favourite_student.student_id) %>">                                          
+                        <span class="h6 std-font-color col-4"><%= t('student.student_show.name')%></span>
+                        <span class="col-8 text-muted text-break"><%= favourite_student.student_name %></span><br>
+                        <span class="h6 std-font-color col-4"><%= t('dashboard.favourite_com_count') %></span>
+                        <span class="col-8 text-muted text-break"><%= favourite_student.fav_count %></span><br>                       
+                    </div>
+            <% end %>                          
+        </div>
+    <% else %>
+    <div class="col-12 m-2">
+      <h3><%= t('search.no_result') %></h3>
+    </div>
+    <%end%>
+</div>
+</div>
+<%= javascript_pack_tag 'common.js'%>

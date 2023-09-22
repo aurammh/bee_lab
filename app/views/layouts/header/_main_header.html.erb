@@ -1,0 +1,75 @@
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light nav-container pr-md-3">
+       <%= link_to root_path ,class: "navbar-brand navbar-width" do %>
+            <%= image_tag "layout/header_logo.jpg", class: "header-logo-size" %>   
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end " id="navbarNav">        
+            <ul class="navbar-nav landing-company align-items-center">
+            <% if @usertype == "1" %>
+                <li class="nav-item mr-4 com-link-hover">
+                    <a class="nav-link" href="/"><%= t('welcome.privacy policy.top_page_link.link4') %></a> 
+                </li>              
+                <li class="nav-item mr-4 com-link-hover">
+                    <%= link_to(t('welcome.privacy policy.top_page_link.link7'), welcome_company_login_path , class: "nav-link") %>
+                </li>
+                <li class="nav-item mr-4 com-link-hover">
+                  <%= link_to(t('welcome.privacy policy.top_page_link.link8'),  welcome_company_register_path , class: "nav-link") %>
+                </li>            
+            <% elsif @usertype == "2" %> 
+                <li class="nav-item mr-4 std-link-hover">
+                    <a class="nav-link" href="/"><%= t('welcome.privacy policy.top_page_link.link4') %></a> 
+                </li>              
+                <li class="nav-item mr-4 std-link-hover">
+                  <%= link_to(t('welcome.privacy policy.top_page_link.link9'), welcome_student_login_path , class: "nav-link") %>
+                </li>
+                <li class="nav-item mr-4 std-link-hover">
+                <%= link_to(t('welcome.privacy policy.top_page_link.link10'),welcome_student_register_path , class: "nav-link") %>
+                </li>
+            <% elsif @usertype == "0" %> 
+                <li class="nav-item mr-4 std-link-hover">
+                    <%= link_to(t('welcome.privacy policy.top_page_link.link12'), welcome_student_path, class: "nav-link") %>
+                </li>  
+                <li class="nav-item mr-4 com-link-hover">
+                    <%= link_to(t('welcome.privacy policy.top_page_link.link13'), welcome_company_path, class: "nav-link") %>
+                </li>             
+            <% else %>
+                <% if (@user_type.to_s).eql?"2" %>
+                    <%- if controller_name != 'sessions' %>
+                    <li class="nav-item mr-4 std-link-hover">
+                        <%= link_to t('welcome.privacy policy.top_page_link.link11'),  welcome_student_login_path,class: "nav-link" %>
+                    </li>
+                    <% end %>
+
+                    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                        <li class="nav-item mr-4 std-link-hover">
+                            <%= link_to t('welcome.privacy policy.top_page_link.link10'), welcome_student_register_path ,class: "nav-link" %><br />
+                        </li>
+                    <% end %>
+                     <li class="nav-item mr-4 std-link-hover">
+                       <%= link_to(t('welcome.privacy policy.top_page_link.link5'), welcome_student_path, class: "nav-link") %>
+                    </li> 
+
+                <% end %> 
+                <% if (@user_type.to_s).eql?"1" %>
+                    <%- if controller_name != 'sessions' %>
+                    <li class="nav-item mr-4 com-link-hover">
+                        <%= link_to t('welcome.privacy policy.top_page_link.link11'), welcome_company_login_path ,class: "nav-link" %>
+                    </li>
+                    <% end %>
+                    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                        <li class="nav-item mr-4 com-link-hover">
+                            <%= link_to t('welcome.privacy policy.top_page_link.link8'), welcome_company_register_path,class: "nav-link" %><br />
+                        </li>
+                    <% end %>
+                    <li class="nav-item mr-4 com-link-hover">
+                       <%= link_to(t('welcome.privacy policy.top_page_link.link6'), welcome_company_path, class: "nav-link") %>
+                    </li> 
+                <% end %>
+            <% end %>
+            </ul>
+        </div>
+    </nav>
+</header>

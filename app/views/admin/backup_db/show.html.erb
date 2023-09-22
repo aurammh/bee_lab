@@ -1,0 +1,97 @@
+<div class="px-sm-4 pt-2" id="backup-dashborad">
+
+    <%# Lists start %>
+    <div class="search-result  mt-3 company-dashboard col-12  pb-5 mb-5">
+        <div class="row p-2 shadow bg-white info-box">
+            <div class="col-8 col-md-7 pr-0">
+                <h1><%= t('backup_db.title_detail') %></h1>
+            </div>
+            <div class="col-2 col-md-5 mb-3 pt-2 pl-0 com-font-color text-right mx-0">
+                 <%= link_to ('<i class="fas fa-arrow-circle-left"></i>').html_safe, admin_backup_db_index_path, class: "px-4 admin-sidebar-color custom-btn text-white text-decoration-none"%>
+            </div>
+
+            <div class="col-8 mb-3">
+                <%= form_for('',url: admin_backup_db_path(params[:id]), :method => "get") do |form| %>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <%= form.hidden_field :id,value: params[:id]%>
+                            <label for="from_to_date">From Date:</label>
+                            <%= text_field_tag :from_to_date, params[:from_to_date], placeholder: "", :class=> "form-control" %>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <label for="from_to_date">&nbsp;</label>
+                            <%= form.submit t('btn.student_search'), :class => 'admin-search-btn admin-sidebar-color text-white py-1 form-control', :id => 'search' %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+
+            <% if @backup_db_details.present?  %>
+                <div class="d-none d-md-block w-100">
+                    <table class="table table-bordered table-responsive-md table-responsive-lg-none">
+                        <thead class="admin-sidebar-color text-white">
+                            <tr>
+                                <th scope="col"><%= t('backup_db.table_no') %></th>
+                                <th scope="col"><%= t('backup_db.created_by') %></th>
+                                <th scope="col"><%= Admin::BackupDb.human_attribute_name('name') %>  </th>
+                                <th scope="col"><%= t('backup_db.file_size') %></th>
+                                <th scope="col"><%= t('backup_db.created_at') %></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @backup_db_details.each_with_index do |data,index| %>
+                                <tr>
+                                    <td class="text-break"><%= index + 1 %></td>
+                                    <td class="text-break"><%= current_admin.first_name%> <%=current_admin.last_name%></td>
+                                    <td class="text-break"><%= data.file_type.filename%></td>
+                                    <td class="text-break"><%= bytes_to_megabytes(data.file_type.byte_size)%> MB
+                                    </td>
+                                    <td class="text-break"><%= time_date(data.file_type.created_at)%></td>
+                                    <td class="text-break">
+                                        <% if data.file_type.attached?%>
+                                            <%= link_to ('<i class="fas fa-download"></i>').html_safe, data.file_type ,:class => 'icon-color',target: '_blank'%>
+                                        <%end%>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>  
+                </div>
+
+                <div class="col-12 my-2 px-4 d-content d-md-none">
+                    <% @backup_db_details.each_with_index do |data,index| %>
+                        <div class="mobile-table row com-info-box p-3 my-4 rounded">
+                            <span class="h6 com-font-color col-4"><%= t('backup_db.table_no') %></span>
+                            <span class="col-8 text-muted text-break"><%= index+1 %></span><br>
+                            <span class="h6 com-font-color col-4"><%= t('backup_db.created_by') %></span>
+                            <span class="col-8 text-muted text-break"><%= current_admin.first_name%> <%=current_admin.last_name%></span><br>
+                            <span class="h6 com-font-color col-4"><%= Admin::BackupDb.human_attribute_name('name') %></span>
+                            <span class="col-8 text-muted text-break"><%= data.file_type.filename %></span><br>
+                            <span class="h6 com-font-color col-4"><%= t('backup_db.file_size') %></span>
+                            <span class="col-8 text-muted text-break">
+                            <%= bytes_to_megabytes(data.file_type.byte_size)%> MB</span><br>
+                            <span class="h6 com-font-color col-4"><%= t('backup_db.created_at') %></span>
+                            <span class="col-8 text-muted text-break">
+                            <%= time_date(data.file_type.created_at) %></span><br>
+                            <span class="h6 com-font-color col-4"></span>
+                            <span class="col-8 text-muted text-break">
+                            <%= link_to ('<i class="fas fa-download"></i>').html_safe, data.file_type ,target: '_blank'%></span><br>
+                            </span><br>
+                        </div>
+                    <% end %>                          
+                </div>
+
+                <div class="col-12 col-sm-7 d-flex justify-content-center justify-content-sm-end">
+                    <%= paginate @backup_db_details ,class: "mb-0" %>
+                </div>
+            <% else %>
+                <div class="col-12 m-2">
+                    <h3><%= t('search.no_result') %></h3>
+                </div>
+            <% end %>
+        </div>
+    </div>    
+    <%# Lists end%>
+</div>
+<%= javascript_pack_tag "admin/backup.js" %>

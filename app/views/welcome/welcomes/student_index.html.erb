@@ -1,0 +1,272 @@
+<%# Section 1 Start %>
+<section class="d-flex align-items-center px-sm-2 px-md-5 std-sec-1 std-img">   
+    <div class="px-3 px-md-5 pt-5 pt-sm-2">      
+      <h2 class="font-weight-bold"><%= t('welcome.student.title.bee_lab_title') %></h2>              
+      <div>
+        <p class="h5"><%= t('welcome.student.content.bee_lab_paragraph1') %></p>
+      </div>
+      <div class="">
+        <p class="h5"><%= t('welcome.student.content.bee_lab_paragraph1_1') %></p>
+        <p class="h5"><%= t('welcome.student.content.bee_lab_paragraph1_2') %></p>
+      </div>
+      <div class="mt-4 p-3 txt-deco">
+        <span class="h5 "><p class="h5 font-weight-bold"><%= t('welcome.student.content.bee_lab_paragraph4') %></p></span>
+      </div> 
+
+      <div class="mt-2 mt-lg-5">
+        <div class="row px-3 px-md-3">
+          <div class="col-12 col-md-12">
+            <div class="row d-flex justify-content-start py-5">
+              <%= link_to( welcome_student_login_path , class: "col-12 col-lg-4 welcome-btn py-3 text-center text-white std-login-color font-weight-bold text-decoration-none mr-sm-4 mb-3 mb-lg-0 rounded-pill") do %>
+                <%= t('welcome.privacy policy.top_page_link.btn4') %>
+              <% end %>
+              <%= link_to( welcome_student_register_path  , class: "col-12 col-lg-4 welcome-btn py-3 text-center text-white std-register-color font-weight-bold text-decoration-none rounded-pill") do %>
+               <%= t('welcome.privacy policy.top_page_link.btn5') %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<%# Section 1 End %>
+
+<%# Section 2 Start %>
+<section class="com-sec-2 px-lg-5 pt-0 pt-lg-5 bg-white">
+  <div class="container-fluid row mx-0 pl-lg-2 pr-lg-3">
+    <div class="col-12 col-lg-8">
+        <h2 class="pt-5 com-font-color"><%= t('welcome.student.section2.title') %></h2>
+        <div class="font-weight-bold"><%= t('welcome.company.section2.paragraph1') %></div>
+        <div class="font-weight-bold"><%= t('welcome.company.section2.paragraph2') %></div>
+        <div class="font-weight-bold"><%= t('welcome.company.section2.paragraph3') %></div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= image_tag "welcome/welcomeSec2_photo.jpg", class: "img-fluid com-sec-2-img mt-2 mx-lg-4", alt: "Responsive image" %>   
+    </div>
+  </div>
+</section>
+<%# Section 2 End %>
+
+<%# Section 3 Start %>
+<section class="com-sec-3 pt-5 px-lg-5 bg-white">
+  <div class="container-fluid row px-lg-3">
+      <h3 class="col-12 text-center font-weight-bold"><%= t('welcome.student.section3.title') %></h3>
+      <p class="col-12 pl-4 font-weight-bold"> <%= t('welcome.privacy policy.top_page_link.text8') %><span class="text-danger"> <%= t('welcome.privacy policy.top_page_link.text9') %></span><%= t('welcome.privacy policy.top_page_link.text10') %></p>
+      <div class="col-12">
+          <%= image_tag "welcome/self_assessment.jpg", class: "img-fluid com-sec-3-img mt-2", alt: "Responsive image" %>   
+      </div>
+  </div>
+</section>
+<%# Section 3 End %>
+
+<%# Section 4 Start %>
+<section class="pt-4 com-sec-4 px-4 bg-white">
+  <div class="conatiner-fluid px-lg-5 pb-5">
+      <div class="row mb-4 mb-md-5 shadow rounded bg-white">
+        <div class="col-12 col-md-8 col-xl-9 pt-3 pl-md-5">
+           <h3 class="com-font-color font-weight-bold"><%= t('welcome.student.section4.title1') %></h3>
+                <p><%= t('welcome.student.section4.paragraph1_1') %></p>
+            </div>
+            <div class="col-12 col-md-4 col-xl-3 p-3">
+              <%= image_tag "welcome/com_welcome_sec_41.jpg", class: "img-fluid com-sec-4-img", alt: "Responsive image" %>   
+            </div>
+        </div>
+        <div class="row mb-4 mb-md-5 shadow rounded bg-white">
+            <div class="col-12 col-md-8 col-xl-9 pt-3 pl-md-5">
+                <h3 class="com-font-color font-weight-bold"><%= t('welcome.student.section4.title2') %></h3>
+                <p><%= t('welcome.student.section4.paragraph2_1') %></p>
+            </div>
+            <div class="col-12 col-md-4 col-xl-3 p-3">
+              <%= image_tag "welcome/com_welcome_sec_42.jpg", class: "img-fluid com-sec-4-img", alt: "Responsive image" %>   
+            </div>
+        </div>
+        <div class="row mb-4 mb-md-5 shadow rounded bg-white">
+            <div class="col-12 col-md-8 col-xl-9 pt-3 pl-md-5">
+                 <h3 class="com-font-color font-weight-bold"><%= t('welcome.student.section4.title3') %></h3>
+                <p><%= t('welcome.student.section4.paragraph3_1') %></p>
+            </div>
+            <div class="col-12 col-md-4 col-xl-3 p-3">
+              <%= image_tag "welcome/com_welcome_sec_43.jpg", class: "img-fluid com-sec-4-img", alt: "Responsive image" %>   
+            </div>
+        </div>
+    </div>
+
+      <div class="mt-2 mt-lg-2">
+      <div class="row px-3 px-md-3">
+        <div class="col-12 col-md-12">
+          <div class="row d-flex justify-content-center py-5">
+            <%= link_to( welcome_student_login_path , class: "col-12 col-lg-2 welcome-btn py-3 text-center text-white std-login-color font-weight-bold text-decoration-none mr-sm-4 mb-3 mb-lg-0 rounded-pill") do %>
+             <%= t('welcome.privacy policy.top_page_link.btn4') %>
+            <% end %>
+              <%= link_to( welcome_student_register_path , class: "col-12 col-lg-2 welcome-btn py-3 text-center text-white std-register-color font-weight-bold text-decoration-none mr-sm-4 rounded-pill") do %>
+               <%= t('welcome.privacy policy.top_page_link.btn5') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%# Section 4 End %>
+
+
+<%# Section 5 Start %>
+<section class="std-sec-5 pb-5 bg-white">
+  <div class="container-fluid pt-3 pt-lg-5">
+    <h2 class="text-center font-weight-bold mb-4"><%= t('welcome.student.section5.title') %></h2>
+    <div class="row mx-lg-3">
+      <div class="col-12 col-md-4 px-lg-4 mb-2">
+        <div class="card sec-5-card p-3 border-0 bg-white shadow">
+            <%= image_tag "welcome/com_welcome_sec_44.jpg", class: "img-fluid mb-2", alt: "Responsive image" %>
+          <div class="card-body px-0">
+            <h5 class="card-title com-font-color"> <%= t('welcome.privacy policy.student_index_text.title_text1') %></h5>
+            <div class="card-text text-justify"><%= t('welcome.student.section5.paragraph1_1') %></div>
+          </div>
+          <div class="text-center mb-3">
+            <a href="https://pando.life/beelab/service-1790" class="text-decoration-none text-dark" target="_blank" rel= 'noopener noreferrer' ><%= t('welcome.privacy policy.student_index_text.link1') %></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 px-lg-4 mb-2">
+        <div class="card sec-5-card border-0 p-3 bg-white shadow">
+            <%= image_tag "welcome/com_welcome_sec_45.jpg", class: "img-fluid mb-2", alt: "Responsive image" %>
+          <div class="card-body px-0">
+            <h5 class="card-title com-font-color"><%= t('welcome.privacy policy.student_index_text.title_text2') %></h5>
+             <div class="card-text text-justify"><%= t('welcome.student.section5.paragraph2_1') %></div>
+          </div>
+          <div class="text-center mb-3">
+            <a href="https://pando.life/beelab/service-1792" class="text-decoration-none text-dark" target="_blank" rel= 'noopener noreferrer'><%= t('welcome.privacy policy.student_index_text.link1') %></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 px-lg-4 mb-2">
+        <div class="card sec-5-card border-0 p-3 bg-white shadow">
+            <%= image_tag "welcome/com_welcome_sec_46.jpg", class: "img-fluid mb-2", alt: "Responsive image" %>
+          <div class="card-body px-0">
+            <h5 class="card-title com-font-color"> <%= t('welcome.privacy policy.student_index_text.title_text3') %></h5>
+             <div class="card-text text-justify"><%= t('welcome.student.section5.paragraph3_1') %></div>
+          </div>
+          <div class="text-center mb-3">
+            <a href="https://pando.life/beelab/service-1794" class="text-decoration-none text-dark" target="_blank" rel= 'noopener noreferrer'><%= t('welcome.privacy policy.student_index_text.link1') %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>
+<%# Section 5 End %>
+
+<%# Section 6 Start %>
+<section class="com-sec-2 px-lg-5 pt-0 pt-lg-2 bg-white">
+  <div class="container-fluid row mx-0 px-lg-3">
+    <div class="col-12 col-lg-8">
+        <h2 class="pt-5 com-font-color font-weight-bold"><%= t('welcome.student.section6.title') %></h2>
+        <div class="font-weight-bold"><%= t('welcome.student.section6.paragraph1') %></div>
+        <div class="font-weight-bold"><%= t('welcome.student.section6.paragraph2') %></div>
+         <div class="row col-12 d-flex justify-content-start py-5">
+              <%= link_to( "https://pando.life/beelab/service-1714", class: "col-12 col-lg-3 welcome-btn py-3 text-center text-white std-login-color font-weight-bold text-decoration-none mr-sm-4 mb-3 mb-lg-0 rounded-pill", target: :_blank, rel: 'noopener noreferrer' ) do %>
+                <%= t('welcome.privacy policy.top_page_link.btn2') %>
+              <% end %>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <%= image_tag "welcome/pixta_57513243_M.jpg", class: "img-fluid com-sec-2-img mt-2 mx-lg-4 mb-2", alt: "Responsive image" %>   
+    </div>
+  </div>
+</section>
+<%# Section 6 End %>
+
+<%# Section 7 Start %>
+<section class="d-flex align-items-center mb-2 px-sm-2 px-md-5 std-sec-7">
+  <div class="container">
+    <div class="row mx-2 justify-content-center">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2 d-flex justify-content-center align-items-center">
+        <%= image_tag "layout/logo.jpg", class: "std-com-sec7-logo" %>   
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2">
+        <div class="card sec-2-card border-0">
+          <div class="d-flex justify-content-center align-items-center">
+            <%= image_tag "cardIcon/matching support icon.svg", class: "com-sec-2-img mt-2 mb-2", alt: "Responsive image" %>   
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= t('welcome.student.about_card.card1_title') %></h5>
+            <p class="card-text text-justify"><%= t('welcome.student.about_card.card1_paragraph') %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2">
+        <div class="card sec-2-card border-0">
+          <div class="d-flex justify-content-center align-items-center">
+            <%= image_tag "cardIcon/company information icon.svg", class: "com-sec-2-img mt-2 mb-2", alt: "Responsive image" %>   
+          </div>
+          <div class="card-body">
+           <h5 class="card-title"><%= t('welcome.student.about_card.card2_title') %></h5>
+            <p class="card-text text-justify"><%= t('welcome.student.about_card.card2_paragraph') %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2 mr-lg-1">
+        <div class="card sec-2-card border-0">
+          <div class="d-flex justify-content-center align-items-center">
+            <%= image_tag "cardIcon/people icon.jpg", class: "com-sec-2-img mt-2 mx-4 mb-2", alt: "Responsive image" %>   
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= t('welcome.student.about_card.card3_title') %></h5>
+            <p class="card-text text-justify"><%= t('welcome.student.about_card.card3_paragraph') %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2 ">
+        <div class="card sec-2-card border-0">
+          <div class="d-flex justify-content-center align-items-center">
+            <%= image_tag "cardIcon/yen icon.jpg", class: "com-sec-2-img mt-2 mx-4 mb-2", alt: "Responsive image" %>      
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= t('welcome.student.about_card.card4_title') %></h5>
+            <p class="card-text text-justify"><%= t('welcome.student.about_card.card4_paragraph') %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-2 ">
+        <div class="card sec-2-card border-0">
+          <div class="d-flex justify-content-center align-items-center">
+            <%= image_tag "cardIcon/service icon.svg", class: "com-sec-2-img mt-2 mb-2", alt: "Responsive image" %>   
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= t('welcome.student.about_card.card5_title') %></h5>
+            <p class="card-text text-justify"><%= t('welcome.student.about_card.card5_paragraph') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%# Section 7 End %>
+
+
+<%# Section 8 Start %>
+<section class="p-0 com-sec-8 com-img-sec-8 d-flex align-items-center">
+  <div class="row container-fluid p-3 com-top-text-color">
+    <div class="col-12 col-sm-6 col-md-7 col-lg-8 col-xl-9 pl-5 d-flex flex-column align-items-start">
+      <h3 class="text-center font-weight-bold"><%= t('welcome.company.section8.title') %>
+        <hr class="com-top-sect8-hr mb-0">    
+      </h3>           
+      <p class="m-0 text-center font-weight-bold"><%= t('welcome.company.section8.paragraph1') %></p>
+      <p class="text-center font-weight-bold"><%= t('welcome.company.section8.paragraph2') %></p>
+    </div>  
+    <div class="ml-auto col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-center align-items-center">
+     <%= link_to( welcome_contact_path(user_type: @usertype || @user_type), class: "text-decoration-none p-2 p-sm-4 border3 welcome-btn text-center text-white font-weight-bold") do %>
+              <%= t('welcome.privacy policy.top_page_link.btn3') %> 
+     <% end %>
+    </div>
+  </div>
+</section>
+<%# Section 8 End %>
+
+  

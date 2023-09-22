@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      admin/backup_db: backup_db
+    attributes:
+      admin/backup_db:
+        name: ファイル名 
+        backup_schedule: タイミング  
+        destroy_schedule: 旧ファイル削除タイミング
+        remark: 備考
+        file_type: ファイルタイプ          
+  errors:
+    messages:
+      blank: "を入力してください。"
+      invalid: "無効です。"
+  backup_db:
+    first_title: バックアップ作成
+    submit_btn: 作成
+    back_title : 検索一覧
+    title: バックアップリスト
+    title_detail: バックアップファイル詳細画面
+    table_no:  No.
+    file_size: サイズ
+    created_by: created by
+    created_at: created at
+    backup_schedule_options:
+      1: "毎日"
+      2: "毎週"
+      3: "毎月"
+    destroy_schedule_options:
+      1: "毎週"
+      2: "毎月"
+      3: "３ヶ月"

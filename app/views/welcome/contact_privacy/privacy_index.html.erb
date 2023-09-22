@@ -1,0 +1,179 @@
+<div class="information-title-img d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="information-title font-weight-bold"><%= t'welcome.privacy policy.title' %>
+        </div>
+    </div>
+</div>
+
+<div class="privacy-policy">
+    <div class="container form-card bg-white shadow mt-4 mb-5 py-5 px-5">
+                <div>
+                    <a href="/" class="text-decoration-none text-secondary">Home /</a>
+                    <a href="/" class="text-decoration-none text-secondary"><%= t'welcome.privacy policy.title' %></a>
+                </div>
+                <h3 class="main-title mt-4 font-weight-bold"><%= t'welcome.privacy policy.title' %></h3>
+                <div class="bg-light mt-4">
+                    <% if  @usertype.eql?2 %>
+                        <div class="pb-1 std-bg-color w-25"></div>
+                    <% else%>
+                        <div class="pb-1 com-bg-color w-25"></div>
+                    <% end %>
+                </div>
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <p><%= t('welcome.privacy policy.paragraph1') %></p>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                            <%= t('welcome.privacy policy.section2.title') %>
+                        </h5>
+                    <p class="mt-2">
+                        <%= t('welcome.privacy policy.section2.paragraph1') %>
+                    </p>
+                    <ol class="p-1 list-unstyled">
+                        <li><%= t('welcome.privacy policy.section2.text1') %></li>
+                        <li><%= t('welcome.privacy policy.section2.text2') %></li>
+                            <li><%= t('welcome.privacy policy.section2.text3') %></li>
+                            <li><%= t('welcome.privacy policy.section2.text4') %></li>
+                    </ol>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                            <%= t('welcome.privacy policy.section3.title') %>
+                        </h5>
+                    <p class="mt-2"><%= t('welcome.privacy policy.section3.paragraph1') %>
+                    </p>
+                    <ol class="p-1 list-unstyled">
+                        <li><%= t('welcome.privacy policy.section3.text1') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text2') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text3') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text4') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text5') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text6') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text7') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text8') %></li>
+                        <br><li><%= t('welcome.privacy policy.section3.text9') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text10') %></li> 
+                        <li><%= t('welcome.privacy policy.section3.text11') %></li> 
+                    </ol>
+                </div>
+
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                        <%= t('welcome.privacy policy.section4.title') %></h5>
+                    <p class="mt-2">
+                        <%= t('welcome.privacy policy.section4.paragraph') %>                    
+                    </p>
+                </div>
+                
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section5.title') %></h5>
+                    <p class="mt-2">
+                        <%= t('welcome.privacy policy.section5.paragraph') %>                    
+                    </p>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section6.title') %></h5>
+                    <p class="mt-2">
+                        <%= t('welcome.privacy policy.section6.paragraph') %>
+                    </p>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section7.title') %></h5>
+                    <p class="mt-2">
+                        <%= t('welcome.privacy policy.section7.paragraph') %>
+                    </p>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section8.title') %></h5>
+                    <p class="mt-2">
+                         <%= t('welcome.privacy policy.section8.paragraph') %>
+                    </p>
+                    <ul class="p-1 list-unstyled">
+                        <li><%= t('welcome.privacy policy.section8.text1') %></li>
+                        <li><%= t('welcome.privacy policy.section8.text2') %></li>
+                        <li><%= t('welcome.privacy policy.section8.text3') %></li>
+                    </ul>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section9.title') %></h5>
+                    <p class="mt-2">
+                    <%= t('welcome.privacy policy.section9.paragraph') %></p>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section10.title') %></h5>
+                    <p class="mt-2">
+                     <%= t('welcome.privacy policy.section10.paragraph') %></p>   
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section11.title') %></h5>
+                    <p class="mt-2">
+                    <%= t('welcome.privacy policy.section11.paragraph') %>
+                    </p>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @usertype.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %><%= t('welcome.privacy policy.section12.title') %></h5>
+                    <p class="mt-2">
+                    <%= t('welcome.privacy policy.section12.paragraph') %>
+                    </p>
+                </div>
+
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <p class="mt-2"><%= t('welcome.privacy policy.top_page_link.text3') %></p>
+                </div>
+            
+    </div>
+</div>

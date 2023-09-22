@@ -1,0 +1,57 @@
+<section class="student-detail container-fluid h-50  d-flex flex-column align-items-center mt-2 pt-2">
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5">
+        <div class="h3"> <%= t ('common.favourite_company') %><br><hr class="title-hr"></div> 
+        <div class="d-none d-md-block d-sm-none">                  
+            <table class="table table-bordered table-responsive-md">
+                <thead class="std-bg-color text-white">
+                    <tr>
+                        <th><%= Company::Company.human_attribute_name('company_name') %></th>
+                        <th><%= Company::Company.human_attribute_name('m_industry_id') %></th>
+                        <th><%= Company::Company.human_attribute_name('sales_amount') %></th>
+                        <th><%= Company::Company.human_attribute_name('capital_amount') %></th>
+                        <th><%= Company::Company.human_attribute_name('employee_count') %></th>
+                        <th><%= Company::Company.human_attribute_name('company_established') %></th>
+                        <th><%= Company::Company.human_attribute_name('display_address') %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_favourite_company_list.each do |all_favourite_company| %>
+                        <tr data-link="<%= student_path(:id => all_favourite_company.id) %>">
+                            <td class="text-break"><%= all_favourite_company.company_name %></td>
+                            <td><%= all_favourite_company.industry_name %></td>
+                            <td><%= all_favourite_company.sales_amount%></td>
+                            <td><%= all_favourite_company.capital_amount %></td>
+                            <td><%= all_favourite_company.employee_count %></td>
+                            <td><%= all_favourite_company.company_established %></td>
+                            <td class="text-break"><%= all_favourite_company.display_address %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+            <% @all_favourite_company_list.each do |all_favourite_company| %>
+                <div class="mobile-table row std-info-box shadow p-3 mb-4" data-link="<%= student_path(:id => all_favourite_company.id) %>">                                                   
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('company_name') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_company.company_name %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('m_industry_id') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_company.industry_name %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('sales_amount') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_company.sales_amount %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('capital_amount') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_company.capital_amount %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('employee_count') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_company.employee_count %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('company_established') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_company.company_established %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('display_address') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_company.display_address %></span><br>                       
+                </div>
+            <% end %>                          
+        </div>
+        <div class="col-12 d-flex justify-content-center p-4">
+            <%= paginate @all_favourite_company_list %>
+        </div>
+    </div>
+</section>
+<%= javascript_pack_tag 'common.js'%>

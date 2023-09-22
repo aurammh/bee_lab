@@ -1,0 +1,17 @@
+<%= form_with(model: admin_backup_db) do |form| %>
+  <% if admin_backup_db.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_backup_db.errors.count, "error") %> prohibited this admin_backup_db from being saved:</h2>
+
+      <ul>
+        <% admin_backup_db.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

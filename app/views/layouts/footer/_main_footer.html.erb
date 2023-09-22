@@ -1,0 +1,42 @@
+<footer class="bg-white">
+    <div class="container-fluid">
+      <div class="row footer-bg-Image py-5">
+        <div class="col-sm order-last order-sm-first">
+          <div class="flex-column mt-3 d-flex align-items-center align-items-md-end">
+             <% if user_signed_in? %>
+              <%= link_to t('welcome.privacy policy.top_page_link.link1'),welcome_privacy_path , class: "mt-3 link-text" %>
+              <%= link_to t('welcome.privacy policy.top_page_link.link2'), welcome_term_condition_path, class: "mt-3 link-text mx-4"%>
+              <%= link_to t('welcome.privacy policy.top_page_link.link3'), welcome_contact_path, class: "mt-3 link-text mx-4"  %>
+            <% else %>
+              <%= link_to t('welcome.privacy policy.top_page_link.link1'),welcome_privacy_path(user_type: @usertype || @user_type) , class: "mt-3 link-text" %>
+              <%= link_to t('welcome.privacy policy.top_page_link.link3'), welcome_contact_path(user_type: @usertype || @user_type), class: "mt-3 link-text mx-4"  %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="row justify-content-center">
+            <%= image_tag "layout/logo.jpg", class: "footerImage" %>
+          </div>
+        </div>
+        
+        <div class="col-sm">
+         <% if !user_signed_in? %>
+          <div class="flex-column mt-4 d-flex align-items-center align-items-md-start">
+            <a href="/" class="mt-3 link-text"><%= t('welcome.privacy policy.top_page_link.link4') %></a>
+           <% if (@user_type.to_s).eql?"2" %>
+               <%= link_to t('welcome.privacy policy.top_page_link.link5'), welcome_student_path, class: "mt-3 link-text" %>
+            <% elsif  (@user_type.to_s).eql?"1"%>
+                <%= link_to t('welcome.privacy policy.top_page_link.link6'), welcome_company_path, class: "mt-3 link-text" %>
+            <% else %>
+                <%= link_to t('welcome.privacy policy.top_page_link.link5'), welcome_student_path, class: "mt-3 link-text"  %>
+                <%= link_to t('welcome.privacy policy.top_page_link.link6'),  welcome_company_path, class: "mt-3 link-text" %>
+             <% end %>
+          </div>
+         <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center p-3 copyRightBg">
+        <h5 class="main-footer-text">&copy; Copyright BeeLab Recruit All Rights Reserved</h5>
+    </div> 
+</footer>

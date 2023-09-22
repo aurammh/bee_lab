@@ -1,0 +1,21 @@
+<%if current_user %>
+  <% if current_user.user_type == 1 %>
+    <li class="page-item btn-bg-blue">
+      <%= link_to url, rel: 'prev', class: 'page-link btn-bg-blue' do %>
+       <i class="fas fa-angle-right"></i>
+      <% end %>
+    </li>
+  <% else %>
+    <li class="page-item btn-bg-yellow">
+      <%= link_to url, rel: 'prev', class: 'page-link btn-bg-yellow' do %>
+        <i class="fas fa-angle-right"></i>
+      <% end %>
+    </li>
+  <% end %>
+  <%else%>
+  <li class="page-item btn-bg-blue">
+      <%= link_to url, rel: 'prev', class: 'page-link btn-bg-blue' do %>
+       <i class="fas fa-angle-right"></i>
+      <% end %>
+    </li>
+<%end%>

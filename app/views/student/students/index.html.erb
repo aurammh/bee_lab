@@ -1,0 +1,368 @@
+<section class="student-dashboard">
+    <div class="col-12 search-panel d-flex flex-column align-items-center justify-content-center pb-3">
+        <div class=" row col-11 justify-content-center">            
+            <%= link_to t('dashboard.search_button.button1') ,student_companies_search_path, :class => "col-12 col-sm-3 col-xl-2 col-lg-3 mt-3 px-3 py-1 std-bg-color custom-btn mr-3 text-center text-white text-decoration-none" %>  
+            <%= link_to t('dashboard.search_button.button2') ,student_vacancy_search_path, :class => "col-12 col-sm-3 col-xl-2 col-lg-3 mt-3 px-3 py-1 std-bg-color custom-btn mr-3 text-center text-white text-decoration-none" %>  
+            <%= link_to t('dashboard.search_button.button3') ,student_search_event_path, :class => "col-12 col-sm-3 col-xl-2 col-lg-3 mt-3 px-3 py-1 std-bg-color custom-btn mr-3 text-center text-white text-decoration-none" %>  
+        </div>
+    </div>
+
+    <%# Message%>
+    <div class="d-flex justify-content-center pt-3 mt-0 mt-md-5 communication-section">
+        <div class="col-11 bg-white p-3 p-lg-4 p-xl-5 shadow std-info-box mb-3">
+            <% if @conversationList.present? %> 
+                <div class="d-flex row col-12">
+                    <div class="h3 "> 
+                        <%= t ('common.communication_dashboard_title') %><br><hr class="title-hr">
+                    </div> 
+                    <div class="ml-auto text-center mt-2">
+                        <% if @conversationList.size > 3 %>
+                            <%= link_to t('btn.view_all'), communication_communications_path, class: "px-3 py-1 std-bg-color custom-btn text-white text-decoration-none" %>
+                        <% end %>
+                    </div>        
+                </div>         
+                <div class="d-none d-md-block d-sm-none">                  
+                    <table class="table table-responsive-md">
+                        <tbody>
+                            <% @conversationList.each_with_index do |conversation_list,index| %>
+                                <% if index < 3 %>
+                                    <tr data-link="<%= communication_conversation_forum_path(:id => conversation_list.communication_id) %>">
+                                        <td class="conversation_tbl <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"><%= current_user.id == conversation_list.sender_id ? 'me' : get_speaker_name(conversation_list.sender_id) %>, 
+                                        <%= current_user.id == conversation_list.receiver_id ? 'me': get_speaker_name(conversation_list.receiver_id) %>
+                                            <% unless @conversationDetailListCount.nil? %>
+                                                <%= @conversationDetailListCount[conversation_list.communication_id].nil? ? "" : '('+(@conversationDetailListCount[conversation_list.communication_id]+1).to_s+')' %> 
+                                            <% end %>
+                                        </td>
+                                        <td class="conversation_tbl <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"><%= conversation_list.title %></td>
+                                        <td class="conversation_tbl <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"><%= t("communication.title.#{conversation_list.category}")%></td>
+                                        <td class="conversation_tbl text-muted"><%= conversation_list.content.to_plain_text %></td>
+                                        <td class="conversation_tbl text-right <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"><%= time_date( conversation_list.created_at)%></td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+                    <% @conversationList.each_with_index do |conversation_list,index| %>
+                        <% if index < 3 %>
+                        <div class="mobile-table row std-info-box p-2 my-4" data-link="<%= communication_conversation_forum_path(:id => conversation_list.communication_id) %>">  
+                            <div class="col-12 col-md-12 mb-3">
+                                <div class="d-sm-flex">
+                                    <div class="p-1 <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"> 
+                                        <%= current_user.id == conversation_list.sender_id ? 'me' : get_speaker_name(conversation_list.sender_id) %>, 
+                                        <%= current_user.id == conversation_list.receiver_id ? 'me': get_speaker_name(conversation_list.receiver_id) %>
+                                        <% unless @conversationDetailListCount.nil? %>
+                                            <%= @conversationDetailListCount[conversation_list.communication_id].nil? ? "" : '('+(@conversationDetailListCount[conversation_list.communication_id]+1).to_s+')' %> 
+                                        <% end %>
+                                    </div>
+                                    <div class="ml-auto p-1 text-break <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"><%= time_date( conversation_list.created_at)%></div>
+                                </div>
+                                <div class="p-1 text-break conversation_tbl <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"> 
+                                    <%= conversation_list.title %>
+                                </div>
+                                <div class="p-1 text-break conversation_tbl <%= @new_communication_arr.include?(conversation_list.communication_id) ? 'font-weight-normal' : 'text-muted' %>"> 
+                                   <%= t("communication.title.#{conversation_list.category}")%>
+                                </div>
+                                <div class="p-1 text-muted text-break conversation_tbl"> 
+                                    <%= conversation_list.content.to_plain_text %>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    <% end %>                          
+                </div>
+            <% else %>
+                <div class ="p-4 light-std-bg std-info-box d-flex align-items-center">
+                    <span><%= t ('dashboard.notice.msg_list_text') %></span>
+                    <div class="ml-auto d-flex justify-content-end"><i class="fas fa-comments icon-end std-font-color"></i>
+                    </div>  
+                </div>
+            <%end%>
+        </div>
+    </div>  
+
+    <div class="d-flex justify-content-center pt-3">
+        <div class="col-11 bg-white p-3 p-lg-4 p-xl-5 shadow std-info-box mb-3">
+            <div class="col-12 bg-white p-3 shadow std-info-box mb-3">
+                <div class ="p-4 light-std-bg std-info-box d-flex align-items-center">
+                    <span class="align-baseline"><%= t ('dashboard.notice.text10') %><i class="fas fa-briefcase icon-mid mx-2"></i><%= t ('dashboard.notice.text11') %></span>
+                    <div class="ml-auto"><i class="fas fa-briefcase icon-end std-font-color"></i> </div>  
+                </div>
+            </div>
+            <% if @favourite_vacancy_list.present? %> 
+                <div class="d-flex row col-12 pt-3">
+                    <div class="h3"><%= t "common.favourite_vacancy" %><br><hr class="title-hr"></div> 
+                    <div class="ml-auto text-center mt-2">
+                        <% if @favourite_vacancy_list.size > 3 %>
+                            <%= link_to t('btn.view_all'), student_favourite_vacancy_index_path, class: "px-3 py-1 std-bg-color custom-btn text-white text-decoration-none" %>
+                        <% end %>
+                    </div>        
+                </div>         
+                <div class="d-none d-md-block d-sm-none">                  
+                    <table class="table table-bordered table-responsive-md">
+                        <thead class="std-bg-color text-white">
+                            <tr>
+                                <th><%= t('title.occupation_name') %></th>
+                                <th><%= t('title.industry_name') %></th>
+                                <th><%= Company::Company.human_attribute_name('company_name') %></th>
+                                <th><%= t('title.target_city') %></th>
+                                <th><%= Company::Vacancy.human_attribute_name('required_applicants')%></th>
+                                <th><%= Company::Vacancy.human_attribute_name('basic_salary') %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @favourite_vacancy_list.each_with_index do |favourite_vacancy,index| %>
+                                <% if index < 3 %>
+                                    <tr data-link="<%= company_vacancy_path(:id => favourite_vacancy.id) %>">
+                                        <td class="text-break"><%= favourite_vacancy.occupation_name %></td>
+                                        <td class="text-break"><%= favourite_vacancy.industry_name %></td>
+                                        <td class="text-break"><%= favourite_vacancy.company_name %></td>
+                                        <td class="text-break"><%= favourite_vacancy.postalcode_city %></td>
+                                        <td class="text-break"><%= favourite_vacancy.required_applicants %><%= t('unit.persons')%></td>
+                                        <td class="text-break"><%= favourite_vacancy.basic_salary %><%= t "unit.money" %></td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+                    <% @favourite_vacancy_list.each_with_index do |favourite_vacancy,index| %>
+                        <% if index < 3 %>
+                            <div class="mobile-table row std-info-box p-2 my-4" data-link="<%= company_vacancy_path(:id => favourite_vacancy.id) %>">                                                   
+                                <span class="h6 std-font-color col-4"><%= t('title.occupation_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_vacancy.occupation_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= t('title.industry_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_vacancy.industry_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('company_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_vacancy.company_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= t('title.target_city') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_vacancy.postalcode_city %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Vacancy.human_attribute_name('required_applicants')%></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_vacancy.required_applicants %><%= t('unit.persons')%></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Vacancy.human_attribute_name('basic_salary') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_vacancy.basic_salary %><%= t "unit.money" %></span><br>                       
+                            </div>
+                        <% end %>
+                    <% end %>                          
+                </div>
+            <% else %>
+                <div class="col-12 bg-white p-3 shadow std-info-box mb-3">                
+                    <div class ="p-4 light-std-bg std-info-box d-flex align-items-center">
+                        <span><%= t ('dashboard.notice.text12') %><i class="fas fa-heart icon-mid mx-2"></i><%= t ('dashboard.notice.text13') %></span>
+                        <div class="ml-auto d-flex justify-content-end"><%= image_tag "student/heart.svg", class: "img-fluid heart-icon  w-75", alt: "Responsive image" %></div>  
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>  
+    
+    <div class="d-flex justify-content-center pt-3">
+        <div class="col-11 bg-white p-3 p-lg-4 p-xl-5 shadow std-info-box mb-3">
+            <% if @favourite_company_list.present? %> 
+                <div class="d-flex row col-12">
+                    <div class="h3 "> 
+                        <%= t ('common.favourite_company') %><br><hr class="title-hr">
+                    </div> 
+                    <div class="ml-auto text-center mt-2">
+                        <% if @favourite_company_list.size > 3 %>
+                            <%= link_to t('btn.view_all'), student_favourite_company_index_path, class: "px-3 py-1 std-bg-color custom-btn text-white text-decoration-none" %>
+                        <% end %>
+                    </div>        
+                </div>         
+                <div class="d-none d-md-block d-sm-none">                  
+                    <table class="table table-bordered table-responsive-md">
+                        <thead class="std-bg-color text-white">
+                            <tr>
+                                <th><%= Company::Company.human_attribute_name('company_name') %></th>
+                                <th><%= Company::Company.human_attribute_name('m_industry_id') %></th>
+                                <th><%= Company::Company.human_attribute_name('sales_amount') %></th>
+                                <th><%= Company::Company.human_attribute_name('capital_amount') %></th>
+                                <th><%= Company::Company.human_attribute_name('employee_count') %></th>
+                                <th><%= Company::Company.human_attribute_name('company_established') %></th>
+                                <th><%= Company::Company.human_attribute_name('display_address') %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @favourite_company_list.each_with_index do |favourite_company,index| %>
+                                <% if index < 3 %>
+                                    <tr data-link="<%= student_path(:id => favourite_company.id) %>">
+                                        <td class="text-break"><%= favourite_company.company_name %></td>
+                                        <td class="text-break"><%= favourite_company.industry_name %></td>
+                                        <td class="text-break"><%= favourite_company.sales_amount%></td>
+                                        <td class="text-break"><%= favourite_company.capital_amount %></td>
+                                        <td class="text-break"><%= favourite_company.employee_count %></td>
+                                        <td class="text-break"><%= favourite_company.company_established %></td>
+                                        <td class="text-break"><%= favourite_company.display_address %></td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+                    <% @favourite_company_list.each_with_index do |favourite_company,index| %>
+                        <% if index < 3 %>
+                            <div class="mobile-table row std-info-box p-2 my-4" data-link="<%= student_path(:id => favourite_company.id) %>">                                                   
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('company_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_company.company_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('m_industry_id') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_company.industry_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('sales_amount') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_company.sales_amount %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('capital_amount') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_company.capital_amount %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('employee_count') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_company.employee_count %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('company_established') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_company.company_established %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Company.human_attribute_name('address') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_company.address %></span><br>                       
+                            </div>
+                        <% end %>
+                    <% end %>                          
+                </div>
+            <% else %>
+                <div class ="p-4 light-std-bg std-info-box d-flex align-items-center">
+                    <span><%= t ('dashboard.notice.text14') %><i class="fas fa-heart icon-mid mx-2"></i><%= t ('dashboard.notice.text15') %></span>
+                    <div class="ml-auto d-flex justify-content-end"><%= image_tag "student/heart.svg", class: "img-fluid heart-icon  w-75", alt: "Responsive image" %>
+                    </div>  
+                </div>
+            <%end%>
+        </div>
+    </div> 
+
+    <%# Event List%>
+    <div class="d-flex justify-content-center mt-0 mt-md-5">
+        <div class="col-11 bg-white p-3 p-lg-4 p-xl-5 shadow std-info-box mb-3">
+            <% if @join_event_list.present? %> 
+                <div class="d-flex row col-12 pt-3">
+                    <div class="h3"><%= t "common.join_event" %><br><hr class="title-hr"></div> 
+                    <div class="ml-auto text-center mt-2">
+                        <% if @join_event_list.size > 3 %>
+                            <%= link_to t('btn.view_all'), student_join_event_index_path, class: "px-3 py-1 std-bg-color custom-btn text-white text-decoration-none" %>
+                        <% end %>
+                    </div>        
+                </div>         
+                <div class="d-none d-md-block d-sm-none">                  
+                    <table class="table table-bordered table-responsive-md">
+                        <thead class="std-bg-color text-white">
+                            <tr>
+                                <th><%= t('event.title.event_com_name') %></th>
+                                <th><%= t('event.title.event_date') %></th>
+                                <th><%= Company::Event.human_attribute_name('event_name') %></th>
+                                <th><%= Company::Event.human_attribute_name('venue') %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @join_event_list.each_with_index do |join_event,index| %>
+                                <% if index < 3 %>
+                                    <tr data-link="<%= student_event_details_path(:id => join_event.id) %>">
+                                        <td class="text-break"><%= join_event.company_name %></td>
+                                        <td class="text-break"><%= join_event.event_start_date %>～<%= join_event.event_end_date %></td>
+                                        <td class="text-break"><%= join_event.event_name %></td>
+                                        <td class="text-break"><%= join_event.venue %></td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+                    <% @join_event_list.each_with_index do |join_event,index| %>
+                        <% if index < 3 %>
+                            <div class="mobile-table row std-info-box p-2 my-4" data-link="<%= student_event_details_path(:id => join_event.id) %>">                                                   
+                                <span class="h6 std-font-color col-4"><%= t('event.title.event_com_name')  %></span>
+                                <span class="col-8 text-muted text-break"><%= join_event.company_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= t('event.title.event_date') %></span>
+                                <span class="col-8 text-muted text-break"><%= join_event.event_start_date %>～<%= join_event.event_end_date %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Event.human_attribute_name('event_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= join_event.event_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Event.human_attribute_name('venue') %></span>
+                                <span class="col-8 text-muted text-break"><%= join_event.venue %></span><br>
+                            </div>
+                        <% end %>
+                    <% end %>                          
+                </div>
+            <% else %>
+                <div class="col-12 bg-white p-3 shadow std-info-box mb-3">
+                    <div class ="p-4 light-std-bg std-info-box d-flex align-items-center">
+                        <span class="align-baseline"><%= t ('dashboard.notice.event_list_text') %></span>
+                        <div class="ml-auto"><i class="fas fa-briefcase icon-end std-font-color"></i> </div>  
+                    </div>
+                </div>
+            <% end %>
+            <% if @favourite_event_list.present? %> 
+                <div class="d-flex row col-12 pt-3">
+                    <div class="h3"><%= t "common.favourite_event" %><br><hr class="title-hr"></div> 
+                    <div class="ml-auto text-center mt-2">
+                        <% if @favourite_event_list.size > 3 %>
+                            <%= link_to t('btn.view_all'), student_favourite_event_index_path, class: "px-3 py-1 std-bg-color custom-btn text-white text-decoration-none" %>
+                        <% end %>
+                    </div>        
+                </div>         
+                <div class="d-none d-md-block d-sm-none">                  
+                    <table class="table table-bordered table-responsive-md">
+                        <thead class="std-bg-color text-white">
+                            <tr>
+                                <th><%= t('event.title.event_com_name') %></th>
+                                <th><%= t('event.title.event_date') %></th>
+                                <th><%= Company::Event.human_attribute_name('event_name') %></th>
+                                <th><%= Company::Event.human_attribute_name('venue') %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @favourite_event_list.each_with_index do |favourite_event,index| %>
+                                <% if index < 3 %>
+                                    <tr data-link="<%= student_event_details_path(:id => favourite_event.id) %>">
+                                        <td class="text-break"><%= favourite_event.company_name %></td>
+                                        <td class="text-break"><%= favourite_event.event_start_date %>～<%= favourite_event.event_end_date %></td>
+                                        <td class="text-break"><%= favourite_event.event_name %></td>
+                                        <td class="text-break"><%= favourite_event.venue %></td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+                    <% @favourite_event_list.each_with_index do |favourite_event,index| %>
+                        <% if index < 3 %>
+                            <div class="mobile-table row std-info-box p-2 my-4" data-link="<%= student_event_details_path(:id => favourite_event.id) %>">                                                   
+                                <span class="h6 std-font-color col-4"><%= t('event.title.event_com_name')  %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_event.company_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= t('event.title.event_date') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_event.event_start_date %>～<%= favourite_event.event_end_date %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Event.human_attribute_name('event_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_event.event_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Company::Event.human_attribute_name('venue') %></span>
+                                <span class="col-8 text-muted text-break"><%= favourite_event.venue %></span><br>
+                            </div>
+                        <% end %>
+                    <% end %>                          
+                </div>
+            <% else %>
+                <div class="col-12 bg-white p-3 shadow std-info-box mb-3">                
+                    <div class ="p-4 light-std-bg std-info-box d-flex align-items-center">
+                        <span><%= t ('dashboard.notice.text16') %><i class="fas fa-heart icon-mid mx-2"></i><%= t ('dashboard.notice.text13') %></span>
+                        <div class="ml-auto d-flex justify-content-end"><%= image_tag "student/heart.svg", class: "img-fluid heart-icon  w-75", alt: "Responsive image" %></div>  
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center pt-3">
+        <div class="col-11 row p-3 shadow std-info-box mb-3 d-flex align-items-center assessment-panel bg-white">
+            <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+                <%= image_tag "student/student_analytics.svg", class: "img-fluid", alt: "Responsive image" %>   
+                <h4 class="font-weight-bold std-font-color"><%= t ('dashboard.assessment_title') %></h4>
+            </div>
+            <div class="col-12 col-md-7 d-flex flex-column align-items-center">
+                <%= link_to t("dashboard.assessment_button"), student_assessments_path(:id => @user_student), class: "custom-btn p-2 text-decoration-none text-white text-center" %>
+            </div>
+        </div>
+    </div>    
+</section>
+<%= javascript_pack_tag 'common.js'%>

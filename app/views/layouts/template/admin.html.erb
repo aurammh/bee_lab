@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BeeLab</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag asset_path('layout/logo.jpg') %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag "admin/admin_nav.js" %>
+  </head>
+
+  <body id="page-top">
+    <% if admin_signed_in? %>
+      <div id="wrapper">
+        <!-- Side Bar -->
+        <%= render "layouts/sidebar/admin_sidebar" %>
+        <div id="content-wrapper" class="d-flex flex-column admin-content-wrapper">
+            <!-- Header -->
+            <%= render "layouts/header/admin_header" %>
+            <!-- Content -->
+            <div class="container-fluid admin-content">
+              <%= yield %>
+            </div>
+            <!-- footer -->
+            <%= render "layouts/footer/admin_footer" %>
+        </div>
+      </div>  
+    <% else %>   
+      <!-- Header -->
+      <header>
+          <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light nav-container pr-md-3">
+            <%= link_to root_path ,class: "navbar-brand navbar-width" do %>
+              <%= image_tag "layout/header_logo.jpg", class: "header-logo-size" %>   
+            <% end %>
+           
+          </nav>
+      </header>
+      <!-- Content -->
+      <div class="container-fluid m-0 p-0">
+        <%= yield %>
+      </div>    
+      <!-- Footer -->
+      <footer>
+        <div class="d-flex justify-content-center p-3 copyRightBg position-absolute admin-footer w-100">
+          <h5 class="main-footer-text">&copy; Copyright BeeLab Recruit All Rights Reserved</h5>
+        </div>
+      </footer>
+    <% end %>           
+  </body>
+</html>

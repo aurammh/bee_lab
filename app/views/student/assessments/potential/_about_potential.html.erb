@@ -1,0 +1,85 @@
+<!-- Button trigger modal -->
+<button type="button" class="col-12 std-bg-color custom-btn px-3 py-2 text-decoration-none text-white" data-toggle="modal" data-target="#exampleModal">
+<%= t('student_assessment.potentail.about.popup_about_title')%>
+</button>
+
+<!-- Modal -->
+<div class="modal fade pl-0" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable assessment_popup ">
+        <div class="modal-content ">
+            <div class="modal-header std-bg-color text-white">
+                <h3 class="modal-title" id="exampleModalLongTitle"><%= t('student_assessment.potentail.about.popup_about_title')%></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body potential">
+                <section>
+                    <%= image_tag "student/potential.jpg", class: "img-fluid potential-img", alt: "Responsive image" %>   
+                    <h5 class="text-dark font-weight-bold text-left std-border-color mt-2"><%= t('student_assessment.potentail.about.title1')%></h5>       
+                    <div class="text-left pt-3">
+                        <p class="text-justify"><%= t('student_assessment.potentail.about.paragraph1')%></p>
+                        <p class="text-justify"><%= t('student_assessment.potentail.about.paragraph2')%></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="text-left pt-3 ">
+                        <h5 class="text-dark font-weight-bold std-border-color pl-1">
+                            <%= t('student_assessment.potentail.about.title2')%>
+                        </h5>
+                        <p class="text-secondary text-justify"><%= t('student_assessment.potentail.about.paragraph2_1')%></p>
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th class="col-3 text-break w-25 text-dark"><%= t('student_assessment.potentail.about.tr_th_1')%></th>
+                                    <th class="col-3 text-break w-25 text-dark"><%= t('student_assessment.potentail.about.tr_th_2')%></th>
+                                    <th class="col-6 text-break w-50 text-dark"><%= t('student_assessment.potentail.about.tr_th_3')%></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_1_1')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_1_2')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('student_assessment.potentail.about.tr_td_1_3')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_2_1')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_2_2')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('student_assessment.potentail.about.tr_td_2_3')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_3_1')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_3_2')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('student_assessment.potentail.about.tr_td_3_3')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_4_1')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_4_2')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('student_assessment.potentail.about.tr_td_4_3')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_5_1')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('student_assessment.potentail.about.tr_td_5_2')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('student_assessment.potentail.about.tr_td_5_3')%></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-justify"><%= t('student_assessment.potentail.about.paragraph2_2')%></p>
+                        <span class="text-dark font-weight-bold underline-text"><%= t('student_assessment.potentail.about.paragraph2_3')%></span>
+                    </div>
+                </section>
+                <section>
+                    <div class="text-left pt-3">
+                        <h5 class="text-dark font-weight-bold std-border-color pl-1"><%= t('student_assessment.potentail.about.title3')%></h5>
+                        <p class="text-justify"><%= t('student_assessment.potentail.about.paragraph3_1')%></p>
+                        <p class="text-justify"><%= t('student_assessment.potentail.about.paragraph3_2')%></p>
+                        <p class="text-dark font-weight-bold text-justify"><%= t('student_assessment.potentail.about.paragraph3_3')%></p>   
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-btn px-3 py-2 text-decoration-none text-white" data-dismiss="modal"><%= t('common.close')%></button>
+            </div>
+        </div>
+    </div>
+</div>

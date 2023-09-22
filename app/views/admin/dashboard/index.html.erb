@@ -1,0 +1,235 @@
+<script type="text/javascript">
+  var BASE_URL = '<%= root_url %>';
+</script>
+<!-- Page Heading -->
+<section class="admin-dashboard">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 admin-font-color"><%= t ('dashboard.title') %></h1>    
+</div>
+
+<%= form_for('',url: admin_student_manage_student_search_path, method: :get) do |form| %>
+    <!-- Content Row -->
+    <div class="row mb-4">  
+        <div class="col-12 col-lg-6 mb-4">
+            <div class="card std-border-color shadow py-2 mb-4 total-count-card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-8">
+                            <div class="text-xl font-weight-bold std-font-color text-uppercase mb-1">
+                            <h3> <%= t ('welcome.privacy policy.top_page_link.text1') %> </h3> </div>
+                            <div class="h6 my-1 font-weight-bold text-gray-800"><%= t ('dashboard.temp_std_total') %> : <%= @tempStudentRegisterCount %> 人 ( <%= @tempStudentRegisterAvg %> %)</div>
+                            <div class="h6 my-1 font-weight-bold text-gray-800"><%= t ('dashboard.fully_std_total') %> : <%= @fullyStudentRegisterCount %> 人 ( <%= @fullyStudentRegisterAvg %> %)</div>                    
+                        </div>
+                        <div class="col-4 d-flex justify-content-center align-items-center">
+                            <%= image_tag "cardIcon/people icon.jpg", class: "w-50 h-50 com-sec-2-img mt-2 mx-4 mb-2", alt: "Responsive image" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 mb-4">
+            <div class="card com-border-color shadow py-2 mb-4 total-count-card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-8">
+                            <div class="text-xl font-weight-bold com-font-color text-uppercase mb-1">
+                            <h3> <%= t('welcome.privacy policy.top_page_link.text2')%> </h3> </div>
+                            <div class="h6 my-1 font-weight-bold text-gray-800"><%= t ('dashboard.fully_com_total') %> : <%= @fullyCompanyRegisterCount %> 社 ( <%= @fullyCompanyRegisterAvg %> %)</div>
+                            <div class="h6 my-1 font-weight-bold text-gray-800"><%= t ('dashboard.payment_com_total') %> : <%= @paymentCompanyRegisterCount %> 社 ( <%= @paymentCompanyRegisterAvg %> %)</div>
+                            <div class="h6 my-1 font-weight-bold text-gray-800"><%= t ('dashboard.vacancy_com_total') %> : <%= @vacancyCreateComCount %> 社 ( <%= @vacancyCreateComAvg %> %)</div>
+                            <div class="h6 my-1 font-weight-bold text-gray-800"><%= t ('dashboard.event_com_total') %> : <%= @eventCreateComCount %> 社 ( <%= @eventCreateComAvg %> %)</div>
+                        </div>
+                        <div class="col-4 d-flex justify-content-center align-items-center">
+                        <%= image_tag "cardIcon/company information icon.svg", class: "w-50 h-50 com-sec-2-img mt-2 mx-4 mb-2", alt: "Responsive image" %>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dognut Chart Section -->
+    <div class="row">
+        <div class="col-12 col-lg-3 col-xl-3 my-2 my-lg-0"> 
+            <div class="card shadow mb-4 h-100">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">        
+                    <h6 class="m-0 font-weight-bold text-primary"><%= t ('dashboard.student_gender_chart_title') %></h6>
+                </div>   
+                <div class="card-body">
+                    <div>
+                    <canvas id="studentGenderChart" style="height:100% !important;"></canvas>                                        
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="col-12 col-lg-3 col-xl-3 my-2 my-lg-0"> 
+            <div class="card shadow mb-4 h-100">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">        
+                    <h6 class="m-0 font-weight-bold text-primary"><%= t ('dashboard.student_region_chart_title') %></h6>
+                </div>   
+                <div class="card-body">
+                    <div>
+                    <canvas id="studentRegionChart" style="height:100% !important;"></canvas>                                        
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="col-12 col-lg-3 col-xl-3 my-2 my-lg-0"> 
+            <div class="card shadow mb-4 h-100">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">        
+                    <h6 class="m-0 font-weight-bold text-primary"><%= t ('dashboard.student_schooltype_chart_title') %></h6>
+                </div>   
+                <div class="card-body">
+                    <div>
+                    <canvas id="studentSchoolTypeChart" style="height:100% !important;"></canvas>                                        
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <div class="col-12 col-lg-3 col-xl-3 my-2 my-lg-0"> 
+            <div class="card shadow mb-4 h-100">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">        
+                    <h6 class="m-0 font-weight-bold text-primary"><%= t ('dashboard.student_pandoinfo_chart_title') %></h6>
+                </div>   
+                <div class="card-body">
+                    <div>
+                    <canvas id="studentPandoChart" style="height:100% !important;"></canvas>                                        
+                    </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="area-chart">
+        <div class="row">
+            <!-- Area Chart -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary"><%= "#{@year_month} " "#{t ('dashboard.chart_title')}"%></h6>
+                        <div class="date-wrapper" id="search_date_picker">                                             
+                            <%= form.text_field :searchDate, "data-input": "", id: "search_date", :class=> "text-center form-control shadow-none errors", value: (params[:searchDate])  %>
+                            <a class="icon" title="toggle" data-toggle>
+                                <i class="far fa-calendar-alt"></i>
+                            </a>
+                    </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div>
+                            <canvas id="studentCompanyCountBarChart" style="height:100% !important;"></canvas>                                        
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="row mb-5 pb-5">
+        <div class="col-12">
+            <div class="card shadow mt-4 mt-md-0 h-100"> 
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">        
+                    <h6 class="m-0 font-weight-bold text-primary"><%= t ('dashboard.ranking_title') %></h6>
+                </div> 
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-lg-2">  
+                            <div class="ranking-card py-4 d-flex flex-column justify-content-center align-items-center">
+                                <%= image_tag "admin/rank.svg", class: "ranking-image" %>
+                            </div>
+                        </div>                
+                        <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                            <div class="ranking-card soft-pink p-4 h-100">
+                                <div class="card-text">
+                                    <h5><%= t('dashboard.student_rank_title')%></h5>
+                                </div>
+                                <div class="ranking-container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="ranking">
+                                                <%= image_tag "admin/rank-1-gold.svg", class: "rank-no-img" %>                                          
+                                            </div>
+                                            <div class ="ranking">
+                                                <%= image_tag "admin/rank-2-silver.svg", class: "rank-no-img" %>
+                                            </div>
+                                            <div class="ranking">
+                                                <%= image_tag "admin/rank-3-bronze.svg", class: "rank-no-img" %>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <% @top3FavouriteStudent.each_with_index do |student,index| %>
+                                                <div class="my-3 pb-2 h-25 text-left">                                            
+                                                    <span class="name">
+                                                        <%= link_to (admin_student_manage_student_details_path(:userid => student.student_id)) do %>
+                                                        <%= student.student_name %>
+                                                        <% end %>
+                                                    </span>
+                                                </div>
+                                            <% end %>
+                                        </div>
+                                    </div> 
+                                    <% if @top3FavouriteStudent.present?  %>                           
+                                    <%= link_to (t 'dashboard.student_favourite_link_title'), admin_student_manage_admin_favourite_student_path, class: "text-warning text-right font-weight-bold" %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-5">  
+                            <div class="ranking-card milky-orange p-4">
+                                <div class="card-text">
+                                    <h5><%= t('dashboard.company_rank_title')%></h5>
+                                </div>                            
+                                <div class="ranking-container">
+                                    <div class="row">
+                                        <div class = "col-4">
+                                            <div class="ranking">
+                                                <%= image_tag "admin/rank-1-gold.svg", class: "rank-no-img" %>
+                                            </div>
+                                            <div class="ranking">
+                                                <%= image_tag "admin/rank-2-silver.svg", class: "rank-no-img" %>
+                                            </div>
+                                            <div class="ranking">
+                                                <%= image_tag "admin/rank-3-bronze.svg", class: "rank-no-img" %>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <% @top3FavouriteCompany.each_with_index do |company,index| %>
+                                                <div class="my-3 pb-2 h-25 text-left">
+                                                    <span class="name">
+                                                        <%= link_to (admin_company_manage_company_details_path(:company_id => company.company_id)) do %>
+                                                        <%= company.company_name %>
+                                                    <% end %>
+                                                    </span>                                
+                                                </div>                               
+                                            <% end %>
+                                        </div>                   
+                                    </div>      
+                                    <% if @top3FavouriteCompany.present?  %>                              
+                                        <%= link_to (t 'dashboard.company_favourite_link_title'), admin_company_manage_favourite_company_path, class: "text-primary text-right font-weight-bold" %>                        
+                                    <% end %>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>  
+    </div>
+<% end %>
+</section>
+<script> 
+var studentCountListResult = <%= @studentCountListResult.inspect.html_safe %>;
+var companyCountListResult = <%= @companyCountListResult.inspect.html_safe %>;
+var dateArrayListForLabel = <%= @dateArrayListForLabel.inspect.html_safe %>;
+var maxValueInArray = <%= @maxValue.inspect.html_safe %>;
+var genderLabelList = <%= @genderLabel.inspect.html_safe %>;
+var studentCountListByGender = <%= @studentCountListByGenderResult.inspect.html_safe %>;
+var studentCountListByRegion = <%= @studentResultCountByRegion.inspect.html_safe %>;
+var regionLabelList = <%= @regionNameLabel.inspect.html_safe %>;
+var studentCountListBySchoolType = <%= @studentCountListBySchoolTypeResult.inspect.html_safe %>;
+var schoolTypeLabelList = <%= @schoolTypeLabel.inspect.html_safe %>;
+var studentCountListByPandoInfo = <%= @studentCountListByPandoInfoResult.inspect.html_safe %>;
+var pandoInfoLabelList = <%= @pandoInfoLabel.inspect.html_safe %>;
+var yearMonth = <%= @year_month.inspect.html_safe %>;
+</script> 
+<%= javascript_pack_tag "admin/dashboard.js" %>

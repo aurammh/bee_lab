@@ -1,0 +1,377 @@
+<div class="row search-details pb-5 mb-5 px-sm-4">
+    <div class="col-xl-8 col-12">
+        <div class="job-details bg-white shadow my-3 px-4 px-md-5">
+            <div class ="row py-4 ">
+                <div class="col-12 col-md-4 px-3 pb-3">
+                    <h2 class="font-weight-bolder warp-text text-dark">
+                        <%= (t "title.student_search_detail_title") %> 
+                    </h2>                            
+                </div>
+                <div class="ml-md-auto px-3 mt-2">
+                    <%= link_to t('btn.edit'), admin_company_manage_company_edit_path(id: @company_details.id), class: "com-bg-color text-white col-sm-6 col-md-4 col-lg-2 custom-btn px-4 py-2 text-decoration-none" %>  
+                </div>
+                <div class="d-flex d-md-block text-center mb-3">
+                    <%= render 'company_delete' %>
+                </div>
+                
+            </div>
+                
+            <div class="row pb-3">
+                <div class="col-12 col-md-4">                    
+                    <% if @company_details.image.attached? %>
+                        <%= image_tag (@company_details.image), :class=> "Responsive image" %>
+                    <% else %>
+                        <%= image_tag "avatar/building.jpg", :class=> "Responsive image" %>
+                    <% end %>        
+                </div>
+                <div class="col-12 col-md-8 px-3 p-lg-0">
+                    <div class="mb-2 mb-sm-3 mt-3 mt-sm-0 row">
+                        <h2 class="col-7 col-sm-8 font-weight-bolder warp-text text-dark mb-3"> <%= @company_details.company_name %></h2>  
+                    </div>
+                    <div class="d-md-flex my-2">
+                        <span class="com-bg-color badge py-2 text-break text-white mb-2 mb-md-0 mr-2">
+                            <i class="fas fa-industry mr-2"></i><%= @company_details.industry_name %>
+                        </span>
+                        <span class="com-bg-color badge p-2 text-break text-white">
+                            <i class="fas fa-certificate mr-2"></i><%= @company_details.employee_count %><%= t "unit.persons" %>
+                        </span>
+                    </div>
+                    <div class="d-flex mt-5 flex-column align-items-lg-end align-items-start">
+                        <span class="com-font-color text-start"> <%= Company::Company.human_attribute_name('company_established') %> </span>
+                        <span class="text-break"><%= @company_details.company_established %></span>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="std-grandient-hr">                 
+            <div class="mt-4 row">
+                <div class="col-12 title font-weight-bold"><%= t "title.company_basic_information" %><br><hr class="title-hr com-bg-color"></div>                                
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('company_info') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.company_info %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('job_info') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.job_info %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('display_address') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.display_address %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('capital_amount') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.capital_amount %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('sales_amount') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.sales_amount %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('related_company') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.related_company %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('main_bank') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.main_bank %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('history') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.history%></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('representative') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.representative %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('website_url') %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.website_url %></p>
+                </div>                
+            </div>    
+
+            <hr class="std-grandient-hr">   
+
+            <div class="mt-4 row">
+                <div class="col-12 title font-weight-bold"><%= t "title.company_inquiry_info" %><br><hr class="title-hr com-bg-color"></div>                  
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('contact')  %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.contact %></p>
+                </div>
+
+                <div class="col-lg-5 col-md-7 col-sm-4">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('transportation_facilities')  %></p>
+                </div>
+                <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.transportation_facilities %></p>
+                </div>       
+            </div>
+
+            <hr class="std-grandient-hr">  
+
+            <div class="row pt-sm-3">
+                <div class="col-12 title font-weight-bold"><%= t 'priority_text.desire_student_thinking_type.thinking_type_title' %><br><hr class="title-hr com-bg-color"></div>                 
+                <div class="col-12 priority-chart">                                      
+                    <% if @company_assessment.nil?%>
+                        <% (1..4).each do |num| %>
+                            <div class="row p-2">
+                                <% case num %>
+                                    <% when 1 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_a' %>
+                                            <br class="d-content d-xl-none">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_a' %>      
+                                        </span>
+                                    <% when 2 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_b' %>
+                                            <br class="d-content d-xl-none">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_b' %>    
+                                        </span>
+                                    <% when 3 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_c' %>
+                                            <br class="d-content d-xl-none">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_c' %>    
+                                        </span>
+                                <% else %> 
+                                    <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                        <%= t 'priority_text.desire_student_thinking_type.thinking_type_d' %>
+                                        <br class="d-content d-xl-none">
+                                        <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_d' %>    
+                                    </span>
+                                <% end %>                    
+                                <span class="col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 text-center p-2 bg-light rounded"><%= num %></span>                                                                                                  
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <% @company_assessment.seek_student_thinking_type.each_with_index do |num,index| %>
+                            <div class="row p-2">
+                                <% case index %>
+                                    <% when 0 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_a' %>
+                                            <br class="d-content d-xl-none">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_a' %>      
+                                        </span>
+                                    <% when 1 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_b' %>
+                                            <br class="d-content d-xl-none">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_b' %>    
+                                        </span>
+                                    <% when 2 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_c' %>
+                                            <br class="d-content d-xl-none">
+                                            <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_c' %>    
+                                        </span>
+                                <% else %> 
+                                    <span class="col-12 col-md-10 col-lg-7 col-xl-7 p-2 ">
+                                        <%= t 'priority_text.desire_student_thinking_type.thinking_type_d' %>
+                                        <br class="d-content d-xl-none">
+                                        <%= t 'priority_text.desire_student_thinking_type.thinking_type_remark_d' %>    
+                                    </span>
+                                <% end %>
+                                <span class="col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 text-center p-2 bg-light rounded"><%= num %></span>                                                                                           
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>                        
+            </div>
+            <hr class="std-grandient-hr">   
+
+            <div class="row pt-sm-3">
+                <div class="col-12 title font-weight-bold"><%= t 'priority_text.company_priority_item.priority_item_title' %><br><hr class="title-hr com-bg-color"></div> 
+                <div class="col-12 priority-chart">
+                    <% if @company_assessment.nil?%>
+                        <% (1..5).each do |num| %>
+                            <div class="row p-2">
+                                <% case num %>
+                                    <% when 1 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_a' %>
+                                        </span>
+                                    <% when 2 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_b' %>
+                                        </span>
+                                    <% when 3 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_c' %>
+                                        </span>
+                                    <% when 4 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_d' %>
+                                        </span>
+                                <% else %> 
+                                    <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                        <%= t 'priority_text.company_priority_item.priority_item_type_e' %>
+                                    </span>
+                                <% end %>
+                                <span class="col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 text-center p-2 bg-light rounded"><%= num %></span>                                                                                                  
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <% @company_assessment.com_priority_item_type.each_with_index do |num,index| %>
+                            <div class="row p-2">
+                                <% case index %>
+                                    <% when 0 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_a' %>
+                                        </span>
+                                    <% when 1 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_b' %>
+                                        </span>
+                                    <% when 2 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_c' %>
+                                        </span>
+                                    <% when 3 %> 
+                                        <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                            <%= t 'priority_text.company_priority_item.priority_item_type_d' %>
+                                        </span>
+                                <% else %> 
+                                    <span class="col-12 col-md-10 col-lg-7 col-xl-5 p-2 ">
+                                        <%= t 'priority_text.company_priority_item.priority_item_type_e' %>
+                                    </span>
+                                <% end %>
+                                <span class="col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 text-center p-2 bg-light rounded"><%= num %></span>                                                                                                  
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>                  
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-12">
+        <div class="job-details bg-white shadow my-3 px-4 px-md-5">
+            <div class="col-12 title font-weight-bold px-5 pt-3">
+                <%= t'title.company_employee_info' %><br><hr class="title-hr com-bg-color">
+            </div>    
+            <div class="row">
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('avg_service_year') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p> <%= @company_details.avg_service_year %></p>
+                </div>
+
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('avg_overtime_per_month') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p> <%= @company_details.avg_overtime_per_month %></p>
+                </div>
+
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('avg_paid_leaves') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p> <%= @company_details.avg_paid_leaves %></p>
+                </div>
+
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('number_eligible_childcare_leaves_male') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.number_eligible_childcare_leaves_male %></p>
+                </div>
+
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('taken_childcare_leaves_male') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.taken_childcare_leaves_male %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('childcare_leave_acquisition_rate_male') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.childcare_leave_acquisition_rate_male %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('number_eligible_childcare_leaves_female') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.number_eligible_childcare_leaves_female %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('taken_childcare_leaves_female') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.taken_childcare_leaves_female %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('rate_taken_childcare_leaves_female') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.rate_taken_childcare_leaves_female %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('percentage_female_ration') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.percentage_female_ration %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('mentor_system') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.mentor_system == 1 ? t("common.a_yes") : t("common.a_no") %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('career_consulting_system') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.career_consulting_system == 1 ? t("common.a_yes") : t("common.a_no")%></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('percentage_training') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.percentage_training %></p>
+                </div>
+                <div class="col-md-7 col-lg-8 col-sm-5">
+                    <p><i class="fas fa-check com-font-color mr-2"></i><%= Company::Company.human_attribute_name('in_house_certification_system') %></p>
+                </div>
+                <div class="col-md-5 col-lg-4 col-sm-7 text-break d-flex">
+                    <p class="mr-2">-</p> <p><%= @company_details.in_house_certification_system %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= hidden_field_tag(:company_id, @company_details.id) %>
+<%= javascript_pack_tag "common.js" %>
+<%= javascript_pack_tag "student/students.js" %>

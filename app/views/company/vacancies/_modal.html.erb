@@ -1,0 +1,78 @@
+<div class="col-12 mb-3">
+  <section id="outside_activity" class="scroll-content-section">
+    <div class="form-field-group">
+      <div class="outside_school_activity">
+        <div class="mb-3 d-flex d-md-block">
+          <button type="button" class="custom-btn text-white com-bg-color py-2" data-toggle="modal" data-target="#exampleModal">
+             <%= t('company_vacancy.selection_items') %>
+          </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header com-bg-color">
+                <h5 class="modal-title text-white" id="exampleModalLabel"><%= t("company_vacancy.various_systems_and_benefits") %></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span class="text-white" aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12 col-lg-6">                   
+                    <div class="row">                    
+                      <div class="col-12">
+                        <span class="h5 text-muted" ><%= t('company_vacancy.please_check_what_you_think') %></span>
+                      </div>  
+                      <div class="col-12 mt-3">
+                        <div class="simple-chkbox d-flex chk-all align-items-center com-chk">
+                          <%= check_box_tag 'modal1CheckedAll',''%> 
+                          <label class="ml-3" for="modal1CheckedAll"><%= t('company_vacancy.check_everything') %> </label>
+                        </div>
+                      </div>
+                      <div class="col-12" id="modal1">  
+                        <%= vancancy_form.fields_for :company_enhancement  do |f| %>  
+                          <% Company::Vacancy.company_vacancy_enhancements.each do |k,v| %>
+                            <div class="simple-chkbox d-flex align-items-center com-chk">                                      
+                              <%= f.check_box "#{v}", { :checked => vancancy.company_enhancement.nil?  ? false : vancancy.company_enhancement[v-1] == 1 ,class: 'checkbox-click-enhancement' } %>                                
+                              <%= f.label "company_enhancement#{v}", t("company_vacancy_enhancement.#{k}"),for: "company_vacancy_company_enhancement_#{v}", class: "company-enhancement ml-3", id: "company-enhancement-#{v}" %>  
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 mt-3 mt-sm-0">
+                    <div class="row">
+                      <div class="col-12">
+                        <span class="h5 text-muted"><%= t('company_vacancy.please_check_the_applicable_items') %></span>
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="simple-chkbox d-flex chk-all align-items-center com-chk">
+                          <%= check_box_tag 'modal2CheckedAll', ''%>
+                          <label class="ml-3" for="modal2CheckedAll"><%= t('company_vacancy.check_everything') %></label>
+                        </div>
+                      </div>
+                      <div class="col-12" id="modal2"> 
+                        <%= vancancy_form.fields_for :welfare_list_data  do |f| %>                        
+                          <% welfare_detail_options.each do |wel| %>
+                            <div class="simple-chkbox d-flex align-items-center com-chk">
+                              <%= f.check_box wel.id,{:checked => vancancy.welfare_list_data.nil?  ? false : vancancy.welfare_list_data[wel.id-1] == 1 , class: 'checkbox-click-welfare'} %>
+                              <%= f.label "#{wel.welfare_type}",class: "out-side-acitvity ml-3", for: "company_vacancy_welfare_list_data_#{wel.id}", id: "welfare-list-data-#{wel.id}" %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <%= link_to 'Close', "#",  {:remote => true, 'data-dismiss' =>  "modal", 'data-target' => '#exampleModal', class: 'custom-btn text-white py-2 px-3 text-decoration-none text-center'}  %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

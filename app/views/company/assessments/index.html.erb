@@ -1,0 +1,208 @@
+<%= form_with(model: @company_assessment) do |form| %>
+<section class="company-assessment d-flex flex-column align-items-center">    
+    <div class="col-11 bg-white p-lg-5 mt-4 shadow assess-info-box mb-3">
+        <div class="px-lg-4 mb-3 d-lg-flex">
+            <div class="h3 mt-3 mt-md-0"><%= t('title.student_thinking_type_title') %><br><hr class="title-hr"></div>
+            <div class="d-md-flex justify-content-end ml-lg-auto">
+                <div class="d-flex d-md-block text-center mr-md-4 mb-3">
+                    <%= render 'company/assessments/thinking_type/about_thinking_type' %>
+                </div>
+                <div class="d-flex d-md-block text-center">    
+                    <%= render 'company/assessments/thinking_type/result_thinking_type' %>
+                </div> 
+            </div>
+        </div>
+        <div class="row px-3 pb-3 px-md-4">           
+            <div class="col-12">                                
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <%= t('priority_text.desire_student_thinking_type.thinking_type_text_1')%><br>
+                        <%= t('priority_text.desire_student_thinking_type.thinking_type_text_1_1')%>
+                    </div>
+                     <div class="col-12 mb-5 text-danger">
+                        <%= t('priority_text.desire_student_thinking_type.thinking_type_important')%>
+                    </div>
+                    <span class="ml-4 h5 font-weight-bold">
+                        <%= t('priority_text.desire_student_thinking_type.thinking_type_title')%>
+                        <hr class="com-hr">   
+                    </span>
+                    <div class="col-12 priority-chart">                        
+                        <%= form.fields_for :seek_student_thinking_type  do |f| %>
+                            <% if @company_assessment.seek_student_thinking_type.nil? %>
+                                <% (1..4).each do |num| %>
+                                    <div class="row p-2">
+                                        <% case num %>
+                                            <% when 1 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_a') %>
+                                                    <br class="d-content d-xl-none">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_a')%>      
+                                                </span>
+                                            <% when 2 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_b')%>
+                                                    <br class="d-content d-xl-none">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_b')%>    
+                                                </span>
+                                            <% when 3 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_c')%>
+                                                    <br class="d-content d-xl-none">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_c')%>    
+                                                </span>
+                                        <% else %> 
+                                            <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                <%= t('priority_text.desire_student_thinking_type.thinking_type_d')%>
+                                                <br class="d-content d-xl-none">
+                                                <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_d')%>    
+                                            </span>
+                                        <% end %>                                                                                                                      
+                                        <%= f.select("seek_student_thinking_type#{num}", student_thinking_priority_order_options,{:include_blank => false},{:class => "col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 form-control form-select shadow-none"}) %>
+                                    </div>
+                                <% end %>
+                            <% else %>
+                                <% @company_assessment.seek_student_thinking_type.each_with_index do |v,i| %>
+                                    <div class="row p-2">
+                                        <% case i %>
+                                            <% when 0 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_a')%>
+                                                    <br class="d-content d-xl-none">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_a')%>      
+                                                </span>
+                                            <% when 1 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_b')%>
+                                                    <br class="d-content d-xl-none">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_b')%>    
+                                                </span>
+                                            <% when 2 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_c')%>
+                                                    <br class="d-content d-xl-none">
+                                                    <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_c')%>    
+                                                </span>
+                                        <% else %> 
+                                            <span class="col-12 col-md-10 col-lg-7 col-xl-7">
+                                                <%= t('priority_text.desire_student_thinking_type.thinking_type_d')%>
+                                                <br class="d-content d-xl-none">
+                                                <%= t('priority_text.desire_student_thinking_type.thinking_type_remark_d')%>    
+                                            </span>
+                                        <% end %>
+                                        <%= f.select("seek_student_thinking_type#{i+1}", student_thinking_priority_order_options,{:include_blank => false,selected: v}, {:class => "col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 form-control form-select shadow-none"}) %>
+                                    </div>
+                                    
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                        <div class="ml-auto d-flex">
+                            <div class=" text-center mr-3">
+                                <%= form.submit (t "btn.save") , class: "custom-btn px-4 py-2 text-decoration-none text-white"  %> 
+                            </div>                              
+                        </div> 
+                    </div>                                  
+                </div>                   
+            </div>
+        </div> 
+    </div>
+</section>
+
+<section class="company-assessment d-flex flex-column align-items-center">    
+    <div class="col-11 bg-white p-md-4 mt-4 shadow assess-info-box mb-5">
+        <div class="px-lg-4 mb-3 d-lg-flex">
+            <div class="h3 mt-3 mt-md-0"><%= t('title.company_priority_item_title')%><br><hr class="title-hr"></div>
+            <div class="d-md-flex justify-content-end ml-lg-auto">
+                <div class="d-flex d-md-block text-center mr-md-4 mb-3">
+                    <%= render 'company/assessments/company_type/about_company_type' %>
+                </div>
+                <div class="d-flex d-md-block text-center">    
+                    <%= render 'company/assessments/company_type/result_company_type' %>  
+                </div>
+            </div>
+        </div>
+        <div class="row px-3 pb-3 px-md-4">           
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <%= t('priority_text.company_priority_item.priority_item_text_1')%><br>
+                        <%= t('priority_text.company_priority_item.priority_item_text_2')%>
+                    </div>
+                     <div class="col-12 mb-5 text-danger">
+                        <%= t('priority_text.company_priority_item.priority_item_text_important')%>
+                    </div>
+                    <span class="ml-4 h5 font-weight-bold">
+                        <%= t('priority_text.company_priority_item.priority_item_title')%>
+                        <hr class="com-hr">   
+                    </span>
+                    <div class="col-12 priority-chart">
+                        <%= form.fields_for :com_priority_item_type  do |f| %>
+                            <% if @company_assessment.com_priority_item_type.nil? %>
+                                <% (1..5).each do |num| %>
+                                    <div class="row p-2">
+                                        <% case num %>
+                                            <% when 1 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_a')%>
+                                                </span>
+                                            <% when 2 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_b')%>
+                                                </span>
+                                            <% when 3 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_c')%>
+                                                </span>
+                                            <% when 4 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_d')%>
+                                                </span>
+                                        <% else %> 
+                                            <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                <%= t('priority_text.company_priority_item.priority_item_type_e')%>
+                                            </span>
+                                        <% end %>
+                                        <%= f.select("com_priority_item_type#{num}", company_item_priority_order_options,{:include_blank => false},{:class => "col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 form-control form-select shadow-none"}) %>
+                                    </div>
+                                <% end %>
+                            <% else %>
+                                <% @company_assessment.com_priority_item_type.each_with_index do |v,i| %>
+                                    <div class="row p-2">
+                                        <% case i %>
+                                            <% when 0 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_a')%>
+                                                </span>
+                                            <% when 1 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_b')%>
+                                                </span>
+                                            <% when 2 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_c')%>
+                                                </span>
+                                            <% when 3 %> 
+                                                <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                    <%= t('priority_text.company_priority_item.priority_item_type_d')%>
+                                                </span>
+                                        <% else %> 
+                                            <span class="col-12 col-md-10 col-lg-7 col-xl-5">
+                                                <%= t('priority_text.company_priority_item.priority_item_type_e')%>
+                                            </span>
+                                        <% end %>
+                                        <%= f.select("com_priority_item_type#{i+1}", company_item_priority_order_options,{:include_blank => false,selected: v}, {:class => "col-12 mt-2 mt-sm-0 col-md-2 col-lg-2 col-xl-1 form-control form-select shadow-none"}) %>
+                                    </div>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                        <div class="ml-auto d-flex">
+                            <div class=" text-center mr-3">
+                             <%= form.submit (t "btn.save") , class: "custom-btn px-4 py-2 text-decoration-none text-white"  %> 
+                            </div> 
+                         </div>
+                    </div>                                              
+                </div>                   
+            </div>
+        </div>      
+    </div>
+</section>
+<% end %>

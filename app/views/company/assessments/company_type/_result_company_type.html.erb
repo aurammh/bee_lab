@@ -1,0 +1,136 @@
+<button type="button" class="col-12 custom-btn px-4 py-2 text-decoration-none text-white" data-toggle="modal" data-target="#result-company-type">
+  <%= t('company_assessment.company_type.result.result_btn_text')%>
+</button>
+<div class="modal fade pl-0" id="result-company-type" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable assessment_popup" role="document">
+    <div class="modal-content">
+      <div class="modal-header com-bg-color text-white">
+        <h3 class="modal-title" id="exampleModalLongTitle"><%= t('company_assessment.company_type.result.result_modal_title')%></h3>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body company_type">
+        <%= image_tag "student/potential.jpg", class: "img-fluid potential-img", alt: "Responsive image" %>   
+        <div class="assessment_popup">
+          <div class="form-card bg-white mt-1 py-1 px-2">
+            <div class="text-justify mt-lg-1 mt-sm-4">
+              <h5 class="std-border-color mt-2 font-weight-bold sub-title px-2 "><%= t('company_assessment.company_type.result.title1')%></h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph1')%></p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph2')%></p>
+              <ul>
+                <li><%= t('company_assessment.company_type.result.text1_1')%></li>
+                <li><%= t('company_assessment.company_type.result.text1_2')%></li>
+                <li><%= t('company_assessment.company_type.result.text1_3')%></li>
+                <li><%= t('company_assessment.company_type.result.text1_4')%></li>
+                <li><%= t('company_assessment.company_type.result.text1_5')%></li>
+              </ul>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title2')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph2_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph2_2')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title3')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph3_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph3_2')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title4')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph4_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph4_2')%> </p>
+              <ul>
+                <li><%= t('company_assessment.company_type.result.text4_1')%></li>
+                <li><%= t('company_assessment.company_type.result.text4_2')%></li>
+                <li><%= t('company_assessment.company_type.result.text4_3')%></li>
+                <li><%= t('company_assessment.company_type.result.text4_4')%></li>
+                <li><%= t('company_assessment.company_type.result.text4_5')%></li>
+              </ul>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph4_3')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title5')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph5_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph5_2')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph5_3')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title6')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph6_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph6_2')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph6_3')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title7')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph7_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph7_2')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title8')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph8_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph8_2')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph8_3')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph8_4')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title9')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph9_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph9_2')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph9_3')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title10')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph10_1')%> </p>
+                <ul>
+                <li><%= t('company_assessment.company_type.result.text10_1')%></li>
+                <li><%= t('company_assessment.company_type.result.text10_2')%></li>
+                <li><%= t('company_assessment.company_type.result.text10_3')%></li>
+                <li><%= t('company_assessment.company_type.result.text10_4')%></li>
+                <li><%= t('company_assessment.company_type.result.text10_5')%></li>
+              </ul>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title11')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph11_1')%> </p>
+              <p class="mt-2 text-indent"><%= t('company_assessment.company_type.result.paragraph11_2')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph11_3')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph11_4')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title12')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph12_1')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph12_2')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title13')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph13_1')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph13_2')%> </p>
+              <ul>
+                <li><%= t('company_assessment.company_type.result.text13_1')%></li>
+                <li><%= t('company_assessment.company_type.result.text13_2')%></li>
+                <li><%= t('company_assessment.company_type.result.text13_3')%></li>
+              </ul>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title14')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph14_1')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph14_2')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph14_3')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph14_4')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph14_5')%> </p>
+            </div>
+            <div class="text-justify mt-lg-5 mt-sm-4">
+              <h5 class="std-border-color sub-title font-weight-bold px-2 "><%= t('company_assessment.company_type.result.title15')%> </h5>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph15_1')%> </p>
+              <p class="mt-2"><%= t('company_assessment.company_type.result.paragraph15_2')%> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="custom-btn px-3 py-2 text-decoration-none text-white" data-dismiss="modal"><%= t('common.close')%></button>
+      </div>  
+    </div>
+  </div>
+</div>

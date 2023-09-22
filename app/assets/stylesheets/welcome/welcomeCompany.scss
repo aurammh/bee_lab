@@ -1,0 +1,146 @@
+
+//----- Body CSS Start
+// Section 1.....
+.com-sec-1{
+    h2{
+        font-weight: 700;
+    }
+    .txt-deco-com{
+        background-color: #5a87e082;
+        border-radius: 10px;
+    }  
+    p{
+        line-height: 22px;
+        font-size: 21px;
+    }  
+  }
+  .com-img-sec-1{
+    background-image: url(image_path("company/companySec1_bg.jpg")); 
+    position: relative;
+    background-repeat: no-repeat;
+    height: 90vh;
+    background-size: 100%;
+ }
+ @media(min-width:576px) and (max-width: 768px){
+  .com-img-sec-1{
+    background-image: url(image_path("company/companySec1_bg.jpg")); 
+    position: relative;
+    background-repeat: no-repeat;
+    height: 48vh;
+    background-size: 100%;
+ }
+}
+ // Section 1 end......
+
+ // Section 2 starts......
+ .com-sec-2{
+  .com-sec-2-img{
+    height: 300px;
+    width: 100%;
+  }
+  @media(max-width: 320px){
+    .com-sec-2-title{
+      padding-top: 150px;
+    }
+  }
+}
+// Section 2 end.......
+
+// Section 3 start......
+.com-sec-3{
+    .com-sec-3-img{
+      width:100%;
+      height:300px;
+    }
+  
+  @media(min-width: 768px){
+    .com-sec-3-img{
+      width:100%;
+      height:700px;
+    }
+  }
+}
+// Section 3 end.......
+
+// Section 4 start.......
+.com-sec-4{
+  .com-sec-4-img{
+    width:100%;
+    height:210px;
+  }
+}
+// Section 4 end......
+
+ // Section 6 starts.....
+.com-sec-6{
+  .com-top-sect6-hr{
+    border-top: 2px solid #204a9c !important;
+  }
+  .std-top-sect6-hr{
+    border-top: 2px solid #F87201 !important;
+  }
+.border1 {
+    border: 5px solid #204a9c !important;
+  }
+  .border2 {
+    border: 5px solid #F87201 !important;
+  }
+ }
+
+   // Section 6 ends...........
+
+
+// Section 7 starts ..........
+.com-sec-7{ 
+    .sec-2-card{
+        background-color: #d1e2f3;
+        border-radius: 12px;
+        height: 100%;
+        p{
+            font-size: 14px;
+            color: #858585;
+          }
+         .card-title{
+            color: #3b5249;
+            font-weight: 900;
+         } 
+    }
+    .com-sec-2-img{
+        width: 63px;
+        height: 50px;
+    }
+
+  }
+
+  // Section 7 ends...........
+
+  // Section 8 starts ........
+.com-sec-8{
+    .com-top-sect8-hr{
+       border-top: 3px solid rgb(238,238,238) !important;
+     }
+
+     .border3{
+      border: 5px solid rgb(238,238,238) !important;
+      
+    }
+   }
+   .com-img-sec-8{
+       background-image: url(image_path("welcome/welcomeCompanySec7_bg.jpg")); 
+       position: relative;
+       background-repeat: no-repeat;
+       min-height: 30vh;
+       background-size: cover;
+    }
+    
+   // Section 8 end ........
+   
+
+
+
+
+
+
+
+
+

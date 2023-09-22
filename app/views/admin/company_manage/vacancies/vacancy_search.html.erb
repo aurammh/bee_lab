@@ -1,0 +1,102 @@
+<div class="px-sm-4 mt-3">
+<%= form_for('',url: admin_company_manage_vacancy_search_path, method: :get) do |form| %>
+    <div class="col-12 mt-3 mb-4 mb-lg-5">
+        <div class="row d-lg-flex justify-content-start shadow bg-white py-md-3 px-2 px-lg-4">
+            <h3 class="col-12 col-lg-1 px-3 px-lg-0 mt-3 mt-lg-0"><%= t('search.date_label')%></h3>
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="date-wrapper datepicker">
+                    <%= form.text_field :vacancy_startDate, "data-input": "", id: "start_date",  class: "form-control shadow-none errors", placeholder: t('search.start_date'), value: (params[:vacancy_startDate])%>
+                    <a class="icon" title="toggle" data-toggle>
+                     <i class="far fa-calendar-alt"></i>
+                     </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-3">
+                <div class="date-wrapper datepicker">
+                    <%= form.text_field :vacancy_endDate,  "data-input": "", id: "end_date", class: "form-control shadow-none errors", placeholder: t('search.end_date'), value: (params[:vacancy_endDate])%>
+                    <a class="icon" title="toggle" data-toggle>
+                        <i class="far fa-calendar-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-3">
+                <%= form.text_field :company_name, class: "form-control shadow-none errors", placeholder: t('search.keyword_search'), value: (params[:company_name])%>
+            </div> 
+            <div class=" col-md-6 col-lg-2 my-3 my-md-0">
+                <%= form.submit t( 'btn.student_search'), :class => 'admin-search-btn py-1 w-100 com-bg-color text-white', :id => 'search' %>
+            </div>
+        </div>      
+    </div>
+
+    <div class="search-result company-dashboard col-12  pb-5 mb-5">
+        <div class="row p-2 shadow bg-white info-box">
+            <div class="col-8 col-xl-10 mb-3">
+                <h1><%= t('search.search_title') %></h1>
+            </div>
+            <div class="col-11 col-md-4 col-xl-2 mb-3 pt-2 border com-border-color com-font-color text-center mx-3 mx-md-0 shadow-sm">
+                <h3>総数 <%= @results_vacancy.total_count %> 件 </h3>
+            </div>
+            <% if @results_vacancy.present? %>
+                <div class="d-none d-md-block w-100">   
+                    <table class="table table-bordered table-responsive-md">
+                        <thead class="com-bg-color text-white">
+                            <tr>
+                                <th class="w-15" scope="col"><%= t('title.vacancy_title') %></th>                                
+                                <th class="w-20" scope="col"><%= Company::Vacancy.human_attribute_name('recruit_industry_type') %></th>
+                                <th class="w-20" scope="col"><%= Company::Vacancy.human_attribute_name('recruit_job_type') %></th>
+                                <th class="w-15" scope="col"><%= Company::Vacancy.human_attribute_name('required_applicants') %></th>
+                                <th class="w-15" scope="col"><%= Company::Vacancy.human_attribute_name('working_hours') %></th>
+                                <th class="w-15" scope="col"><%= t('search.date_label') %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @results_vacancy.each_with_index do |vacancy,index| %>
+                            <tr data-link="<%= admin_company_manage_vacancy_details_path(:vacancyid => vacancy.id) %>">
+                                <td class="text-break"><%= vacancy.company_name %></td>                                
+                                <td class="text-break"><%= vacancy.industry_name %></td>
+                                <td><%= vacancy.occupation_name %></td>
+                                <td>
+                                    <%=number_with_delimiter(vacancy.required_applicants) %><%= t('unit.persons')%>
+                                </td>
+                                <td> <%= vacancy.working_hours %> </td>
+                                <td class="text-break">
+                                    <%= l(vacancy.created_at.strftime('%Y-%m-%d').to_date, default: '-')%>
+                                </td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 my-2 px-4 d-content d-md-none">
+                    <% @results_vacancy.each_with_index do |vacancy,index| %>
+                        <div class="mobile-table row std-info-box p-3 my-4 rounded" data-link="<%= admin_company_manage_vacancy_details_path(:vacancyid => vacancy.id) %>">                                                   
+                            <span class="h6 com-font-color col-4"><%= t('title.vacancy_title') %></span>
+                            <span class="col-8 text-muted text-break"><%= vacancy.company_name %></span><br>
+                            <span class="h6 com-font-color col-4"><%= t('search.date_label') %></span>
+                            <span class="col-8 text-muted text-break"><%= l(vacancy.created_at.strftime('%Y-%m-%d').to_date, default: '-')%></span><br>
+                            <span class="h6 com-font-color col-4"><%= Company::Vacancy.human_attribute_name('recruit_industry_type') %></span>
+                            <span class="col-8 text-muted text-break"><%= vacancy.occupation_name %></span><br>
+                            <span class="h6 com-font-color col-4"><%= Company::Vacancy.human_attribute_name('recruit_job_type') %></span>
+                            <span class="col-8 text-muted text-break"><%= vacancy.occupation_name %></span><br>
+                            <span class="h6 com-font-color col-4"><%= Company::Vacancy.human_attribute_name('required_applicants') %></span>
+                            <span class="col-8 text-muted text-break"><%=number_with_delimiter(vacancy.required_applicants) %><%= t('unit.persons')%></span><br>
+                            <span class="h6 com-font-color col-4"><%= Company::Vacancy.human_attribute_name('working_hours') %></span>
+                            <span class="col-8 text-muted text-break"><%= vacancy.working_hours %></span><br>
+                        </div>
+                    <% end %>                          
+                </div>
+                
+                <div class="col-12 d-flex justify-content-center mt-2 mx-2">
+                    <%= paginate @results_vacancy %>
+                </div>
+            <% else %>
+            <div class="h3 col-12 mb-3">
+                    <%= t('search.no_result') %>
+                </div>
+            <% end %> 
+        </div>
+    </div>
+<% end %>
+</div>
+<%= javascript_pack_tag "admin/admin_search.js" %>
+<%= javascript_pack_tag 'common.js'%>

@@ -1,0 +1,21 @@
+<% if current_user %>
+  <% if current_user.user_type == 1 %>
+    <li class='page-item btn-bg-blue disabled'>
+      <%= link_to '#', class: 'page-link btn-bg-blue' do %>
+        ...
+      <% end %>
+    </li>
+  <% else %>
+    <li class='page-item btn-bg-yellow disabled'>
+      <%= link_to '#', class: 'page-link btn-bg-yellow' do %>
+        ...
+      <% end %>
+    </li>
+  <% end %>
+<% else %>
+    <li class='page-item btn-bg-blue disabled'>
+      <%= link_to '#', class: 'page-link btn-bg-blue' do %>
+        ...
+      <% end %>
+    </li>
+<% end %>

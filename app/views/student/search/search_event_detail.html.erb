@@ -1,0 +1,101 @@
+<div class="row search-details justify-content-center">
+    <div class="col-9 mt-5 py-lg-5">
+        <div class="event-card job-details p-3 bg-white shadow my-5 row">           
+            <div class="col-12 col-xl-5 ml-xl-5">                    
+                <% if @event_details.event_image.attached? %>
+                    <%= image_tag (@event_details.event_image), :class=> "event-img Responsive image" %>
+                <% else %>
+                    <%= image_tag "avatar/event.jpg", :class=> "event-img Responsive image" %>
+                <% end %>        
+            </div>
+            <div class="col-12 col-xl-6 ml-xl-4 p-0  order-last order-xl-0">
+                <div class="px-3 px-xl-4 mt-4 row">
+                    <h2 class="col-12 font-weight-bolder text-muted">
+                        <%= @event_details.event_name %>
+                        <br><hr class="title-hr std-bg-color">
+                    </h2>                                     
+                    <div class="col-lg-5 col-md-7 col-sm-4">
+                        <p><i class="fas fa-check std-font-color mr-2"></i><%= Company::Event.human_attribute_name('category')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                        <p class="mr-2">-</p>
+                            <% unless @event_details.category.nil?%>
+                                <% @event_details.category.each do |v| %>
+                                    <% if v != nil %>
+                                        <%= t("event.category.#{Company::Event.event_categories.key(v)}") %>
+                                        <% if @event_details.category.length > 1 && @event_details.category.last != v %>
+                                            <%= ',' %>
+                                        <% end %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                       
+                    </div>
+
+                    <div class="col-lg-5 col-md-7 col-sm-4">
+                        <p><i class="fas fa-check std-font-color mr-2"></i><%= Company::Event.human_attribute_name('venue')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @event_details.venue %></p>
+                    </div>
+
+                    <div class="col-lg-5 col-md-7 col-sm-4">
+                        <p><i class="fas fa-check text-warning mr-2"></i><%= t('event.title.post_date')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @event_details.post_start_date %>～<%= @event_details.post_end_date %></p>
+                    </div>
+
+                    <div class="col-lg-5 col-md-7 col-sm-4">
+                        <p><i class="fas fa-check text-warning mr-2"></i><%= t('event.title.event_date') %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @event_details.event_start_date %>～<%= @event_details.event_end_date %></p>
+                    </div>
+
+                    <div class="col-lg-5 col-md-7 col-sm-4">
+                        <p><i class="fas fa-check text-warning mr-2"></i><%= Company::Event.human_attribute_name('application_deadline')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @event_details.application_deadline %></p>
+                    </div>
+
+                    <div class="col-lg-5 col-md-7 col-sm-4">
+                        <p><i class="fas fa-check text-warning mr-2"></i><%= Company::Event.human_attribute_name('event_content')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 col-sm-8 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @event_details.event_content %></p>
+                    </div>   
+                </div>
+            </div>
+            <div class="col-12 event-date p-0">
+                <div class="col-12 col-xl-6 p-0">
+                    <div class="ml-3 mr-3 row">                    
+                        <div class="col-3 col-md-3 p-0">
+                            <h5 class="day-font"><%= @event_details.event_start_date.strftime("%d") %></h5>                          
+                            <h6 class="month-font"><%= @event_details.event_start_date.strftime("%B") %></h6>                                                                                                 
+                        </div>
+                        <div class="col-12 col-md-8 d-flex mt-md-5 p-md-0 mt-3 pr-sm-3">
+                            <div class="icon-container favourite-icon ml-auto <%= @fav_event ? 'active' : 'inactive' %>"  id="favourite_event">
+                                <i class="fas fa-heart icon"></i>
+                                <span class="label"><%= t "btn.fav-text" %></span>
+                            </div>
+                            <div class="icon-container eventJoin-icon ml-2 <%= @join_event ? 'active' : 'inactive' %>"  id="join_event">
+                                <i class="fas fa-handshake icon"></i>
+                                <span class="label"><%= t "btn.join-text" %></span>
+                            </div>
+                            <div class="icon-container std_communication_icon ml-2">
+                                <%= link_to ('<i class="fas fa-comments icon"></i>').html_safe, new_communication_communication_path(:id => @event_details.company_id, :forum_id => @event_details.id, :name => "Event"),remote: true%>
+                            </div>
+                            <div  id="communicationModal">
+                                <%= render 'communication/communications/communication_modal'%>
+                            </div>
+                        </div>                                         
+                    </div>
+                </div>               
+            </div>
+        </div>        
+    </div>
+</div>
+<%= hidden_field_tag(:event_id, @event_details.id) %>
+<%= javascript_pack_tag "student/students.js" %>

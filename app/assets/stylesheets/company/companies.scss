@@ -1,0 +1,197 @@
+@import "variable";
+.company-registration{ 
+    .sec-head{
+        margin-top:4.5rem;
+        z-index:1;
+    }   
+
+    .perview-container {
+        position: fixed;
+        height: 75vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        span{
+            font-size: 14px;
+        }
+    }
+
+    .register-container {
+        span{
+            font-size: 14px;
+        }
+    }
+
+    [type="radio"]:checked+label:after,
+    [type="radio"]:not(:checked)+label:after {    
+        background: $companyColor;   
+    }
+    .custom-btn{
+        background-color: $companyColor !important;
+        width: 300px;
+        padding: 10px 10px;
+    }
+    .upload-preview{
+        height: 300px;        
+        img{
+            object-fit: contain;
+        }
+    }
+
+    //Company Image Upload button [start]  
+    .company-profile-upload {
+        position: relative;
+        overflow: hidden;
+        }
+    .company-profile-upload input#image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-filter: alpha(opacity=0);
+    }
+       
+
+    #img-remove {
+        cursor: pointer;
+    }
+    //Student Image Upload button [end] 
+
+    // Company Date Icon
+    .date-wrapper .icon{
+        color: $companyColor;
+    }
+
+    .d-container{
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -30px;
+        margin-left: -30px;
+    }
+}
+
+.company-detail{
+    min-height: 60vh;
+    .com-info-box{
+        border-radius: 2rem;
+    }
+
+    .event-info-box{
+        border-radius: 1rem;
+    }
+    
+    // .custom-btn{
+    //     background-color: $companyColor !important;
+    // }
+
+    .title-hr{
+        background-color: $companyColor;
+    }
+    
+    .table tbody tr:hover{
+        background-color: $lightCompanyBgColor;
+    }
+}
+
+.company-dashboard{
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) {  
+        span{
+            font-size: 17px !important;
+        }
+        .icon-end{
+            font-size: 42px !important;
+        }
+        h6{
+            font-size: 1.25rem;
+        }
+    }
+    
+    /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+    @media (min-width: 768px) {   
+        h6{
+            font-size: 18px;
+        }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {          
+        h6{
+            font-size: 1.5rem;
+        }
+    }
+    
+    /* Destop Large devices (desktops, 992px and up) */
+    @media (min-width: 1200px) { 
+        span{
+            font-size: 22px !important;
+        }    
+        .icon-end{
+            font-size: 50px !important;
+        }  
+        h6{
+            font-size: 1.8rem;
+        }
+    }   
+
+    .notice-panel{
+        background-color: #5a87e0bf;
+        border-radius: 10px;
+        a{
+            color: white;
+            &:hover{
+                color: #007bff;
+            }
+        }
+    }
+
+    .com-info-box{
+        border-radius: 1rem;
+    }    
+    .icon-mid{
+        font-size: 20px;
+        color: #d1cdcd;
+    }
+    .icon-end{
+        font-size: 34px;
+    }
+    .search-panel{
+        min-height: 40vh;
+        background-image: url(image_path("company/company_search_bg.jpg")); 
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .title-hr{
+        background-color: $companyColor;
+    }    
+    span{
+        font-size: 13px;
+        font-weight: 900;
+    }
+    .table tbody tr:hover{
+        background-color: $lightCompanyBgColor;
+    }    
+    .assessment-panel{
+        min-height: 45vh;
+        background-image: url(image_path("student/assessment-bg.svg")); 
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        img{
+            width: 60%;
+        }
+        .custom-btn{
+            background-color: $companyColor;
+        }
+    }
+}

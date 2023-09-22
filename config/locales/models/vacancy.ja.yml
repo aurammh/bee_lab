@@ -1,0 +1,84 @@
+ja:
+  activerecord:
+    models:
+      company/vacancy: vacancy
+    attributes:
+      company/vacancy:
+        vacancy_title: 求人タイトル
+        vacancy_description: 求人内容
+        postal_code: 郵便番号
+        region_name: エリア
+        prefecture_name: 都道府県名
+        postalcode_city: 都市
+        address: 町/丁目/番地
+        display_address: 現住所
+        required_applicants: 募集人数
+        required_applicants_string: 募集人数
+        basic_salary: 基本給
+        model_salary: モデル給与〔基本給・手当など〕
+        allowance: 諸手当
+        promotion: 昇給
+        bonus: 賞与
+        probation: 試用期間
+        transportation_allowance: 交通費
+        dormitory: 社宅
+        insurance: 社会保険
+        severance_pay: 雇用保険
+        other: その他〔フリー〕
+        hiring_flow_data: 採用までのフロー〔最大10個までに追加できる〕
+        working_hours: 勤務時間
+        break_time: 休憩時間
+        other_skill: その他
+        holiday: 休日
+        over_time: 残業
+        recruit_job_type: 職種
+        recruit_industry_type: 業種 
+        display_from: 表示期限〔From〕
+        display_to: 表示期限〔To〕
+        published_flg: 掲載フラグ
+  placeholder: 
+    vacancy_title: 営業（企業向け・得意先中心）
+    postal_code: 例）0000001
+    region_name: 例）北海道
+    prefecture_name: 例）北海道
+    postalcode_city: 例）江戸川区
+    address: 例）2-1-22
+    basic_salary: 例）100000
+    allowance: (例)営業手当
+    bonus: (例)年2回（6月・12月）昨年実績　2.0か月分（平均）
+    working_hours: 例）08:00～17:00
+    break_time: 例）12:00～13:00
+    holiday: 例）週末と祝日
+    hiring_flow_data: ① エントリー（Beelab・マイナビ・リクルート）
+    other_skill: 例）就職者にアピールしたい自社の強みや特徴を入力してください
+    append_data_modal: 一覧より「各種制度や福利厚生など」該当するものを選択してください。
+    display_from: 例）2021年12月01日
+    display_to: 例）2021年12月02日
+  title:
+    vacancy_title: 企業名
+    detail_title: 求人情報
+    company_enhancement: 福利厚生データ
+    vacancy_list_title: 採用データ
+    vacancy_code: 求人コード
+    applicant_person: 応募者
+    industry_name: 業種名
+    occupation_name: 職種名
+    target_city: 勤務地
+    publish_status: ステータス
+    create_vacan_date: 作成日
+    publishing: 公開中
+    process: 下書き
+  btn:
+    copy_address: 基本情報と同じ
+  company_vacancy_enhancement:
+    disaster_support: "慶弔・災害支援制度の充実"
+    child_care_support: "育児・介護制度の充実"
+    work_env_support: "業務・職場環境・働き方の充実"
+    athletics_support: "文化・体育・レクリエーションの充実"
+    property_support: "財産形成制度の充実"
+  company_vacancy:
+    selection_items: 選択項目一覧へ
+    various_systems_and_benefits: 各種制度や福利厚生等の一覧
+    please_check_what_you_think: 充実していると思うものにチェックを入れてください。
+    check_everything: 全てをチェックする
+    please_check_the_applicable_items: 該当する項目にチェックを入れてください。

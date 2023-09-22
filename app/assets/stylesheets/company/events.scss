@@ -1,0 +1,112 @@
+@import "variable";
+.event-registration{ 
+    .sec-head{
+        margin-top:4.5rem;
+        z-index:1;
+    }   
+
+    .perview-container {
+        height: 70vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        span{
+            font-size: 14px;
+        }
+    }
+
+    .register-container {
+        height: 80vh;
+        overflow-y: scroll;
+    }
+
+    .custom-btn{
+        background-color: $companyColor !important;
+        width: 300px;
+        padding: 10px 10px;
+    }
+    .upload-preview{
+        height: 300px;        
+        img{
+            object-fit: contain;
+        }
+    }
+
+    .event-profile-upload {
+        position: relative;
+        overflow: hidden;
+        }
+    .event-profile-upload input#image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-filter: alpha(opacity=0);
+    }
+       
+    #img-remove {
+        cursor: pointer;
+    }
+
+    .date-wrapper .icon{
+        color: $companyColor;
+    }
+    
+    .d-container{
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -30px;
+        margin-left: -30px;
+    }
+}
+
+.event-detail{
+    min-height: 60vh;
+    .event-info-box{
+        border-radius: 2rem;
+    }
+    .custom-btn{
+        background-color: $companyColor !important;
+    }
+
+    .title-hr{
+        background-color: $companyColor;
+    }
+    
+    .table tbody tr:hover{
+        background-color: $lightCompanyBgColor;
+    }
+}
+
+.event-list{
+    .title-hr{
+        background-color: $companyColor;
+    } 
+    
+    .e-col:hover{
+        &.com{
+            background-color: $lightCompanyBgColor;
+        }
+        &.std{
+            background-color: $lightStudentBgColor;
+        }
+        cursor: pointer;
+    } 
+    .van-info-box{
+        border-radius: 1rem;
+    }
+    .table tbody tr:hover{
+        background-color: unset !important;
+    }
+    .table tbody tr:hover{
+        cursor: default;    
+    }
+}

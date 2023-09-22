@@ -1,0 +1,112 @@
+<%= form_for('',url: admin_admin_company_setting_path, method: :get) do |form| %>    
+    <div class="col-12 bg-white p-3  p-lg-4 mt-0 mt-lg-4 shadow info-box mb-4 mb-lg-5">
+        <div class="row d-lg-flex justify-content-start px-3 px-sm-2">
+            <div class="col-md-4 col-lg-3 px-1 px-sm-3 mb-3">
+                <%= form.text_field :company_name, id: "end_date", class: "form-control shadow-none errors", placeholder: Company::Company.human_attribute_name('company_name'), value: (params[:company_name])%>
+            </div> 
+            <div class="col-md-4 col-lg-3 px-1 px-sm-3">
+                <%= form.text_field :keyword, id: "end_date", class: "form-control shadow-none errors", placeholder: t('search.keyword_search'), value: (params[:keyword])%>
+            </div>       
+            <div class="col-md-4 col-lg-2 px-1 px-sm-4 my-3 my-sm-0">
+                <%= form.submit t('btn.student_search'), :class => 'custom-btn w-100 com-bg-color text-white' %>
+            </div>  
+        </div>      
+    </div>
+    <div class="search-result col-12 px-0 pb-5 mb-5 search ">
+        <div class="row p-2 mx-0 shadow bg-white info-box search-filter">
+            <div class="col-12 mb-3">
+                <h1><%= t('search.search_title') %></h1>
+            </div> 
+            <% if @results.present?  %>
+                <div class="d-none d-md-block w-100">
+                    <table class="table table-bordered table-responsive-md">
+                        <thead class="com-bg-color text-white">
+                            <tr>
+                                <th scope="col"><%= t('admin.setting.company_id') %></th>
+                                <th scope="col"><%= Company::Company.human_attribute_name('company_name') %></th>
+                                <th scope="col"><%= User.human_attribute_name('email') %></th>
+                                <% @permission_type.each do |type|%>
+                                    <th scope="col"><%= t("admin.permission_type.#{type.permission_type}") %></th>
+                                <% end %>
+                                <th class="w-10" scope="col"><%= t('event.title.publish_status') %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @results.each do |company| %>
+                                <tr>
+                                    <td <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => company.com_id,:status => 2) %>><%= company.user_name %></td>
+                                    <td <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => company.com_id,:status => 2) %>><%= company.cp_name %></td>
+                                    <td <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => company.com_id,:status => 2) %>><%= company.email%></td>
+                                    <% @permission_type.each do |type|%>
+                                        <td>
+                                            <div class="simple-chkbox com-chk">
+                                                <input type= "hidden" value = <%= type.id %> id =<%="hid_#{type.permission_type}_#{company.id}"%> >
+                                                <input type="checkbox" class ="check_flg" name=<%="#{type.permission_type}_#{company.id}"%> id=<%="#{type.permission_type}_#{company.id}"%>  <%= permission_check_box(type.id,company.id) ? '' : 'checked' %>/>
+                                                <label for=<%="#{type.permission_type}_#{company.id}"%>></label> 
+                                            </div>
+                                        </td>
+                                    <% end %>
+                                    <td class="text-break" <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => company.com_id,:status => 2) %>>
+                                        <%= company.company_name_kana.nil? ?  t('search.uncomplete_register_status') : t('search.complete_register_status')%>      
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>  
+                <div class="col-12 my-2 px-4 d-content d-md-none ">
+                    <% @results.each do |company| %>
+                        <div class="mobile-table row std-info-box p-3 my-4 rounded admin-setting">
+                            <div class="row col-12" <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => company.com_id,:status => 2) %>>
+                                <div class="col-4 h6 com-font-color pr-0"><%= t('admin.setting.company_id') %></div>
+                                <div class="col-8 text-muted text-break pl-4"><%= company.user_name %></div><br>
+                                <div class="col-4 h6 com-font-color pr-0"><%= Company::Company.human_attribute_name('company_name') %></div>
+                                <div class="col-8 text-muted text-break pl-4"><%= company.cp_name %></div><br>
+                                <div class="col-4 h6 com-font-color pr-0"><%=  User.human_attribute_name('email') %></div>
+                                <div class="col-8 text-muted text-break pr-0 pl-4"><%= company.email %></div><br>
+                            </div>
+                            <% @permission_type.each do |type|%>
+                                <div class="h6 com-font-color col-4"><%= t("admin.permission_type.#{type.permission_type}") %></div>
+                                <div class="simple-chkbox com-chk col-8">
+                                    <input type= "hidden" value = <%= type.id %> id =<%="hid_m#{type.permission_type}_#{company.id}"%> >
+                                    <input type="checkbox" class ="check_flg" name=<%="m"+"#{type.permission_type}_#{company.id}"%> id=<%="m"+"#{type.permission_type}_#{company.id}"%>  <%= permission_check_box(type.id,company.id) ? '' : 'checked' %>/>
+                                    <label for=<%="m"+"#{type.permission_type}_#{company.id}"%>></label> 
+                                </div><br>
+                            <% end %>
+                            <div class="col-4 h6 com-font-color pr-0"><%= t('event.title.publish_status') %></div>
+                            <div class="col-8 text-muted text-break" <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => company.com_id,:status => 2) %>>
+                                <%= company.company_name_kana.nil? ?  t('search.uncomplete_register_status') : t('search.complete_register_status')%>      
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            <% else %>
+                <div class="col-12 m-2">
+                    <h3><%= t('search.no_result') %></h3>
+                </div>
+            <% end %>
+            <div class="col-12 d-flex justify-content-center mt-2">
+                <%= paginate @results, inner_window: 1, outer_window: 1, :class=>'pagination' %>
+            </div>
+        </div>
+    </div>        
+<% end %>
+<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+    <div id="liveToast" class="toast border border-4 border-success hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-header">
+            <%= favicon_link_tag asset_path('layout/logo.jpg') %>   
+            <strong class="mr-auto"><%= t('admin.setting.change_msg_title') %></strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            <%= t('admin.setting.change_complete_msg') %>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  var BASE_URL = '<%= root_url %>';
+</script>
+<%= javascript_pack_tag "common.js" %>
+<%= javascript_pack_tag "admin/setting.js" %>

@@ -1,0 +1,118 @@
+wb = xlsx_package.workbook
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+
+  wb.add_worksheet(name: "Students") do |sheet|
+    # Add a title row
+    sheet.add_row [t('search.excel_file_student')], style: project_heading
+    # Add the date this was downloaded
+    sheet.add_row ["Downloaded at", Time.now.strftime("%b %-d, %Y")]
+    # Add a blank row
+    sheet.add_row []
+    # Create the header row
+    sheet.add_row [
+      t('student.student_show.name'),
+      t('student.student_show.kana_name'),
+      Student::Student.human_attribute_name('birthday'),
+      Student::Student.human_attribute_name('nick_name'),
+      Student::Student.human_attribute_name('gender'),
+      Student::Student.human_attribute_name('email'),
+      Student::Student.human_attribute_name('email_two'),
+      Student::Student.human_attribute_name('phone_no'),
+      Student::Student.human_attribute_name('postal_code'),
+      Student::Student.human_attribute_name('region_name'),
+      Student::Student.human_attribute_name('prefecture_name'),
+      Student::Student.human_attribute_name('postalcode_city'),
+      Student::Student.human_attribute_name('address'),
+      Student::Student.human_attribute_name('school_type'),
+      Student::Student.human_attribute_name('school_name'),
+      Student::Student.human_attribute_name('department_name'),
+      Student::Student.human_attribute_name('subject_system'),
+      Student::Student.human_attribute_name('qualification_category_id'),
+      Student::Student.human_attribute_name('qualification_type_id'),
+      Student::Student.human_attribute_name('graduation_date'),
+      Student::Student.human_attribute_name('desire_industry_type_id'),
+      Student::Student.human_attribute_name('desire_job_type_id'),
+      Student::Student.human_attribute_name('m_region_id'),
+      Student::Student.human_attribute_name('m_prefecture_id'),
+      Student::Student.human_attribute_name('transfer'),
+      Student::Student.human_attribute_name('job_info'),
+      Student::Student.human_attribute_name('club_name'),
+      Student::Student.human_attribute_name('club_position'),
+      Student::Student.human_attribute_name('club_detail_activity'),
+      Student::Student.human_attribute_name('outside_school_activity'),
+      Student::Student.human_attribute_name('club_guide'),
+      Student::Student.human_attribute_name('is_beelab_activity_participate'),
+      Student::Student.human_attribute_name('beelab_college_achievements'),
+      Student::Student.human_attribute_name('sns_blog_for_pr'),
+      Student::Student.human_attribute_name('pando_info'),
+      t('admin.setting.assessment_title'),
+      t('search.date_label'),
+      t('event.title.publish_status'),
+    ], style: heading
+    # Create entries for each item
+    @results_list.each do |std|
+      sheet.add_row [
+      std.last_name+''+std.first_name,
+      !std.last_name_kana.nil? && !std.first_name_kana.nil? ? std.last_name_kana+''+std.first_name_kana : " ",
+      l(std.birthday, default: '-'),
+      std.nick_name,
+      if !std.gender.nil?
+      t("student.gender.#{std.gender}")
+      end,
+      std.main_email,
+      std.email_two,
+      std.phone_no.nil? ? "" : "\t"+std.phone_no,
+      std.postal_code.nil? ? "" : "\t"+std.postal_code,
+      std.region,
+      std.pre_name,
+      std.postalcode_city,
+      std.address,
+      if !std.school_type.nil?
+      t("student.school_type.#{std.school_type}")
+      end,
+      std.school_name,
+      std.department_name,
+      !std.subject_system.nil? ? t("student.subject_system.#{std.subject_system}") : "",
+      unless std.qualification_category_id.nil?
+        get_qualification_category_type(std.qualification_category_id)
+        end,
+      unless std.qualification_type_id.nil?
+        get_qualification_type(std.qualification_type_id)
+        end,
+      std.graduation_date,
+      unless std.desire_industry_type_id.nil?
+        get_industry_type(std.desire_industry_type_id)
+      end,
+      unless std.desire_job_type_id.nil?
+        get_desire_job_type(std.desire_job_type_id)
+      end,
+      unless std.m_region_id.nil?
+        get_region_type(std.m_region_id)
+      end,
+      unless std.m_prefecture_id.nil?
+        get_prefecture_type(std.m_prefecture_id)
+      end,
+      std.transfer,
+      std.job_info,
+      std.club_name,
+      std.club_position,
+      std.club_detail_activity,
+      unless std.outside_school_activity.nil?
+        student_school_activity(std.outside_school_activity)
+      end,
+      std.club_guide,
+      unless std.is_beelab_activity_participate.nil?
+        t("student.is_beelab_activity_participate.#{std.is_beelab_activity_participate}")
+        end,
+      std.beelab_college_achievements,
+      std.sns_blog_for_pr,
+      std.pando_info,
+      @assessment.include?(std.id)? t('admin.setting.implemented') : t('admin.setting.not_implemented'),
+      l(std.created_at.strftime('%Y-%m-%d').to_date, default: '-'),
+      std.birthday.nil? ? t('search.uncomplete_register_status') :  t('search.complete_register_status'),
+      ]
+    end
+  end
+end

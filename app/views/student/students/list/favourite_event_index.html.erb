@@ -1,0 +1,45 @@
+<section class="student-detail container-fluid h-50  d-flex flex-column align-items-center mt-2 pt-2">
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5">
+        <div class="h3"> <%= t ('common.favourite_event') %><br><hr class="title-hr"></div> 
+        <div class="d-none d-md-block d-sm-none">                  
+            <table class="table table-bordered table-responsive-md">
+                <thead class="std-bg-color text-white">
+                    <tr>
+                        <th><%= t('event.title.event_com_name') %></th>
+                        <th><%= t('event.title.event_date') %></th>
+                        <th><%= Company::Event.human_attribute_name('event_name') %></th>
+                        <th><%= Company::Event.human_attribute_name('venue') %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_favourite_event_list.each do |all_favourite_event| %>
+                        <tr>
+                            <td class="text-break" data-link="<%= student_event_details_path(:id => all_favourite_event.id) %>"><%= all_favourite_event.company_name %></td>
+                            <td class="text-break"><%= all_favourite_event.event_start_date %>～<%= all_favourite_event.event_end_date %></td>
+                            <td class="text-break"><%= all_favourite_event.event_name %></td>
+                            <td class="text-break"><%= all_favourite_event.venue %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+            <% @all_favourite_event_list.each do |all_favourite_event| %>
+                <div class="mobile-table row std-info-box p-2 my-4" data-link="<%= student_event_details_path(:id => all_favourite_event.id) %>">                                                   
+                    <span class="h6 std-font-color col-4"><%= t('event.title.event_com_name')  %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_event.company_name %></span><br>
+                    <span class="h6 std-font-color col-4"><%= t('event.title.event_date') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_event.event_start_date %>～<%= all_favourite_event.event_end_date %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Event.human_attribute_name('event_name') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_event.event_name %></span><br>
+                    <span class="h6 std-font-color col-4"><%= Company::Event.human_attribute_name('venue') %></span>
+                    <span class="col-8 text-muted text-break"><%= all_favourite_event.venue %></span><br>
+                </div>
+            <% end %>                           
+        </div>
+        <div class="col-12 d-flex justify-content-center p-4">
+            <%= paginate @all_favourite_event_list %>
+        </div>
+    </div>
+</section>
+<%= javascript_pack_tag 'common.js'%>

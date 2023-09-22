@@ -1,0 +1,137 @@
+<div class="container setting">
+    <div class="mt-5 pt-5">
+        <%# New Form Design %>
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-lg-10 ms-form-group" id="content">
+                <% flash.each do |key, value| %>
+                    <% if value != nil %>
+                        <% if key == 'email_change' %>
+                            <div class="container">
+                                <div class="alert alert-success" role="alert">
+                                <%= value %>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                <% end %>
+                <%= form_with(model: @setting_user , url: user_setting_update_url , method: "patch") do |f| %>
+                    <div class="shadow mb-5 bg-white d-flex flex-column justify-content-between rounded">
+                        <div class="text-group-left">
+                            <div class="px-5 pt-5 w-100">
+                                <h3 class="text-center"><%= t ('password_setting.title.change_login_setting') %></h3>
+                                <% if @setting_user.user_type.eql?2 %> 
+                                    <hr class="std-grandient-hr">   
+                                <% else %>     
+                                    <hr class="com-grandient-hr">   
+                                <% end %> 
+                            </div>
+                        </div>
+                        <div class="px-lg-5 pt-lg-5 px-md-3 pt-md-3 px-3 pt-3">
+                            <%# Current Password %>
+                            <div class="row">
+                                <div class="col-xs-12 col-lg-12">
+                                    <div class="d-flex">
+                                        <%= f.label :current_password , class: "form-label"%>
+                                        <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                                    </div>
+                                    <%= f.password_field :current_password, class: "form-control shadow-none errors",placeholder: t("password_setting.current_password"),:id=>"password" %>
+                                    <p class ="ms-invalid-feedback mt-1"><%= flash[:password_notice] %></p>
+                                </div>                       
+                            </div>
+
+                            <%# Show/Hide username and password %>
+                            <div class="row mt-1">
+                                <%# Change Username %>
+                                <% if @setting_user.user_type.eql?2 %>
+                                    <div class="simple-chkbox std-chk col-xs-12 col-md-6">
+                                        <%= f.check_box :chk_edit_email, :as => :boolean, checked: @setting_user.chk_edit_email == '1' ? true : false, class: 'chk_email' %>
+                                        <label for="user_chk_edit_email"  ><%=  t('password_setting.change_email')%></label>                               
+                                    </div>
+                                    <%# Change password %>
+                                    <div class="simple-chkbox std-chk col-xs-12 col-md-6">
+                                        <%= f.check_box :chk_pass_edit, :as => :boolean, checked: @setting_user.chk_pass_edit == '1' ? true : false, class: 'chk_pass'%>
+                                        <label for="user_chk_pass_edit"><%=  t('password_setting.change_password')%></label>                               
+                                    </div>
+                                <% else %>
+                                    <div class="simple-chkbox com-chk col-xs-12 col-md-6">
+                                        <%= f.check_box :chk_edit_username, :as => :boolean, checked: @setting_user.chk_edit_username == '1' ? true : false, class: 'chk_email' %>
+                                        <label for= "user_chk_edit_username"><%=  t('password_setting.change_username')%></label>                               
+                                    </div>
+                                    <%# Change password %>
+                                    <div class="simple-chkbox com-chk col-xs-12 col-md-6">
+                                        <%= f.check_box :chk_pass_edit, :as => :boolean, checked: @setting_user.chk_pass_edit == '1' ? true : false, class: 'chk_pass'%>
+                                        <label for="user_chk_pass_edit"><%=  t('password_setting.change_password')%></label>                               
+                                    </div>
+                                <% end %>
+                                
+                            </div>
+
+                            <%# Current username and password %>
+                            <div class="row mt-1">
+                            <% if @setting_user.user_type.eql?2 %>
+                            <%# Change Username %>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="edit_username show">
+                                        <div class="d-flex">
+                                            <%= f.label :email %>
+                                            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                                        </div>
+                                        <%= f.email_field :email, :class=> "form-control shadow-none errors", disabled: false %>
+                                        <p class="ms-invalid-feedback mt-1"><%= @setting_user.errors.full_messages_for(:email)[0] %></p>
+                                    </div>
+                                </div>
+                            <% else %>
+                            <%# Change Username %>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="edit_username show">
+                                        <div class="d-flex">
+                                            <%= f.label :user_name %>
+                                            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                                        </div>
+
+                                        <%= f.text_field :user_name, pattern: "[a-zA-Z0-9-_.]{1,20}",id: "username", :class=> "form-control shadow-none errors", disabled: false %>
+                                        <p class="ms-invalid-feedback mt-1"><%= @setting_user.errors.full_messages_for(:user_name)[0] %></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                                 <%# Change password %>
+                                <div class="col-xs-12 col-md-6 ">
+                                    <div class="edit_password show">                            
+                                        <div class="d-flex">
+                                            <label class="form-label"><%= t('password_setting.new_password') %> </label>
+                                            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                                        </div>
+                                        <%= f.password_field :password, :class=> "form-control shadow-none errors", placeholder: t("password_setting.new_password"), disabled: false %>
+                                        <p class="ms-invalid-feedback mt-1"><%= flash[:password] %></p>
+
+                                        <div class="d-flex">
+                                            <%= f.label :password_confirmation, class: "form-label" %>
+                                            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                                        </div>
+                                        <%= f.password_field :password_confirmation, :class=> "form-control shadow-none errors", placeholder: t("password_setting.password_confirmation"),disabled: false %>
+                                        <p class="ms-invalid-feedback mt-1"><%= flash[:password_confirmation] %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%# Action Area %>
+                        <div class="d-block d-lg-flex justify-content-lg-end pb-5 px-lg-5 pb-lg-5 p-md-3 px-sm-3 pb-sm-3 p-3">                            
+                            <% if @setting_user.user_type.eql?2 %>
+                                <%= f.submit t("btn.submit") , :class => "float-left col-5 col-md-5 col-lg-3 custom-btn px-4 py-2 py-md-3 py-lg-2 std-bg-color text-white text-center mr-lg-3", :id=>"password-button"%>
+                                <%= link_to  t("btn.cancel") ,student_student_path(@setting_user), :class => "float-right col-5 col-md-5 col-lg-3 std-bg-color custom-btn px-0 px-md-4 py-2 py-md-3 py-lg-2 text-white text-center text-decoration-none" %>
+                            <% else %>
+                                <%= f.submit t("btn.submit") , :class => "float-left col-5 col-md-5 col-lg-3 custom-btn px-4 py-2 py-md-3 py-lg-2 com-bg-color text-white text-center mr-lg-3", :id=>"password-button"%>
+                                <%= link_to  t("btn.cancel") ,company_company_path(@setting_user), :class => "float-right col-5 col-md-5 col-lg-3 com-bg-color custom-btn px-0 px-md-4 py-2 py-md-3 py-lg-2 text-white text-center text-decoration-none" %>
+                            <% end %>
+                        </div>                          
+                    </div>
+
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<%= javascript_pack_tag "company/company.js" %>

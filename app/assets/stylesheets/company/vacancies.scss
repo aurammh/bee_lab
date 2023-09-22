@@ -1,0 +1,209 @@
+@import "variable";
+.vacancy-registration{ 
+    .sec-head{
+        margin-top:4.5rem;
+        z-index:1;
+    }
+
+    .perview-container {
+        position: fixed;
+        height: 80vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        span{
+            font-size: 14px;
+        }
+    }
+
+    .register-container {
+        span{
+            font-size: 14px;
+        }
+    }
+
+    [type="radio"]:checked+label:after,
+    [type="radio"]:not(:checked)+label:after {    
+        background: $companyColor;   
+    }
+
+    .custom-btn{
+        background-color: $companyColor !important;
+        width: 300px;
+        padding: 10px 10px;
+    }
+
+    .upload-preview{
+        height: 300px;        
+        img{
+            object-fit: contain;
+        }
+    }
+    // Company Date Icon
+    .date-wrapper .icon {
+        color: $companyColor;
+    }
+
+    // Plus/Minus sign icon
+    .hire-btn {
+        position: relative;
+        cursor: pointer;
+        .plus_minus_icon {
+            position: absolute;
+            top: 0.2rem;
+            bottom: 0;
+            right: 0.5rem;
+            font-size: 20px;
+            font-weight: 900;
+            color: $companyColor;
+        }
+    }
+
+    input[type="text"]::placeholder{
+        width: 90%;
+    }
+
+}
+
+.welfare {
+background-color: rgb(233, 231, 220);
+display: inline-block;
+padding: 10px;
+margin: 6px;
+}
+  
+#welfare {
+    background-color: #f5f5f5;
+border-radius: .5rem;
+}
+
+.checkList{
+    height: 400px;
+    overflow-y: auto;
+}
+
+.check-box-position {
+float: right;
+margin-right: 20px;
+}
+  
+.check-box2-position{
+float: right;
+margin-right: 15px;
+}
+
+.toggle {
+    label {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+        background-color: #e1e1e1;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.1);
+        -webkit-tap-highlight-color: transparent;
+        &:before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            height: 24px;
+            width: 24px;
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.5s ease-in-out;
+            animation: moveLeft 0.5s ease-in-out;
+        }
+    }
+    input {
+        display: none;
+        &:checked+label {
+            background-color: #254a9c;
+            &:before {
+                transform: translateX(30px);
+                box-shadow: -1px -1px 5px rgba(0, 0, 0, 0.1);
+                animation: moveRight 0.5s ease-in-out;
+            }
+        }
+    }
+}
+
+
+.vacancy-list{
+    .title-hr{
+        background-color: $companyColor;
+    } 
+    .table tbody tr:hover{
+        background-color: $lightCompanyBgColor;
+    }  
+    .van-info-box{
+        border-radius: 1rem;
+    }
+}
+
+
+.modal-body{
+    .simple-chkbox{
+        margin-bottom: 0;
+        height: 50px;
+        width: 100%;
+        border-left: 1px solid gray;
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+    }
+    simple-chkbox label{
+        width: 100%;
+    }
+    .simple-chkbox input:checked + label {    
+        &::after{
+            border: solid #fff;
+            border-width: 0 2px 2px 0; 
+        }               
+    }   
+    .com-chk label::before{
+        border: 2px solid $companyColor;       
+        margin-right: 40px;
+    }        
+    .com-chk input:checked + label::before{
+        background-color: $companyColor;
+    }
+    .chk-all{
+        border-top: 1px solid gray;
+        background-color: $companyColor;        
+        label{
+            color: white !important;
+            font-size: 16px;            
+        }
+        label::before{
+            border: 2px solid white;       
+            margin-right: 40px;
+        }        
+        input:checked + label::before{
+            background-color: white;
+        }
+        input:checked + label {    
+            &::after{
+                border: solid $companyColor;
+                border-width: 0 2px 2px 0; 
+            }               
+        } 
+        input:checked + label::after{
+            top: 7px;            
+        }
+    }
+    #modal2, #model1{
+        max-height: 400px;
+        overflow: auto;
+        max-width:97%;
+        padding-right: 1px;
+    }
+    .close span{
+        color: white !important;
+    }
+}

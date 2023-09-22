@@ -1,0 +1,86 @@
+  <div class="d-flex justify-content-center communication-section">
+    <section class="col-12 p-5">
+        <div class="d-container shadow py-4 bg-white" style="border-radius: 0.8rem">
+            <div class="col-12 col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>【<%= t("communication.title.#{@communication_communication.category}") %>】<%= @communication_communication.title %></h4>
+                    </div>
+                    <div class="card-body scrollable_list">
+                        <div>
+                            <div class="d-sm-flex mb-3 mb-sm-2">
+                                <div>
+                                    <p class="card-title mb-1 mb-sm-0">
+                                    <%= get_speaker_name(@communication_communication.sender_id) %>
+                                    <%= "<"+User.find(@communication_communication.sender_id).email+"> " %>
+                                    </p>
+                                </div>
+                                <div class="ml-auto"><%= @communication_communication.created_at.strftime("%Y-%m-%d (%I:%M %p)")%></div>
+                            </div>
+                            <p class="card-text"><%= @communication_communication.content %></p>
+                            <hr>
+                        </div>
+                        <% if @conversation_detail_list.present? %>
+                            <% @conversation_detail_list.each do |all_conversation| %>
+                                <div>
+                                    <div class="d-sm-flex mb-3 mb-sm-2">
+                                        <div>
+                                            <p class="card-title mb-1 mb-sm-0">
+                                                <%=
+                                                 all_conversation.sender_id == @communication_communication.sender_id ? get_speaker_name(@communication_communication.sender_id)+" <"+User.find(@communication_communication.sender_id).email+">" :
+                                                 get_speaker_name(@communication_communication.receiver_id)+" <"+User.find(@communication_communication.receiver_id).email+">"
+                                                %>
+                                            </p>
+                                        </div>
+                                        <div class="ml-auto"><%= all_conversation.created_at.strftime("%Y-%m-%d (%I:%M %p)") %></div>
+                                    </div>
+                                    <p class="card-text"><%= all_conversation.content %></p>
+                                    <hr>
+                                </div>    
+                                <% end %>
+                        <% end %>
+                    </div>
+                </div>
+                <div id="reply-form" class="form-group">
+                    <%= form_with(model: Communication::CommunicationDetail.new,url: [ @communication_communication_detail, Communication::CommunicationDetail.new ], method: :post,id: "communication-form") do |form| %>
+                        <section class="col-12 px-5 pt-5 rp-form"> 
+                            <div class="d-container shadow py-4 bg-white" style="border-radius: 0.8rem">
+                                <div class="col-12 col-md-12 mb-3">
+                                    <%= form.hidden_field :communication_id, value: @communication_communication.id %>
+                                    <%= form.hidden_field :sender_id, value: current_user.id ,id: "sender_id" %>
+                                    <%= form.hidden_field :receiver_id, value: current_user.id ==  @communication_communication.sender_id ? @communication_communication.receiver_id : @communication_communication.sender_id %>
+                                    <%= form.hidden_field :category, value: @communication_communication.category %>
+                                    <div class = "error_content">
+                                    <label class="ml-auto"><%= current_user.id == @communication_communication.sender_id ? (get_speaker_name(@communication_communication.receiver_id)+" <"+User.find(@communication_communication.receiver_id).email+">") : 
+                                    (get_speaker_name(@communication_communication.sender_id)+" <"+User.find(@communication_communication.sender_id).email+">") %></label>
+                                        <div class="d-flex">
+                                            <%= form.label :content, t('communication.title.content') %>
+                                            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                                        </div>
+
+                                        <%= form.rich_text_area :content, id: "content",class: "shadow-none errors" %>
+                                        <p class="ms-invalid-feedback mt-1">
+                                            <span class ="err_content d-none"><%= Communication::Communication.human_attribute_name('content') %>  <%= t('errors.messages.blank') %></span>
+                                        </p>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="actions d-md-flex justify-content-lg-end justify-content-md-center mt-5">
+                                <div class="d-flex d-md-block text-center mr-sm-4 mb-4">
+                                    <%= form.submit (t "btn.sent_btn"), :class => "#{current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color' } custom-btn text-white",:id => "btn-communicaion"  %>
+                                </div>
+                                <div class="d-flex d-md-block text-center">
+                                    <input type='reset' value='<%= t('btn.cancel') %>' class="<%= current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color' %> custom-btn text-white discard-btn">
+                                </div>                 
+                            </div>     
+                        </section>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="actions d-flex justify-content-center mt-3">
+            <%= link_to (t "btn.sent_btn"), '#',:class =>  "#{current_user.user_type == 1 ? 'com-bg-color' : 'std-bg-color'} custom-btn mr-3 text-center text-white text-decoration-none reply-btn", remote: true %>
+        </div>
+    </section>
+</div>
+<%= javascript_pack_tag "communication/communication.js" %>

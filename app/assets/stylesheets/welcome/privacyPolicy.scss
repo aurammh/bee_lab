@@ -1,0 +1,37 @@
+@import "variable";
+.information-title-img{
+    background-image: url(image_path("user/workerPrivacy_bg.jpg")); 
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 43vh;
+    background-size: 100%;
+    .information-title{
+        font-size: 30px;
+        color: #858585;
+    }
+ }
+
+.privacy-policy{
+    p{
+        font-size: 14px;
+        color: #858585;
+    }
+    .form-card{
+        border-radius: 15px;
+        .main-title{
+            color: black;
+        }
+        .sub-title{            
+            color: black;
+        }        
+        li{
+            font-size: 14px;
+            color: #858585;
+        }    
+    }
+
+    .title-bar{
+        background-color: #EAEDEF;
+    }
+
+}

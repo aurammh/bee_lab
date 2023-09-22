@@ -1,0 +1,13 @@
+// Place all the styles related to the admin::company_manage::company controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.admin-company{
+    position: fixed;
+    height: 75vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

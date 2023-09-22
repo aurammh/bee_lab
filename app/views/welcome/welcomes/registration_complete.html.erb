@@ -1,0 +1,31 @@
+<div class="mail-confirmation container p-3 p-sm-5">
+  <div class="row justify-content-center my-5 p-2">
+    <div class="col-12 col-xl-10">
+      <div class="card login-card-shadow bg-white p-3 p-sm-5">
+        <div class="mb-4 text-center">          
+            <h3 class="mb-4"><%= t('welcome.reg_complete_text.text1') %></h3>
+            <% if (params[:user_type].to_s).eql?"2"%>   
+              <hr class="std-grandient-hr">   
+              <p class="std-font-color mt-3"><%= t('welcome.reg_complete_text.text2') %></p> 
+            <% else %>     
+              <hr class="com-grandient-hr">   
+              <p class="com-font-color mt-3"><%= t('welcome.reg_complete_text.text2') %></p> 
+            <% end %> 
+        </div>  
+        <div class="confirm-content">
+          <%= t('confirmations.welcome_mail').html_safe  %>
+          <br>
+          <p>-----------------------------------------------------------------</p>
+          <% if (params[:user_type].to_s).eql?"2"%>
+            <span> <%= t('welcome.reg_complete_text.std_text3') %></span><br>
+          <% else %>  
+            <span> <%= t('welcome.reg_complete_text.com_text3') %></span><br>
+          <% end %> 
+          <span><%= t('welcome.reg_complete_text.text4') %></span><br>
+          <span><%= t('welcome.reg_complete_text.text5') %></span><br>
+          <span><%= t('welcome.reg_complete_text.text6') %></span>               
+        </div>              
+      </div>
+    </div>
+  </div>
+ </div>

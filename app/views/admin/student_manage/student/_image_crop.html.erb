@@ -1,0 +1,20 @@
+<div class="modal" id="uploadimageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header std-bg-color text-white">
+                <h4 class="modal-title"><%=t('image_crop.upload')%></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="px-2 d-flex">
+                <button type="button" class="vanilla-rotate col-12 col-sm-2 col-lg-1 custom-btn w-100 ml-auto mr-2 mt-2 text-decoration-none text-white" data-deg="-90"><i class="fas fa-sync"></i></button>
+            </div>
+            <div class="modal-body">
+                 <div id="image-demo"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="col-12 col-sm-6 col-md-4 col-lg-3 custom-btn px-4 py-2 mr-1 text-decoration-none text-white crop-image "><%=t('image_crop.crop')%></button>
+                <button type="button" class="col-12 col-sm-6 col-md-4 col-lg-3 custom-btn px-4 py-2 mr-1 text-decoration-none text-white close-crop" data-dismiss="modal"><%=t('image_crop.cancel')%></button>
+            </div>
+        </div>
+    </div>
+</div>

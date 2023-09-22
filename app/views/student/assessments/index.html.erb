@@ -1,0 +1,281 @@
+
+<%= form_with(model: @student_assessment) do |form| %>
+<%# self Eevaluation chart [start] %>  
+<section class="student-assessment d-flex flex-column align-items-center">    
+    <div class="col-11 bg-white p-3 p-lg-5 mt-4 shadow assess-info-box mb-3">
+        <div class="px-4 mb-3 d-lg-flex">
+            <div class="assessment-title"><%= t('student.assessment.diagnosis_title')%><br><hr class="title-hr"></div> 
+            <div class="d-md-flex justify-content-md-between  ml-lg-auto">
+                <div class="d-flex d-md-block text-center mr-lg-4 mb-4">
+                    <%= link_to  "Start" ,student_student_smart_brain_diagnosis_path, :class => "d-md-none w-100 px-lg-5 py-2 py-lg-3 std-bg-color custom-btn mr-lg-3 text-white text-decoration-none text-center" %>
+                </div>
+                <div class="d-flex d-md-block text-center mr-lg-4 mb-4">
+                    <%= render "student/assessments/brain/about_brain" %>
+                </div>
+                <div class="d-flex d-md-block text-center">
+                    <%= render "student/assessments/brain/result_brain" %>
+                </div>                 
+            </div>             
+        </div>
+        <div class="row px-4">  
+            <div class="col-12 col-xl-2 col-md-6 d-flex flex-column justify-content-center mb-3 mb-sm-3 mb-md-3 mb-lg-0">
+                <%= link_to  "Start" ,student_student_smart_brain_diagnosis_path, :class => "d-md-block d-none px-lg-5 py-2 py-lg-3 std-bg-color custom-btn mr-lg-3 text-white text-decoration-none text-center" %>  <br>
+                <div class="text-center">
+                    <%= t('student_assessment.std_assessment_chart_date')%>：
+                        <%=if @student_assessment.brain_action_date != nil
+                            l(@student_assessment.brain_action_date  )
+                        else
+                            "-"   
+                        end%>
+                </div>
+            </div>         
+            <div class="col-12 col-xl-3 col-md-6 d-flex flex-column align-items-center justify-content-center graph-rank">
+                <div class="text-center"><%= t('student_assessment.self_evaluation_tbl_title_1')%> <br><%= t('student_assessment.self_evaluation_tbl_title_2')%></div>                
+                <% unless @rankedChartOne.nil? %>
+                    <% @rankedChartOne.each do |k,v|%>
+                        <div class="text-center"><%= v %>位：　<span><%= k %></span></div>
+                    <%end%>
+                <% end %>              
+            </div>
+            <div class="col-12 col-md-12 col-xl-7 mt-4 mt-sm-3 mt-md-3 mt-lg-3 mt-xl-0">                    
+                <canvas id="selfEevaluationChart"></canvas>                       
+            </div>
+            <div class="col-12 col-md-12 col-xl-7 ml-auto mt-4">
+                <div class="row">
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.logical_and_rational')%></label></div>
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.solid_and_planned')%></label></div>
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.sensory_and_friendly')%></label></div>
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.adventurous_and_original')%></label></div>
+                </div>
+            </div>     
+        </div>      
+    </div>
+</section>
+<%# self Eevaluation chart [end] %>
+
+<%# potential desire chart [start] %>   
+<section class="student-assessment d-flex flex-column align-items-center pt-5">    
+    <div class="col-11 bg-white p-3 p-lg-5 shadow assess-info-box mb-3">
+        <div class="px-4 mb-3 mb-3 d-lg-flex">
+            <div class="assessment-title"><%= t('student.assessment.potential_desire_title')%><br><hr class="title-hr"></div> 
+            <div class="d-md-flex justify-content-md-between ml-lg-auto">
+                <div class="d-flex d-md-block text-center mr-lg-4 mb-4">
+                    <%= link_to  "Start" ,student_student_potential_desire_type_diagnosis_path, :class => "d-md-none w-100 px-lg-5 py-2 py-lg-3 std-bg-color custom-btn mr-lg-3 text-white text-decoration-none text-center" %>
+                </div> 
+                <div class="d-flex d-md-block text-center mr-lg-3 mb-4">
+                    <%= render "student/assessments/potential/about_potential" %>
+                </div>   
+                <div class="d-flex d-md-block text-center">
+                    <%= render "student/assessments/potential/result_potential" %>
+                </div>                 
+            </div>           
+        </div>
+        <div class="row px-4">  
+            <div class="col-12 col-xl-2 col-md-6 d-flex flex-column justify-content-center mb-3 mb-sm-3 mb-md-3 mb-lg-0">
+                <%= link_to  "Start" ,student_student_potential_desire_type_diagnosis_path, :class => "d-md-block d-none px-lg-5 py-2 py-lg-3 std-bg-color custom-btn mr-lg-3 text-white text-decoration-none text-center" %>  <br>
+                <div class="text-center">
+                    <%= t('student_assessment.std_assessment_chart_date')%>：
+                        <%=if @student_assessment.potential_action_date != nil
+                            l(@student_assessment.potential_action_date  )
+                        else
+                            "-"   
+                        end%>
+                </div>
+            </div>         
+            <div class="col-12 col-xl-3 col-md-6 d-flex flex-column align-items-center justify-content-center graph-rank">
+                <div class="text-center"><%= t('student_assessment.potential_desire_tbl_title_1')%> <br><%= t('student_assessment.potential_desire_tbl_title_2')%></div>
+                <% unless @rankedChartTwo.nil? %>
+                    <% @rankedChartTwo.each do |k,v|%>
+                        <div class="text-center"><%= v %>位：　<span><%= k %></span></div>
+                    <%end%>
+                <% end %> 
+            </div>
+            <div class="col-12 col-md-12 col-xl-7 mt-4 mt-sm-3 mt-md-3 mt-lg-3 mt-xl-0">                    
+                <canvas id="potentialDesireChart"></canvas>                 
+            </div>
+            <div class="col-12 col-md-12 col-xl-7 ml-auto mt-4">
+                <div class="row">
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.love_and_desire_to_belong')%> </label></div>
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_power_and_value')%></label></div>
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_freedom')%></label></div>
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_fun')%></label></div>
+                    <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_survival')%></label></div>
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>
+<%# potential desire chart [end] %>
+
+
+<%# behavioral trait typet chart [start] %>   
+<section class="student-assessment d-flex flex-column align-items-center pt-5">    
+    <div class="col-11 bg-white p-3 p-lg-5 shadow assess-info-box mb-3">
+        <div class="px-4 px-4 mb-3 d-lg-flex">
+            <div class="h3"><%= t('student.assessment.behavioral_trait_title')%><br><hr class="title-hr"></div>
+            <div class="d-md-flex justify-content-md-between ml-lg-auto">
+                <div class="d-flex d-md-block text-center mr-lg-3 mb-4">
+                    <%= link_to  "Start" ,student_student_behavioral_trait_type_path, :class => "d-md-none w-100 px-lg-5 py-2 py-lg-3 std-bg-color custom-btn mr-lg-3 text-white text-decoration-none text-center" %>
+                </div>
+                <div class="d-flex d-md-block text-center mr-lg-3 mb-4">
+                    <%= render 'student/assessments/behavioral/about_behavioral' %>
+                </div>
+                <div class="d-flex d-md-block text-center">
+                    <%= render 'student/assessments/behavioral/result_behavioral' %>
+                </div>                 
+            </div>            
+        </div>
+        <div class="row px-4">  
+            <div class="col-12 col-xl-2 col-md-6 d-flex flex-column justify-content-center mb-3 mb-sm-3 mb-md-3 mb-lg-0">
+                <%= link_to  "Start" ,student_student_behavioral_trait_type_path, :class => "d-md-block d-none px-lg-5 py-2 py-lg-3 std-bg-color custom-btn mr-lg-3 text-white text-decoration-none text-center" %>  <br>           
+                <div class="text-center">
+                    <%= t('student_assessment.std_assessment_chart_date')%>：
+                        <%=if @student_assessment.behavioral_action_date != nil
+                            l(@student_assessment.behavioral_action_date )
+                        else
+                            "-"   
+                        end%>
+                </div>
+            </div> 
+
+            <div class="col-12 col-xl-1 col-md-6 d-flex flex-column justify-content-center mb-3 mb-sm-3 mb-md-3 mb-lg-0">
+            </div> 
+
+            <div class="col-12 col-lg-9 align-items-center justify-content-center">
+                <div class= "bahavioralTraitTypeChart">
+                    <%# self_expression chart %>
+                    <div class = "row"><%= t('student_assessment.self_expression')%></div>
+                    <div class = "row color-section" id ="self_expression_chart">
+                        <div class = "col bg-pink"></div>
+                        <div class = "col bg-lightBlue"></div>
+                        <div class = "col bg-green"></div>
+                        <div class = "col bg-blue"></div>
+                        <div class = "col bg-orange"></div>
+                    </div>
+                    <div class = "row mb-4">
+                        <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_1')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_2')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_3')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_4')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_5')%></div>
+                    </div>
+
+                    <%# self_assertion chart %>
+                    <div class = "row"><%= t('student_assessment.self_assertion')%></div>
+                    <div class = "row color-section" id ="self_assertion_chart">
+                        <div class = "col bg-pink"></div>
+                        <div class = "col bg-lightBlue"></div>
+                        <div class = "col bg-green"></div>
+                        <div class = "col bg-blue"></div>
+                        <div class = "col bg-orange"></div>
+                    </div>
+                    <div class = "row mb-4">
+                        <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_1')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_2')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_3')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_4')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_5')%></div>
+                    </div>
+
+                    <%# self_flexibility chart %>
+                    <div class = "row"><%= t('student_assessment.self_flexibility')%></div>
+                    <div class = "row color-section" id ="self_flexibility_chart">
+                        <div class = "col bg-pink"></div>
+                        <div class = "col bg-lightBlue"></div>
+                        <div class = "col bg-green"></div>
+                        <div class = "col bg-blue"></div>
+                        <div class = "col bg-orange"></div>
+                    </div>
+                    <div class = "row">
+                        <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_1')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_2')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_3')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_4')%></div>
+                        <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_5')%></div>
+                    </div>
+                </div> 
+            </div> 
+        </div>      
+    </div>
+</section>
+<%# behavioral trait typet chart [end] %>
+
+<%# Third Panel Start %>
+<section class="student-assessment d-flex flex-column align-items-center pt-5 mb-5">    
+    <div class="col-11 bg-white p-2 p-lg-5 shadow assess-info-box mb-3">
+        <div class="row px-4 d-flex px-4 mb-3 mt-5 mt-lg-0">
+            <div class="h3"><%= t('student.assessment.language_title')%><br><hr class="title-hr"></div>
+            <div class="ml-auto d-flex">
+                <div class=" text-center mr-3">
+                    <%= form.submit (t "btn.save") , class: "custom-btn px-4 py-2 text-decoration-none text-white"  %> 
+                </div> 
+            </div>
+        </div>
+        <div class="row px-4 mb-5">           
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3">
+                        <%= form.label :first_priority_language ,t('student.assessment.first_priority_language') %>
+                        <%= form.select(:first_priority_language, priority_language_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors"}) %>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3">
+                        <%= form.label :second_priority_language ,t('student.assessment.second_priority_language') %>
+                        <%= form.select(:second_priority_language, priority_language_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors"}) %>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3">
+                        <%= form.label :third_priority_language ,t('student.assessment.third_priority_language') %>
+                        <%= form.select(:third_priority_language, priority_language_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors"}) %>
+                    </div>     
+                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3">
+                        <%= form.label :english_qualification ,t('student.assessment.english_qualification') %>
+                        <%= form.select(:english_qualification, english_qualification_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors"}) %>
+                    </div>   
+                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3">
+                        <%= form.label :toefl_test ,t('student.assessment.toefl_test') %>
+                        <%= form.select(:toefl_test, toefl_test_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors"}) %>
+                    </div>   
+                    <div class="col-xs-12 col-sm-6 col-lg-4 mb-3">
+                        <%= form.label :toeic_test ,t('student.assessment.toeic_test') %>
+                        <%= form.select(:toeic_test, toeic_test_options,{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors"}) %>
+                    </div>                           
+                </div>                   
+            </div>
+        </div>     
+        <div class="row px-4 d-flex px-4 mb-3">
+            <div class="h3"><%= t('student.assessment.appeal_point_main_title') %><br><hr class="title-hr"></div>            
+        </div>
+        <div class="row px-4 mb-5">           
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <%= form.label :appeal_point_title_1 ,t('student.assessment.appeal_point_title') %>
+                        <%= form.text_field :appeal_point_title_1, :class=> "form-control shadow-none mb-2" %>
+                        <%= form.label :appeal_point_article_1 ,t('student.assessment.appeal_point_article') %>
+                        <%= form.text_area :appeal_point_article_1, :class=> "form-control shadow-none bg-white border resize-none", rows: 4 %>
+                    </div>     
+                    <div class="col-12 mb-3">
+                        <%= form.label :appeal_point_title_2 ,t('student.assessment.appeal_point_title') %>
+                        <%= form.text_field :appeal_point_title_2, :class=> "form-control shadow-none mb-2" %>
+                        <%= form.label :appeal_point_article_2 ,t('student.assessment.appeal_point_article') %>
+                        <%= form.text_area :appeal_point_article_2, :class=> "form-control shadow-none bg-white border resize-none", rows: 4 %>
+                    </div>  
+                    <div class="col-12">
+                        <%= form.label :appeal_point_title_3 ,t('student.assessment.appeal_point_title') %>
+                        <%= form.text_field :appeal_point_title_3, :class=> "form-control shadow-none mb-2" %>
+                        <%= form.label :appeal_point_article_3 ,t('student.assessment.appeal_point_article') %>
+                        <%= form.text_area :appeal_point_article_3, :class=> "form-control shadow-none bg-white border resize-none", rows: 4 %>
+                    </div>                            
+                </div>                   
+            </div>
+        </div>
+    </div>
+</section>
+<%# Third Panel End %>
+<% end %>
+<script> 
+    var chartOne = <%= @chartOne.inspect.html_safe %>; 
+    var chartTwo = <%= @chartTwo.inspect.html_safe %>; 
+    var chartThree = <%= @chartThree.inspect.html_safe %>; 
+</script> 
+<%= javascript_pack_tag "student/assessment.js" %>
+<%= javascript_pack_tag 'common.js'%>

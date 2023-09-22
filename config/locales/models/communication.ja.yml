@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      communication/communication: communication
+    attributes:
+      communication/communication:
+        title: タイトル 
+        content: 送信内容    
+        receiver_email: 宛先     
+  errors:
+    messages:
+      blank: "を入力してください。"
+      invalid: "無効です。"
+  communication:
+    title:
+      forum_name: メッセージ内容
+      content: 送信内容
+      Student: 学生情報
+      Company: 企業情報
+      Vacancy: 採用情報
+      Event:  イベント情報
+      mail_header: の問い合わせ
+      surname: 様
+      mail_content_1: お問い合わせがあります。
+      mail_content_2: 以下のリンクよりシステムにアクセスして確認してください。
+      mail_ending: 以上です、よろしくお願い致します。

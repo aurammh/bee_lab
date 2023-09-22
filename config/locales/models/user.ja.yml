@@ -1,0 +1,82 @@
+ja:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        email: メールアドレス
+        last_name: 姓（漢字）
+        first_name: 名（漢字）
+        user_name: ログインＩＤ（半角英数字）
+        company_name: 企業名 （全角数字）
+        company_email: 担当者のメールアドレス
+        password: パスワード
+        terms_and_conditions: "利用規約"
+        privacy_policy: "個人情報保護方針"
+        password_confirmation: パスワードの確認
+        current_password: 現在のパスワード
+  errors:  
+    messages:
+      accepted: 選択されていません
+      blank: "を入力してください。"
+      taken: ", %{value}, すでに使用されている。"
+      too_long: "%{count} 文字以下にする必要があります。"
+      wrong_length: "長さが間違っています (%{count} 桁である必要があります)。"
+      invalid: "無効です。"
+      is_wrong: "間違っている" 
+      confirmation: 入力が一致しません。     
+  placeholder:
+    last_name: グエン　タン
+  dashboard:
+    textMsg: this is text
+
+  password_setting:
+    new_password: "新しいパスワード"
+    password_confirmation: "パスワードの確認"
+    current_password: "現在のパスワード"
+    change_email: "メールアドレスを変更"
+    change_username: "ログインＩＤを変更する"
+    change_password: "パスワードを変更する"
+    edit_password: パスワードを忘れた方はこちら!
+    title:
+      change_login_setting: "パスワード変更"
+      change_password_setting: "パスワード再発行のリクエスト"
+      change_email_setting: "メールアドレスの変更"
+  registeration:
+    session:
+      student_title: 学生ログイン
+      company_title: 企業ログイン
+    title:
+      company_registeration: 企業登録
+      student_registeration: ユーザー登録     
+  confirmations:
+      welcome_mail: "BeeLab.Recruitへの登録ありがとうございます。<br> ご登録いただいたメールアドレス『［登録メールアドレス］』に、自動返信が届きますの
+                    <br> で、内容をご確認の上、本登録をお願いいたします。<br><br>
+                    ※迷惑メール対策やキャリアメールでご登録をしている方は「info@beelab-recruit.com」からのメールを受けとれるように設定をしてください。"  
+      welcome_user: "様" 
+      login_id: "ログインＩＤ"
+      thank_u_register: "この度は、お申し込みありがとうございます。" 
+      required_info: "ログインに必要な情報は以下になります。"
+      login_email: "ログインID（メールアドレス）"
+      login_password: "初期パスワード"
+      login_url: "３）詳細情報をご記入の上、本登録を行ってください。"
+      login_link: "確認してログインする"
+      reset_password:
+        hello: "こんにちは"
+        request_link: "誰かがあなたのパスワードを変更するためのリンクを要求しました。 以下のリンクからこれを行うことができます。"  
+        change_password: "パスワードを変更する"
+        ignore_email: "これをリクエストしなかった場合は、このメールを無視してください。"
+        password_link: "上記のリンクにアクセスして新しいパスワードを作成するまで、パスワードは変更されません。"  
+  mailer:
+    paragraph1: １）以下の「確認してログインする」のリンクをクリックして、メールの認証を行ってください。
+    paragraph2: ２）メールの認証後、ログイン画面にご登録のメールアドレス、初期パスワードを入力の上、ログインしてください。
+    paragraph3: BeeLab.Recruit運営事務局
+    paragraph4: 株式会社STEAM Sports Laboratry（本社）
+    paragraph5: ※まだ登録は完了しておりません。必ず下記リンクからメール認証後に本登録を行ってください。
+    paragraph6: お問合せ：info@beelab-recruit.jp 
+    paragraph7: HP：https://pando.life/steamslab
+  genuine_password:
+    title: パスワードの登録
+    save_password: 本登録に進む
+    toast_title: 成功メッセージ
+    toast_body: パスワードが変更されました。

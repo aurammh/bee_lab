@@ -1,0 +1,189 @@
+<script type="text/javascript">
+var BASE_URL = '<%= root_url %>';
+</script>
+<div class="student-detail px-sm-4">
+    <%= form_for('',url: admin_student_manage_student_search_path, method: :get) do |form| %>
+        <div class="col-12 mt-3 mb-4 mb-lg-5 student-registration">
+            <div class="row d-lg-flex justify-content-start shadow bg-white py-2 py-lg-3 px-2 px-lg-4">
+                <div class="col-12 col-md-6 col-lg-3 mb-2 mt-4 mt-sm-0"> 
+                    <%= select_tag :date_type, options_for_select([[t('search.date_label'), 'created_at'], [t('search.admin_graduate_date'), 'graduation_date']], selected: params[:date_type]),class: 'form-control shadow-none errors' %>
+                </div>
+                <div class="col-md-6 col-lg-3 pb-3">
+                    <div class="date-wrapper datepicker">
+                        <%= form.text_field :startDate, "data-input": "", id: "start_date",  class: "form-control shadow-none errors", placeholder: t('search.start_date'), value: (params[:startDate])%>
+                        <a class="icon " title="toggle" data-toggle>
+                        <i class="far fa-calendar-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 pb-3">
+                    <div class="date-wrapper datepicker">
+                        <%= form.text_field :endDate,  "data-input": "", id: "end_date", class: "form-control shadow-none errors", placeholder: t('search.end_date'), value: (params[:endDate])%>
+                        <a class="icon std-font-color" title="toggle" data-toggle>
+                            <i class="far fa-calendar-alt"></i>
+                        </a>
+                    </div>
+                </div> 
+
+                <div class="col-md-6 col-lg-3 px-3 mb-3 mb-sm-0">
+                    <%= form.text_field :keyword, id: "end_date", class: "form-control shadow-none errors", value: (params[:keyword]), placeholder: t('search.keyword_search') %>
+                </div>
+
+                <div class="col-12 col-lg-3 pl-sm-3 d-flex pb-3">
+                    <h5 class="col-4 col-lg-4 pl-0 mt-lg-2">
+                        <%= Student::Student.human_attribute_name('school_type')%>
+                    </h5>
+                    <%= form.select(:school_type, options_for_select(school_type_options,selected: params[:school_type]),{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors",:id => "school_type"}) %>                
+                </div>
+
+                <div class="col-md-12 col-lg-3 pl-sm-3 d-flex pb-3">
+                     <h5 class="col-4 col-lg-2 pl-0 mt-lg-2">
+                        <%= Student::Student.human_attribute_name('gender')%>
+                    </h5>
+                        <%= form.select(:gender_keyword, options_for_select(admin_gender_type_options,selected: params[:gender_keyword]),{:include_blank => ( t'select.not_select')}, {:class => "form-control form-select shadow-none errors",:id => "gender"}) %>
+                </div>
+
+                <div class="col-md-6 col-lg-2">
+                    <%= form.submit t( 'btn.student_search'), :class => 'admin-search-btn py-1 w-100 com-bg-color text-white' , :id => 'search'%>
+                </div>
+                    
+            </div>    
+        </div>
+        
+        <div class="search-result ml-lg-2 col-12  pb-5 mb-5 pl-md-2">
+            <div class="row p-2 shadow bg-white info-box">
+                <div class="col-8 col-xl-10 mb-3">
+                    <h1><%= t('search.search_title') %></h1>
+                </div> 
+                <div class="col-11 col-md-4 col-xl-2 mb-3 pt-2 border std-border-color std-font-color text-center mx-3 mx-md-0 shadow-sm">
+                    <h3>総数 <%=   @results.total_count %> 人 </h3>
+                </div>
+                <% if @results.present? %>
+                    <div class="d-none d-md-block w-100">          
+                        <table class="table table-bordered table-responsive-md">
+                            <thead class="std-bg-color text-white">
+                                <tr>
+                                    <th scope="col"><%= t('student.student_show.name') %></th>
+                                    <th scope="col"><%= t "unit.age" %></th>
+                                    <th scope="col"><%= Student::Student.human_attribute_name('gender') %></th>
+                                    <th scope="col"><%= Student::Student.human_attribute_name('school_name') %> </th>
+                                    <th scope="col"><%= Student::Student.human_attribute_name('school_type') %></th>
+                                    <th scope="col"><%= t('search.admin_prefecture_area') %></th>
+                                    <th scope="col"><%= Student::Student.human_attribute_name('club_name') %></th>
+                                    <th scope="col"><%= t('admin.setting.assessment_title') %></th>
+                                    <th scope="col"><%= t('search.date_label') %></th>
+                                    <th scope="col"><%= t('event.title.publish_status') %></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @results.each_with_index do |user| %>
+                                <tr <%= 'data-link='+ admin_student_manage_student_details_path(:userid => user.id, :status => 1) %> >
+                                    <td>
+                                    <%= user.last_name %> <%= user.first_name %>
+                                     </td>
+                                    <td>
+                                    <span class="text-secondary">
+                                        <% unless user.birthday.nil?%>
+                                        <%= Date.today.year - user.birthday.year%>
+                                        <% end %>
+                                    </span>
+                                    </td>
+                                    <td>
+                                        <% unless user.gender.nil?%>
+                                        <%= t("student.gender.#{user.gender}") %>
+                                        <% end %>
+                                    </td>
+                                    <td><%= user.school_name%></td>
+                                    <td>
+                                    <span class="text-secondary">
+                                        <% unless user.school_type.nil?%>
+                                            <%=  t("student.school_type.#{user.school_type}") %>
+                                        <% end %>
+                                    </span>
+                                    </td>
+                                    <td>
+                                    <span class="text-secondary">
+                                        <%= (user.pre_name) %>
+                                    </span>
+                                    </td>
+                                    <td>
+                                    <span class="text-secondary">
+                                        <%= (user.club_name) %>
+                                    </span>
+                                    </td>
+                                    <td> <%=@assessment.include?(user.id)? t('admin.setting.implemented') : t('admin.setting.not_implemented')%> </td>
+                                    <td>
+                                    <span class="text-secondary">
+                                        <%= l(user.created_at.strftime('%Y-%m-%d').to_date, default: '-')%>
+                                    </span>
+                                    </td>
+                                    <td>
+                                    <span class="text-secondary">
+                                        <% if user.birthday.nil? %>
+                                            <%= t('search.uncomplete_register_status')%>
+                                        <% else %>
+                                            <%= t('search.complete_register_status')%>
+                                        <% end%>
+                                    </span>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 my-2 px-4 d-content d-md-none">
+                        <% @results.each_with_index do |user| %>
+                           
+                            <div class="mobile-table row std-info-box p-3 my-4 rounded" <%= 'data-link='+ admin_student_manage_student_details_path(:userid => user.id, :status => 1) %>>                                                   
+                                <span class="h6 std-font-color col-4"><%= t('student.student_show.name') %></span>
+                                <span class="col-8 text-muted text-break"><%= user.last_name %> <%= user.first_name %></span><br>
+                                <span class="h6 std-font-color col-4"><%= t "unit.age" %></span>
+                                <span class="col-8 text-muted text-break"><% unless user.birthday.nil?%><%= Date.today.year - user.birthday.year%><% end %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Student::Student.human_attribute_name('gender') %></span>
+                                <span class="col-8 text-muted text-break"><% unless user.gender.nil?%><%= t("student.gender.#{user.gender}")%><% end %></span><br>
+                                <span class="h6 std-font-color col-4"><%= Student::Student.human_attribute_name('school_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= user.school_name%></span><br>
+                                <span class="h6 std-font-color col-4"><%= Student::Student.human_attribute_name('school_type') %></span>
+                                <span class="col-8 text-muted text-break"><% unless user.school_type.nil?%>
+                                            <%=  t("student.school_type.#{user.school_type}") %>
+                                        <% end %></span><br> 
+                                <span class="h6 std-font-color col-4"><%= t('search.admin_prefecture_area') %></span>
+                                <span class="col-8 text-muted text-break"><%= user.pre_name %></span><br>
+
+                                <span class="h6 std-font-color col-4"><%= Student::Student.human_attribute_name('club_name') %></span>
+                                <span class="col-8 text-muted text-break"><% (user.club_name) %> </span><br>
+
+                                <span class="h6 std-font-color col-4"><%= t('admin.setting.assessment_title') %></span>
+                                <span class="col-8 text-muted text-break"> <%= @assessment.include?(user.id)? t('admin.setting.implemented') : t('admin.setting.not_implemented')%> </span><br>
+
+                                <span class="h6 std-font-color col-4"><%= t('search.date_label') %></span>
+                                <span class="col-8 text-muted text-break"><%= l(user.created_at.strftime('%Y-%m-%d').to_date, default: '-')%></span><br>
+
+                                <span class="h6 std-font-color col-4"><%= t('event.title.publish_status') %></span>
+                                <span class="col-8 text-muted text-break"><% if user.birthday.nil? %>
+                                            <%= t('search.uncomplete_register_status')%>
+                                        <% else %>
+                                            <%= t('search.complete_register_status')%>
+                                        <% end%></span><br>
+                            </div>
+                        <% end %>                          
+                    </div>
+                    <div class="col-12 col-sm-7 d-flex justify-content-center justify-content-sm-end">
+                        <%= paginate @results ,class: "mb-0" %>
+                    </div>
+                    <div class="col-12 col-sm-5 d-flex justify-content-center justify-content-sm-end py-3 py-sm-0 px-2 px-sm-0">
+                    <%= link_to admin_student_manage_student_search_path(format: :xlsx, startDate: params[:startDate], endDate: params[:endDate], date_type: params[:date_type], keyword: params[:keyword],gender_keyword: params[:gender_keyword], school_type: params[:school_type]), class: 'd-inline-block btn btn-sm btn-primary shadow-sm' do%>
+                        <i class="fas fa-download fa-sm text-white-50"></i><%= t('search.excel_download') %>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <div class="h3 col-12 mb-3">
+                        <%= t('search.no_result') %>
+                    </div>
+                <% end %> 
+            </div> 
+        </div>
+    <% end %>
+</div>
+<%= javascript_pack_tag "admin/admin_search.js" %>
+<%= javascript_pack_tag 'common.js'%>

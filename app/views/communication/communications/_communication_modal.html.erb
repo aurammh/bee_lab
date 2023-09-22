@@ -1,0 +1,58 @@
+<div class="modal communication-section" tabindex="-1" role="dialog" id="communication-modal">
+    <%= form_with(model: @communication_communication,id: "communication-form") do |form| %>
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header <%=  current_user.user_type == 2 ? 'std-bg-color' : 'com-bg-color' %> text-white">
+                <h5 class="modal-title"><%= t('communication.title.forum_name')%></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <%= form.hidden_field :sender_id, value: current_user.id ,id: "sender_id" %>
+                <%= form.hidden_field :category, value:  @category_name%>
+                <%= form.hidden_field :forum_id, value: params[:forum_id] %>
+            
+                <div class="col-12 mb-3">
+                    <%= form.hidden_field :receiver_id, value: @receiver_id ,id: "receiver_id" %>
+                    <%= form.label :receiver_email ,class: "form-label" %>
+                    <%= form.email_field :receiver_email, id: "receiver_email", value: @receiverMail ,class: "form-control shadow-none", readonly: true %>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <div class = "error_title">
+                        <div class="d-flex">
+                            <%= form.label :title, class: "form-label" %>
+                            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                        </div>
+                        <%= form.text_field :title, id: "title",class: "form-control shadow-none errors", maxlength: 255 %>
+                        <p class="ms-invalid-feedback mt-1 ">
+                            <span class ="err_title d-none"><%= Communication::Communication.human_attribute_name('title') %>  <%= t('errors.messages.blank') %></span>
+                        </p>
+                    </div>    
+                </div>
+
+                <div class="col-12 mb-3">
+                    <div class = "error_content">
+                        <div class="d-flex">
+                            <%= form.label :content,class: "form-label" %>
+                            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+                        </div>
+
+                        <%= form.rich_text_area :content, id: "content",class: "shadow-none errors"%>
+                        <p class="ms-invalid-feedback mt-1">
+                            <span class ="err_content d-none"><%= Communication::Communication.human_attribute_name('content') %>  <%= t('errors.messages.blank') %></span>
+                        </p>
+                    </div>    
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <%= form.submit (t "btn.sent_btn"),:class => "#{current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color' } col-12 col-sm-6 col-md-4 col-lg-4 custom-btn px-4 py-2 mr-1 text-decoration-none text-white",:id => "btn-communicaion" %>
+                <button type="button" class=" <%= current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color'%> col-12 col-sm-6 col-md-4 col-lg-4 custom-btn px-4 py-2 mr-1 text-decoration-none text-white" id="modal-btn-no" data-dismiss="modal"><%= t "btn.confirm_no" %></button>
+            </div>
+            </div>
+        </div>
+    <% end %>
+</div>
+<%= javascript_pack_tag "communication/communication.js" %>

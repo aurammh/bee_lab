@@ -1,0 +1,130 @@
+<%= form_with(model: @company_event, url:admin_company_manage_event_update_path(@company_event), method: "post") do |form| %>
+  <div class="row col-12 event-registration px-1 px-sm-4 mt-3">
+
+    <section class="col-md-12 mb-5 pl-5"> 
+      <div class="d-container shadow bg-white" style="border-radius: 0.8rem">
+        <div class="col-12 pb-4 pt-3">
+          <span class="h4 com-font-color"><%= t('event.title.event_information')%></span>
+        </div>
+
+        <div class="col-12 col-sm-5 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :event_logo, class: "form-label"  %>
+          </div>
+          <% if @company_event.event_image.attached? && @company_event.event_image.persisted? %>
+            <span class="chosen-event-text img-name text-break"><%= @company_event.event_image.filename %></span>
+          <% else %>
+            <span class="chosen-event-text text-break"><%=t('common.event_profile_upload')%></span>
+          <% end %>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :event_logo, class: "form-label"  %>
+          </div>
+          <div class="event-profile-upload btn com-bg-color text-white">
+            <%= form.hidden_field :image_data, :value => false , id: "image_data" %>
+            <%= form.hidden_field :imageFlag, :value => false , id: "imageFlag" %>
+            <span><%=t('common.profile_upload')%></span>                
+            <%= form.file_field :event_image,accept: "image/png,image/gif,image/jpeg,image/jpg", :class=> "input-file", :id => "image" , "data-existed": form.object.event_image.attached?%>
+          </div>
+          <button type="button" id="img-remove" class="col-4 col-lg-2 btn btn-danger"><%=t('common.profile_delete')%></button>
+        </div>
+        <%# image crop modal start%>
+        <%= render partial: "admin/company_manage/company/image_crop" %>
+        <%# image crop modal end%> 
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :event_start_date, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <div class="date-wrapper" id="e_start_date" >
+            <%= form.text_field :event_start_date, "data-input": "", class: "form-control shadow-none errors", id: "event_start_date", data: { :placeholder => t("event.placeholder.date_format") } %>
+            <a class="icon" title="toggle" data-toggle><i class="far fa-calendar-alt"></i></a>
+          </div>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:event_start_date)[0] %></p>                                  
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :event_end_date, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <div class="date-wrapper" id="e_end_date">
+            <%= form.text_field :event_end_date, "data-input": "", class: "form-control shadow-none errors", id: "event_end_date", data: { :placeholder => t("event.placeholder.date_format") } %>
+            <a class="icon" title="toggle" data-toggle><i class="far fa-calendar-alt"></i></a>
+          </div>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:event_end_date)[0] %></p>                                  
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :event_name, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <%= form.text_field :event_name, id: "event_name", class: "form-control shadow-none errors",placeholder: t("event.placeholder.event_name"), maxlength: 255 %>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:event_name)[0] %></p> 
+        </div>
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :venue, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :venue, id: "venue", class: "form-control shadow-none errors",placeholder: t("event.placeholder.venue"),rows: 4, maxlength: 255 %>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:venue)[0] %></p>
+        </div>
+        <div class="col-12 col-lg-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :category , class: "form-label" %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <%= form.select :category, options_for_select(event_category_options,selected: form.object.category), {}, {:multiple => true, :class => "form-control form-select shadow-none errors",:id => "event_category",data: {:placeholder => t('event.placeholder.category')+t('common.default_placeholder')} } %>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:category)[0] %></p>
+        </div>
+        <div class="col-12 col-lg-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :application_deadline, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <div class="date-wrapper" id="application_deadline_picker">
+            <%= form.text_field :application_deadline, "data-input": "", class: "form-control shadow-none errors", id: "application_deadline", data: { :placeholder => t("event.placeholder.date_format") } %>
+            <a class="icon" title="toggle" data-toggle><i class="far fa-calendar-alt"></i></a>
+          </div>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:application_deadline)[0] %></p>                                  
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :post_start_date, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <div class="date-wrapper" id="p_start_date">
+            <%= form.text_field :post_start_date, "data-input": "", class: "form-control shadow-none errors", id: "post_start_date", data: { :placeholder => t("event.placeholder.date_format") } %>
+            <a class="icon" title="toggle" data-toggle><i class="far fa-calendar-alt"></i></a>
+          </div>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:post_start_date)[0] %></p>                                  
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :post_end_date, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <div class="date-wrapper" id="p_end_date">
+            <%= form.text_field :post_end_date, "data-input": "", class: "form-control shadow-none errors", id: "post_end_date", data: { :placeholder => t("event.placeholder.date_format") } %>
+            <a class="icon" title="toggle" data-toggle><i class="far fa-calendar-alt"></i></a>
+          </div>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:post_end_date)[0] %></p>                                  
+        </div>
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :event_content, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :event_content, id: "event_content", class: "form-control shadow-none errors",placeholder: t("event.placeholder.event_content"),rows: 10, maxlength: 255 %>
+          <p class="ms-invalid-feedback mt-1"><%= @company_event.errors.full_messages_for(:event_content)[0] %></p>
+        </div>
+      </div>        
+      <div class="actions d-flex justify-content-center mt-5">
+        <%= form.submit (t "btn.update"), :class => 'custom-btn text-white' %>
+      </div>        
+    </section> 
+  </div>  
+<% end %>
+<%= javascript_pack_tag "company/event.js" %>
+<%= javascript_pack_tag "common.js" %>

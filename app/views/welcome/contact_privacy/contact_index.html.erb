@@ -1,0 +1,72 @@
+<div class="container p-3 p-sm-5">
+  <div class="row justify-content-center my-5 p-2">
+    <div class="col-12 col-lg-8">
+      <div class="card login-card-shadow bg-white p-3 p-sm-5">
+        <div class="text-group-left mb-4">          
+            <h3 class="text-center"><%= t('contact_info.title') %></h3>
+            <hr class="<%=  @usertype == 2 ? 'std-grandient-hr' : 'com-grandient-hr' %>">         
+        </div> 
+        <% flash.each do |key, value| %>
+          <% if value != nil %>
+            <% if key == 'notice' %>
+              <div id="flash" class="alert <%= key == 'notice' ? 'alert-success' : 'alert-danger' %>" role="alert">
+                <%= value %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %> 
+        <%= form_with(model: @contact, url: welcome_contact_create_path) do |form| %>
+        <%= hidden_field_tag 'user_type', @usertype%>
+        <div class="mb-3">               
+          <div class="d-flex">
+              <%= form.label :classification, class: "form-label" %>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.select(:classification, [t('welcome.privacy policy.top_page_link.text1'), t('welcome.privacy policy.top_page_link.text2')], {:include_blank => ( t'select.not_select'), selected: form.object.classification}, { :class => 'form-control form-select shadow-none errors'}) %>
+          <p class ="ms-invalid-feedback mt-1"><%= @contact.errors.full_messages_for(:classification)[0] %></p>        
+        </div>
+        <div class="mb-3">               
+          <div class="d-flex">
+              <%= form.label :name, class: "form-label" %>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_field :name, class: "form-control shadow-none errors" %>
+          <p class ="ms-invalid-feedback mt-1"><%= @contact.errors.full_messages_for(:name)[0] %></p>        
+        </div>
+        <div class="mb-3">
+          <div class="d-flex">
+            <%= form.label :company_name, class: "form-label" %>
+          </div>
+          <%= form.text_field :company_name, class: "form-control shadow-none" %>        
+        </div>
+        <div class="mb-3">
+          <div class="d-flex">
+              <%= form.label :email, class: "form-label" %>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.email_field :email, class: "form-control shadow-none errors" %>
+          <p class ="ms-invalid-feedback mt-1"><%= @contact.errors.full_messages_for(:email)[0] %></p>          
+        </div> 
+        <div class="mb-3">
+          <div class="d-flex">
+            <%= form.label :contact, class: "form-label" %>
+          </div>
+          <%= form.text_field :contact, class: "form-control shadow-none" %>        
+        </div>
+        <div class="mb-3">
+          <div class="d-flex">
+              <%= form.label :content_inquiry, class: "form-label" %>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :content_inquiry, class: "form-control shadow-none resize-none errors" , rows: "6" %> 
+          <p class ="ms-invalid-feedback mt-1"><%= @contact.errors.full_messages_for(:content_inquiry)[0] %></p>          
+        </div>     
+          <%= form.submit t('welcome.privacy policy.top_page_link.btn'), :class => @usertype == 2 ? 'custom-btn w-100 std-bg-color text-white p-1' :  'custom-btn w-100 com-bg-color text-white p-1' %>                             
+         <% end %>
+      </div>
+    </div>
+  </div>
+</div>

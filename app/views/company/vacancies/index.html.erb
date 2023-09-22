@@ -1,0 +1,53 @@
+<section class="vacancy-list container-fluid h-50  d-flex flex-column align-items-center mt-2 pt-2">
+  <div class="col-11 bg-white p-5 mt-4 shadow van-info-box mb-5">
+    <div class="h3"> <%= t "title.vacancy_list_title" %><br><hr class="title-hr"></div>                
+    <div class="d-none d-md-block d-sm-none">  
+      <table class="table table-bordered table-responsive-md">
+          <thead class="com-bg-color text-white">
+            <tr>
+              <th scope="col"><%= t('title.occupation_name') %></th>
+              <th scope="col"><%= t('title.industry_name') %></th>
+              <th scope="col"><%= t('title.target_city') %></th>
+              <th scope="col"><%= t('title.applicant_person') %></th>
+              <th scope="col"><%= t('title.publish_status') %></th>
+              <th scope="col"><%= t('title.create_vacan_date') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @company_vacancies.each do |company_vacancy| %>
+              <tr data-link="<%= company_vacancy_path(:id => company_vacancy.id) %>">
+                <td><%= company_vacancy.occupation_name %></td>
+                <td><%= company_vacancy.industry_name %></td>
+                <td><%= company_vacancy.postalcode_city %></td>
+                <td><%= company_vacancy.required_applicants %><%= t('unit.persons')%></td>
+                <td><%= company_vacancy.published_flg? ? t("title.publishing") : t("title.process") %></td>
+                <td><%= l company_vacancy.updated_at.to_date %></td>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+    <div class="row d-content d-md-none d-lg-none d-xl-none">
+      <% @company_vacancies.each  do |company_vacancy| %>
+        <div class="mobile-table row com-info-box shadow p-3 mb-4" data-link="<%= company_vacancy_path(:id => company_vacancy.id) %>">                                                   
+          <span class="h6 com-font-color col-4"><%= t('title.occupation_name') %></span>
+          <span class="col-8 text-muted text-break"><%= company_vacancy.occupation_name %></span><br>
+          <span class="h6 com-font-color col-4"><%= t('title.industry_name') %></span>
+          <span class="col-8 text-muted text-break"><%= company_vacancy.industry_name %></span><br>
+          <span class="h6 com-font-color col-4"><%= t('title.target_city') %></span>
+          <span class="col-8 text-muted text-break"><%= company_vacancy.postalcode_city %></span><br>
+          <span class="h6 com-font-color col-4"><%= t('title.applicant_person') %></span>
+          <span class="col-8 text-muted text-break"><%= company_vacancy.required_applicants %><%= t('unit.persons')%></span><br>
+          <span class="h6 com-font-color col-4"><%= t('title.publish_status') %></span>
+          <span class="col-8 text-muted text-break"><%=  company_vacancy.published_flg? ? t("title.publishing") : t("title.process") %></span><br>
+          <span class="h6 com-font-color col-4"><%= t('title.create_vacan_date') %></span>
+          <span class="col-8 text-muted text-break"><%= l company_vacancy.updated_at.to_date %></span><br>                       
+        </div>
+      <% end %>                          
+    </div>
+    <div class="col-12 d-flex justify-content-center p-4">
+      <%= paginate @company_vacancies %>
+    </div>
+  </div>
+</section>
+<%= javascript_pack_tag 'common.js'%>

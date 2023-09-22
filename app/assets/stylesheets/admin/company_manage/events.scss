@@ -1,0 +1,14 @@
+// Place all the styles related to the Admin::company_manage::events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.admin-event-search {
+	.select2-container--default .select2-selection--multiple {
+		border: 0 !important;
+		background-color: #f5f5f5 !important;
+		border-radius: 0.5rem !important;
+		padding: 0px 0px 0px 7px;
+	}
+	.select2-container {
+		width: 100% !important;
+	}
+}

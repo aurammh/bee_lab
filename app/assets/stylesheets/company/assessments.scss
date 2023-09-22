@@ -1,0 +1,77 @@
+@import "variable";
+.company-assessment{
+	.custom-btn{
+        background-color: $companyColor !important;
+    }	
+	.assess-info-box{
+		border-radius: 1rem;
+	}
+
+	.title-hr{
+        background-color: $companyColor;
+	}
+
+	select{
+		text-align-last: center;
+		text-align: center;
+	}
+	
+	.priority-chart span{
+		font-size: 1rem;
+	}
+	.assessment_popup{
+		.company_type, .thinking{
+			p{
+				text-indent: 3%;
+				font-size: 14px;
+				color: $searchFontColour;
+			}
+			span{
+				font-size: 14px;
+				color: $searchFontColour;
+			}
+			table{
+				font-size: 14px;
+				color: $searchFontColour;
+			}  
+			.std-border-color{
+				border-left: 7px solid $companyColor;
+			}
+		}
+		.text-indent{
+			text-indent: 3%;
+		}
+		
+		p{
+			font-size: 14px;
+			color: $searchFontColour;
+		}
+
+		.underline-text{
+			text-decoration: underline;
+		}
+		.form-card{
+			border-radius: 15px;
+		
+			.sub-title{            
+				color: $assessmentPopuptext;
+			}
+			li{
+				font-size: 14px;
+				color: $searchFontColour;
+			}  
+			.border-box{
+				border: 2px solid #dee2e6;
+			}
+			.std-border-color{
+				border-left: 7px solid $companyColor;
+			}
+		}
+	}
+	.close{
+		text-shadow: 0 1px 0 #000
+	}
+	.close:hover {
+		color: rgb(165, 165, 165);
+	}
+}

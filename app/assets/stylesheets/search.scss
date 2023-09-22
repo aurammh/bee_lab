@@ -1,0 +1,172 @@
+@import "variable";
+.search{
+    span{
+        color: $searchFontColour;
+    }
+    a{        
+        color: black;
+    }
+    .info-box{
+        border-radius: 12px;
+    }
+    .search-filter{
+        .simple-chkbox{
+            margin-bottom: 0;
+        }
+        .simple-chkbox label{
+            width: 100%;
+        }
+        .simple-chkbox input:checked + label {    
+            &::after{
+                border: solid #fff;
+                border-width: 0 2px 2px 0; 
+            }               
+        }
+        .std-chk label::before{
+            border: 2px solid $studentColor;               
+        }     
+        .com-chk label::before{
+            border: 2px solid $companyColor;       
+        }    
+        .std-chk input:checked + label::before{
+            background-color: $studentColor;
+        }   
+        .com-chk input:checked + label::before{
+            background-color: $companyColor;
+        }
+        span{
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+    .filter-title{
+        font-size: 20px;
+        font-weight: 500;
+        border-radius: 12px 12px 0px 0px;
+    }
+
+    .radio-margin{ 
+        max-height: 150px;
+        overflow-y: auto;
+    }
+
+    .search-result{
+        .profile-image{
+            height: 200px;
+            img{                      
+                height: 100%;
+                width: 100%;          
+                object-fit: contain;
+                border-radius: 12px 12px 0px 0px;
+            }
+            .profile-name{
+                bottom: 0;
+                height: 40px;          
+                border-radius: 0px 12px 0px 0px;                      
+            }
+            .fav-ico{
+                right: 0;
+                bottom: 0;                 
+                .fa-heart{
+                    font-size: 30px;                  
+                }
+                .fa-heart.active{
+                    color: #E7494A;
+                }
+                .fa-heart.inactive{
+                    color: #9A9A9A;
+                }
+            }
+            .join-icon{
+                right: 40px;
+                bottom: 0;                 
+                .fa-handshake{
+                    font-size: 30px;                  
+                }
+                .fa-handshake.active{
+                    color: $companyColor;
+                }
+                .fa-handshake.inactive{
+                    color: #9A9A9A;
+                }
+            }
+        }  
+    }
+}
+
+.search-details{
+    .chart-des {
+		border: 1px solid $companyColor;		
+	}
+    .job-details {
+        border-radius: 12px;
+    }
+    span{
+        font-size: 14px;
+    }
+    .title{
+        font-size: 20px;
+    }
+    p{
+        font-size: 14px;
+    }
+    img{
+        height: 100%;
+        width: 100%;          
+        object-fit: cover;
+    }   
+    .job-details-border{
+        border-right: 1px solid white;
+    }
+    .job-details-icon{
+        font-size: 30px;
+    }
+    .priority-chart{
+        span{
+            border-bottom: 1px dashed;
+        }
+    }
+    .bahavioralTraitTypeChart {
+        .color-section {
+            height: 50px;
+        }
+        .bg-pink {    
+            background-color: $studentBehavioralBgPink;
+        }
+        .bg-lightBlue {
+            background-color: $studentBehavioralBgLightBlue;
+        }
+        .bg-green {
+            background-color: $studentBehavioralBgGreen;
+        }
+        .bg-blue {
+            background-color: $studentBehavioralBgBlue;
+        }
+        .bg-orange {
+            background-color: $studentBehavioralBgOrange;
+        }
+		.graph-select{
+			border:2px solid $studentBehavioralBgBorder;
+			box-shadow: $studentBehavioralBgBorder 1px 3px 7px
+		}
+    }
+     .graph-rank {
+        div:first-child {
+            border-top: 1px solid $companyColor;
+        }
+        div {
+            width: 200px;
+            border-bottom: 1px solid $companyColor;
+            border-left: 1px solid $companyColor;
+            border-right: 1px solid $companyColor;
+        }
+     }
+     canvas{
+        width: 100%;
+        min-height: 300px !important;
+     }
+}
+
+.company-gender [type="radio"]:checked + label:after,.company-gender [type="radio"]:not(:checked) + label:after {
+    background: $companyColor;
+}

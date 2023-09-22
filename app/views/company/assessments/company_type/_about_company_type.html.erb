@@ -1,0 +1,78 @@
+<button type="button" class="col-12 custom-btn px-4 py-2 text-decoration-none text-white" data-toggle="modal" data-target="#about-comType-modal">
+    <%= t('company_assessment.company_type.about.btn')%>
+</button>
+<div class="modal fade pl-0" id="about-comType-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable assessment_popup ">
+        <div class="modal-content ">
+            <div class="modal-header com-bg-color text-white">
+                <h3 class="modal-title" id="exampleModalLongTitle"><%= t('company_assessment.company_type.about.title')%></h3>
+                <button type="button" class="close text-white btn-close-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body company_type">
+                <section>
+                    <%= image_tag "student/potential.jpg", class: "img-fluid", alt: "Responsive image" %>                      
+                    <div class="text-left pt-3">
+                        <p class="text-justify"><%= t('company_assessment.company_type.about.paragraph')%></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="text-left pt-3 ">
+                        <h5 class="text-dark font-weight-bold std-border-color pl-1">
+                            <%= t('company_assessment.company_type.about.title_1')%>
+                        </h5>
+                        <p class="text-secondary text-justify"><%= t('company_assessment.company_type.about.paragraph_1_1')%></p>
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th class="col-3 text-break w-25 text-dark"><%= t('company_assessment.company_type.about.tr_th_1_col1')%></th>
+                                    <th class="col-3 text-break w-25 text-dark"><%= t('company_assessment.company_type.about.tr_th_1_col2')%></th>
+                                    <th class="col-6 text-break w-50 text-dark"><%= t('company_assessment.company_type.about.tr_th_1_col3')%></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col1_row1')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col2_row1')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('company_assessment.company_type.about.tr_td_1_col3_row1')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col1_row2')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col2_row2')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('company_assessment.company_type.about.tr_td_1_col3_row2')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col1_row3')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col2_row3')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('company_assessment.company_type.about.tr_td_1_col3_row3')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col1_row4')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col2_row4')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('company_assessment.company_type.about.tr_td_1_col3_row4')%></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col1_row5')%></td>
+                                    <td class="p-2 text-break w-25"><%= t('company_assessment.company_type.about.tr_td_1_col2_row5')%></td>
+                                    <td class="p-2 text-break w-50"><%= t('company_assessment.company_type.about.tr_td_1_col3_row5')%></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-justify"><%= t('company_assessment.company_type.about.paragraph_1_2')%></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="text-left pt-3">
+                        <h5 class="text-dark font-weight-bold std-border-color pl-1"><%= t('company_assessment.company_type.about.title_2')%></h5>
+                        <p class="text-justify"><%= t('company_assessment.company_type.about.paragraph_2_1')%></p>
+                        <p class="text-justify"><%= t('company_assessment.company_type.about.paragraph_2_2')%></p>  
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-btn px-3 py-2 text-decoration-none text-white" data-dismiss="modal"><%= t('common.close')%></button>
+            </div>
+        </div>
+    </div>
+</div>

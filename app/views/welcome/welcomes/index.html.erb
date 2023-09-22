@@ -1,0 +1,130 @@
+<section class="d-flex align-items-center mb-3 px-sm-2 px-md-5 sec-1 img-sec-1">    
+    <div class="col-12 px-3 px-md-5">      
+      <h2 class="font-weight-bold"><%= t('welcome.top.title.bee_lab_title') %></h2>              
+      <div>
+        <p class="h5"><%= t('welcome.top.content.bee_lab_paragraph1') %></p>
+      </div>
+      <div class="">
+        <p class="h5"><%= t('welcome.top.content.bee_lab_paragraph2') %></p>
+        <p class="h5"><%= t('welcome.top.content.bee_lab_paragraph2_1') %></p>
+      </div>
+      <div class="mt-4 p-3 txt-deco col-lg-6">
+        <span class="h5"><p class="h5"><%= t('welcome.top.content.bee_lab_paragraph3') %></p></span>
+      </div> 
+
+      <div class="d-flex mt-3">
+        <%= link_to  welcome_student_path, class:"text-decoration-none" do %>
+          <div class="card card-deco std-bg-color px-0">
+            <span class=""><%= t('welcome.top.button.for_student') %></span>
+          </div>
+          <div class="card-link-deco std-font-color pt-1">
+            <i class="fa fa-arrow-up icon std-bg-color"></i>
+            <span><%= t('welcome.top.button.click_here_student') %></span>
+          </div>
+        <% end %>
+       <%= link_to  welcome_company_path, class:"text-decoration-none" do %>
+          <div class="card card-deco com-bg-color px-0">
+            <span class="nav-card-title"><%= t('welcome.top.button.for_company') %></span>
+          </div>
+          <div class="card-link-deco com-font-color pt-1">
+            <i class="fa fa-arrow-up icon com-bg-color"></i>
+            <span><%= t('welcome.top.button.click_here_company') %></span>
+          </div>
+       <% end %>
+      </div>
+    </div>    
+</section>
+
+<%# Section 2 Start %>
+<section class="mb-3 px-sm-2 px-md-5 sec-2 img-sec-2">
+  <div class="px-3 px-md-5 pt-3">     
+   <h3 class="font-weight-bold"><%= t('welcome.top.feature_section.bee_lab') %></h3>
+    <div class="d-flex mt-5">
+      <div class="bullet">
+        <i class="fa-check fa"></i>
+      </div>
+      <span class="bullet-text"><%= t('welcome.top.feature_section.description1') %></span>      
+    </div>
+    <div class="d-flex mt-4">
+      <div class="bullet">
+        <i class="fa-check fa"></i>
+      </div>      
+      <span class="bullet-text"> <%= t('welcome.top.feature_section.description2') %></span>
+
+    </div>
+    <div class="d-flex mt-4">
+      <div class="bullet">
+        <i class="fa-check fa"></i>
+      </div>      
+      <span class="bullet-text"><%= t('welcome.top.feature_section.description3') %></span>
+    </div>
+  </div>
+</section>
+<%# Section 2 End %>
+
+<%# Section 3 Start %>
+<section class="d-flex p-0 p-sm-2 p-md-5 sec-3">
+  <div class="container-fluid"> 
+    <div class="row px-3 px-md-5">
+      <div class="col-12">
+        <h3><b><%= t('welcome.top.logo_explanation.construction_industry') %></b></h3>
+      </div>
+    </div>
+    <div class="row px-3 px-md-5 mt-5">
+      <div class="col-12 col-lg-5 d-flex justify-content-start justify-content-center">
+          <%= image_tag "layout/logo.jpg", class: "top-logo"  %>  
+      </div>
+      <div class="col-12 col-lg-7 d-flex align-items-center mt-4 mt-lg-0">
+        <div class="d-flex flex-column align-items-center p-2 p-xxl-5">
+          <div class="std-bg-color d-flex justify-content-center align-self-sm-end info-box"> 
+            <div class="inner-box">
+              <p><b><%= t('welcome.top.logo_explanation.header_text1') %></b></p>
+              <p><%= t('welcome.top.logo_explanation.logo_color_exp1') %></p>
+            </div>
+          </div>
+          <div class="com-bg-color d-flex justify-content-center mt-4 info-box"> 
+            <div class="inner-box text-white">
+             <p><b><%= t('welcome.top.logo_explanation.header_text2') %></b></p>
+              <p><%= t('welcome.top.logo_explanation.logo_color_exp2') %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%# Section 3 End %>
+
+<%# Section 4 Start %>
+<section class="d-flex p-0 p-sm-2 p-md-5 sec-4">
+  <div class="container-fluid">
+      <div class="row px-3 px-md-5">
+        <div class="col-12">
+          <h3><b><%= t('welcome.top.lots_of_services.title') %></b></h3>
+        </div>
+      </div>
+      <div class="row mt-5 px-3 px-md-5">
+        <div class="col-12 col-lg-6 mb-4 mb-lg-4">
+          <div class="d-flex">
+            <div class="outter-cicle">
+              <div class="d-flex justify-content-center align-items-center inner-cicle">
+                <%= image_tag "welcome/welcomeSec3Person_icon.svg", class: "icon" %>                 
+              </div>
+            </div>
+            <p><%= t('welcome.top.lots_of_services.text1') %></p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="d-flex">
+            <div class="outter-cicle">
+              <div class="d-flex justify-content-center align-items-center inner-cicle">
+                <%= image_tag "welcome/welcomeSec3Consult_icon.svg", class: "icon ml-2" %>            
+              </div>
+            </div>
+            <p><%= t('welcome.top.lots_of_services.text2') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<%# Section 4 End %>

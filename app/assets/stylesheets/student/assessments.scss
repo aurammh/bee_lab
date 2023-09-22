@@ -1,0 +1,163 @@
+@import "variable";
+.student-assessment {
+  .custom-btn {
+    background-color: $studentColor !important;
+  }
+
+  .assess-info-box {
+    border-radius: 1rem;
+  }
+
+  .title-hr {
+    background-color: $studentColor;
+  }
+
+  .upload-file {
+    z-index: -1;
+    position: absolute;
+    opacity: 0;
+  }
+
+  select {
+    text-align-last: center;
+    text-align: center;
+  }
+
+  .graph-rank div {
+    width: 200px;
+    border-bottom: 1px solid $studentColor;
+    border-left: 1px solid $studentColor;
+    border-right: 1px solid $studentColor;
+  }
+  .graph-rank div:first-child {
+    border-top: 1px solid $studentColor;
+  }
+
+  .chart-des {
+    border: 1px solid $studentColor;
+  }
+  .bahavioral-model {
+    border: 1px solid $studentColor;
+    height: 30px;
+  }
+  .bahavioral-fill {
+    background-color: $studentColor;
+  }
+  .bahavioral-font {
+    font-size: 11px;
+  }
+  .bahavioral-p {
+    background-color: $studentColor !important;
+    width: 220px;
+    font-size: 1rem;
+    box-shadow: 0 2px 10px rgba(117, 116, 116, 0.4);
+    transition: box-shadow 5s;
+    border-radius: 6px;
+    border: 0;
+    outline: none;
+  }
+
+  .bahavioralTraitTypeChart {
+    .color-section {
+      height: 50px;
+    }
+    .bg-pink {
+      background-color: $studentBehavioralBgPink;
+    }
+    .bg-lightBlue {
+      background-color: $studentBehavioralBgLightBlue;
+    }
+    .bg-green {
+      background-color: $studentBehavioralBgGreen;
+    }
+    .bg-blue {
+      background-color: $studentBehavioralBgBlue;
+    }
+    .bg-orange {
+      background-color: $studentBehavioralBgOrange;
+    }
+    .graph-select {
+      border: 2px solid $studentBehavioralBgBorder;
+      box-shadow: $studentBehavioralBgBorder 1px 3px 7px;
+    }
+  }
+
+  /* Small devices (landscape phones, 576px and up) */
+
+  @media (min-width: 768px) {
+    .assessment-title {
+      font-size: 30px;
+      word-break: break-all;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .assessment-title {
+      font-size: 24px;
+      word-break: break-all;
+    }
+    .brain-table {
+      .table td {
+        display: block;
+      }
+      tr td:not(:first-child) {
+        border: none;
+      }
+    }
+  }
+
+  .assessment_popup {
+    .behaviour,
+    .potential {
+      p {
+        text-indent: 3%;
+        font-size: 14px;
+        color: $searchFontColour;
+      }
+      span {
+        font-size: 14px;
+        color: $searchFontColour;
+      }
+      table {
+        font-size: 14px;
+        color: $searchFontColour;
+      }
+      .std-border-color {
+        border-left: 7px solid $studentColor;
+      }
+    }
+    .text-indent {
+      text-indent: 3%;
+    }
+
+    p {
+      font-size: 14px;
+      color: $searchFontColour;
+    }
+
+    .underline-text {
+      text-decoration: underline;
+    }
+    .form-card {
+      border-radius: 15px;
+
+      .sub-title {
+        color: $assessmentPopuptext;
+      }
+      .std-border-color {
+        border-left: 7px solid $studentColor;
+      }
+      li {
+        font-size: 14px;
+        color: $searchFontColour;
+      }
+      .border-box {
+        border: 2px solid #dee2e6;
+      }
+    }
+  }
+  canvas{
+     width: 100%;
+     min-height: 300px !important;
+  }
+}

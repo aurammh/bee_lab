@@ -1,0 +1,567 @@
+<div class="information-title-img d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="information-title font-weight-bold"><%= t'welcome.term_and_condition.image_title' %>
+        </div>
+    </div>
+</div>
+
+<div class="privacy-policy">
+    <div class="container form-card bg-white shadow mt-4 mb-5 py-5 px-5">
+                <div>
+                    <a href="/" class="text-decoration-none text-secondary">Home /</a>
+                    <a href="/" class="text-decoration-none text-secondary"><%= t'welcome.term_and_condition.title' %></a>
+                </div>
+                <h3 class="main-title mt-4 font-weight-bold"><%= t'welcome.term_and_condition.title' %></h3>
+                <div class="bg-light mt-4">
+                     <% if  @user_type.eql?2 %>
+                        <div class="pb-1 std-bg-color w-25"></div>
+                    <% else%>
+                        <div class="pb-1 com-bg-color w-25"></div>
+                    <% end %>
+                </div>
+                <div class="text-justify mt-5 mt-lg-5 mt-sm-4">
+
+                  <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                        <%= t'welcome.term_and_condition.text1' %></h5>
+                    <p><%= t'welcome.term_and_condition.paragraph1' %></p>
+                </div>
+                   <div class="text-justify mt-lg-5 mt-sm-4">
+                   <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section1.title' %></h5>
+                    <p class="mt-2">
+                        <%= t'welcome.term_and_condition.section1.paragraph' %>                    
+                    </p>
+                </div>
+                 <div class="text-justify mt-lg-3 mt-sm-4">
+                    <ol class="p-1 mb-2 list-unstyled">
+                     <p class="mt-2">
+                        <%= t'welcome.term_and_condition.section1.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section1.text2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section1.text3' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section1.text4' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section1.text5' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section1.text6' %>
+                    </p>
+                    </ol> 
+                </div>
+                  <div class="text-justify mt-lg-5 mt-sm-4">
+                  <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section2.title' %></h5>
+                    <p class="mt-2">
+                        <%= t'welcome.term_and_condition.section2.paragraph1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section2.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section2.text2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section2.text3' %>
+                    </p>
+                </div>
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                   <%= t'welcome.term_and_condition.section3.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section3.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section3.text2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section3.text3' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section3.text4' %>
+                    </p>
+                </div>
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section4.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section4.paragraph1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section4.paragraph2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section4.paragraph3' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section4.paragraph4' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section4.paragraph5' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section4.paragraph6' %>
+                    </p>     
+                </div>
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section5.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section5.paragraph1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section5.paragraph2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section5.paragraph3' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section5.paragraph4' %>
+                    </p>
+                 </div>
+                    <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section6.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section6.paragraph1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section6.paragraph2' %>
+                    </p>
+                </div>
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                   <%= t'welcome.term_and_condition.section7.title' %></h5>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.paragraph' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text3' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text4' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text5' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text6' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text7' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text8' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text9' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text10' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text11' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text12' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text13' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text14' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text15' %>
+                    </p>
+                       <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text16' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text17' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text18' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text19' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text20' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text21' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text22' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text23' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text24' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text25' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text26' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text27' %>
+                    </p>
+                       <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text28' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text29' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text30' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text31' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.text32' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section7.paragraph2' %>
+                    </p>
+                 </div>
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                   <%= t'welcome.term_and_condition.section8.title' %></h5>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.paragraph' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text3' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text4' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text5' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text6' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text7' %>
+                    </p>
+                 
+                   <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.paragraph2' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text8' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text9' %>
+                     </p>
+                       <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text2_1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text2_2' %>
+                     </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text2_3' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text2_4' %>
+                     </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text2_5' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.paragraph3' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section8.text10' %>
+                    </p>
+                </div> 
+                  <div class="text-justify mt-lg-5 mt-sm-4">
+                  <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section9.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section9.paragraph1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section9.paragraph2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section9.paragraph3' %>
+                    </p>
+                 </div> 
+                  <div class="text-justify mt-lg-5 mt-sm-4">
+                  <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section10.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section10.paragraph' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section10.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section10.text2' %>
+                    </p>
+                 </div> 
+                    <div class="text-justify mt-lg-5 mt-sm-4">
+                    <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section11.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section11.paragraph' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section11.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section11.text2' %>
+                    </p>
+                 </div> 
+                  <div class="text-justify mt-lg-5 mt-sm-4">
+                  <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section12.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section12.text1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section12.text2' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section12.text3' %>
+                    </p>
+                 </div> 
+                  <div class="text-justify mt-lg-5 mt-sm-4">
+                  <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section13.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section13.text1' %>
+                    </p>
+                </div>
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section14.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.paragraph1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.text1' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.text2' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.text3' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.text4' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.text5' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.paragraph2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section14.paragraph3' %>
+                    </p>
+                 </div> 
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section15.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.paragraph1' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.text1' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.text2' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.text3' %>
+                    </p>
+                      <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.text4' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.text5' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.text6' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.paragraph2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section15.paragraph3' %>
+                    </p>
+                 </div> 
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section16.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section16.paragraph1' %>
+                    </p>
+                </div> 
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section17.title' %></h5>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section17.paragraph1' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section17.paragraph2' %>
+                    </p>
+                </div> 
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section18.title' %></h5>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section18.paragraph1' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section18.paragraph2' %>
+                    </p>
+                </div> 
+                 <div class="text-justify mt-lg-5 mt-sm-4">
+                 <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t'welcome.term_and_condition.section19.title' %></h5>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section19.paragraph1' %>
+                    </p>
+                    <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section19.paragraph2' %>
+                    </p>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t'welcome.term_and_condition.section19.paragraph3' %>
+                    </p>
+                </div> 
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                   <%= t('welcome.term_and_condition.section20.title') %></h5>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t('welcome.term_and_condition.section20.paragraph1') %>
+                    </p>
+                </div> 
+                  <div class="text-justify mt-lg-5 mt-sm-4">
+                  <% if  @user_type.eql?2 %>
+                        <h5 class="std-border-color sub-title font-weight-bold px-2">
+                    <% else%>
+                        <h5 class="com-border-color sub-title font-weight-bold px-2">
+                    <% end %>
+                    <%= t('welcome.term_and_condition.section21.title') %></h5>
+                     <p class="p-1 mb-2 list-unstyled">
+                        <%= t('welcome.term_and_condition.section21.paragraph1') %>
+                    </p>
+                </div> 
+                <div class="text-justify mt-lg-5 mt-sm-4">
+                    <p class="mt-2"><%= t('welcome.privacy policy.top_page_link.text4') %></p>
+                </div>
+            
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<% flash.each do |key, value| %>
+  <% if value != nil %>
+    <div id="flash"  class="flash-container">
+      <div class="noti">
+      <% unless key == 'timedout' || value == ''%>
+        <div class="alert <%= key == 'notice' ? 'alert-success' : 'alert-danger' %>" role="alert">
+          <%= value %>
+        </div>
+      <% end %>  
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+    $('#flash').fadeOut();
+    }, 5000);
+  })
+</script>

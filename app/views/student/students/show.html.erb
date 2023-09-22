@@ -1,0 +1,256 @@
+<section class="student-detail h-50 d-flex flex-column align-items-center mt-5 pt-5 ">
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5">
+        <div class="row d-flex px-4 mb-3 ">
+            <div class="std-font-color my-4 h3"><%= t 'student.title.personal_information' %></div>
+            <div class="row ml-md-auto d-lg-flex justify-content-end">
+                <div class="text-center ml-3 mr-1 mr-lg-3 mb-4">
+                    <%= link_to t('show_page.button1'), user_setting_path(scop_name: "student"), class: "col-12 col-sm-6 col-md-4 col-lg-3  custom-btn px-4 py-2 text-decoration-none text-white" %>
+                </div>
+                <div class=" text-center mr-lg-3">
+                    <%= link_to t('show_page.button2'), edit_student_student_path(@user_student), class: "col-12 col-sm-6 col-md-4 col-lg-3  custom-btn px-4 py-2 mr-1 text-decoration-none text-white" %>
+                </div>                 
+            </div>
+        </div>
+        <div class="row px-2 px-md-4">
+            <div class="col-12 col-lg-3">
+                <% if @user_student.image.attached? %>
+                    <%= image_tag (@user_student.image), :class=> "w-100" %>
+                <% else %>
+                    <div class="upload-preview">
+                    <%= image_tag "avatar/preview.svg"%>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-12 col-md-12 col-lg-9">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= t('student.student_show.name') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.last_name %> <%= @user_student.first_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= t('student.student_show.kana_name') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.last_name_kana %> <%= @user_student.first_name_kana %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('birthday') %></span>
+                        <span class="text-secondary"><%= l(@user_student.birthday, default: '-') %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('gender') %></span>
+                        <span class="text-secondary"><%= t("student.gender.#{@user_student.gender}") %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('email') %></span>
+                        <span class="text-secondary text-break"><%= current_user.email %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('email_two') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.email_two? ? @user_student.email_two : t("student.student_show.none") %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('phone_no') %></span>
+                        <span class="text-secondary"><%= @user_student.phone_no %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('nick_name') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.nick_name %></span>
+                    </div>
+                    <div class="col-12 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('display_address') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.display_address %></span>
+                    </div> 
+                </div>
+            </div>
+        </div>      
+    </div>
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5">
+        <div class="row px-4 d-flex mb-3">
+            <div class="std-font-color h3"><%= t('student.title.school_info') %></div>
+            <div class="ml-auto d-flex mt-2 pl-5">                
+                <div class=" text-center mr-3">
+                    <%= link_to t('show_page.button2'), edit_student_student_path(@user_student), class: "custom-btn px-4 py-2 text-decoration-none text-white" %>
+                </div> 
+            </div>
+        </div>
+        <div class="row px-2 px-md-4">           
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('school_type') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.school_type.nil?%>
+                                <%=  t("student.school_type.#{@user_student.school_type}") %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('school_name') %> </span>
+                        <span class="text-secondary text-break"><%= @user_student.school_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('department_name') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.department_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('subject_system') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.subject_system.nil? %>
+                                <%=  t("student.subject_system.#{@user_student.subject_system}") %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('qualification_category_id') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.qualification_category_id.nil?%>
+                                <%= get_qualification_category(@user_student.qualification_category_id) %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('qualification_type_id') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.qualification_type_id.nil? %>
+                                <%= get_qualificaion_type(@user_student.qualification_type_id) %>
+                            <% end%>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('graduation_date') %></span>
+                        <span class="text-secondary"><%= @user_student.graduation_date %></span>
+                    </div> 
+                </div>         
+            </div>
+        </div>      
+    </div>
+
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5">
+        <div class="row px-4 d-flex px-4 mb-3">
+            <div class="std-font-color h3 "><%= t('student.title.job_info') %></div>
+            <div class="ml-auto d-flex mt-2 pl-5">
+                <div class=" text-center mr-3">
+                    <%= link_to t('show_page.button2'), edit_student_student_path(@user_student), class: "custom-btn px-4 py-2 text-decoration-none text-white" %>
+                </div> 
+            </div>
+        </div>
+        <div class="row px-2 px-lg-4">           
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('m_region_id') %></span>
+                        <span class="text-secondary"><%= get_region_name(@user_student.m_region_id) %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('m_prefecture_id') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.m_prefecture_id.nil? %>
+                                <%= get_prefecture_name(@user_student.m_prefecture_id) %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('desire_industry_type_id') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.desire_industry_type_id.nil? %>
+                                <%= get_industry_name(@user_student.desire_industry_type_id) %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('desire_job_type_id') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.desire_job_type_id.nil? %>
+                                <%= get_occupation_name(@user_student.desire_job_type_id) %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('transfer') %></span>
+                        <span class="text-secondary">
+                            <%= @user_student.transfer %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('job_info') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.job_info %></span>
+                    </div>
+                </div>         
+            </div>
+        </div>      
+    </div>
+
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5">
+        <div class="row px-4 d-flex px-4 mb-3">
+            <div class="std-font-color h3"><%= t('student.title.activity_info') %></div>
+            <div class="ml-auto d-flex mt-2 pl-5">
+                <div class=" text-center mr-3">
+                    <%= link_to t('show_page.button2'), edit_student_student_path(@user_student), class: "custom-btn px-4 py-2 text-decoration-none text-white" %>
+                </div> 
+            </div>
+        </div>
+        <div class="row px-2 px-lg-4">           
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('club_name') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.club_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('club_position') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.club_position %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('club_detail_activity') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.club_detail_activity %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('club_guide') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.club_guide %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('outside_school_activity') %></span>
+                        <span class="text-secondary text-break">
+                            <% unless @user_student.outside_school_activity.nil? %>
+                                <% check_val = @user_student.outside_school_activity.reject { |i| i.zero? } %>
+                                <% check_val.each_with_index do |v,i| %>
+                                    <%= t("student.outside_activity.#{Student::Student.outside_activities.key(i+1)}") %>
+                                    <% if check_val.length > 1 && check_val.length != i+1 %>
+                                        <%= ',' %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('is_beelab_activity_participate') %></span>
+                        <span class="text-secondary">
+                            <% unless @user_student.is_beelab_activity_participate.nil? %>
+                                <%= t("student.is_beelab_activity_participate.#{@user_student.is_beelab_activity_participate}") %>
+                            <%end %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('beelab_college_achievements') %></span>
+                        <span class="text-secondary"><%= @user_student.beelab_college_achievements %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('sns_blog_for_pr') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.sns_blog_for_pr %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('pando_info') %></span>
+                        <span class="text-secondary text-break"><%= @user_student.pando_info %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 std-font-color mb-2"><%= Student::Student.human_attribute_name('attachment_for_pr') %></span>
+                        <span class="text-secondary text-break">
+                            <% if @user_student.attachment_for_pr.attached?%>
+                                <%= link_to t('show_page.pdf_text'), @user_student.attachment_for_pr, :class => "px-3 std-bg-color custom-btn ml-3 text-white text-decoration-none", target: '_blank' %>
+                            <% end %>
+                        </span>
+                    </div>  
+                </div>        
+            </div>
+        </div>      
+    </div>
+</section>

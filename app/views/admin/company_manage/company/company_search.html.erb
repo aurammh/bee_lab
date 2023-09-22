@@ -1,0 +1,121 @@
+<script type="text/javascript">
+  var BASE_URL = '<%= root_url %>';
+</script>
+<div class="px-sm-4">
+    <%= form_for('',url: admin_company_manage_company_search_path, method: :get) do |form| %>    
+        <div class="col-12 mt-3 mb-4 mb-lg-5 company-registration">
+            <div class="row d-lg-flex justify-content-start shadow bg-white py-md-3 px-2 px-lg-4">
+                <h3 class="col-12 col-lg-1 px-3 px-lg-0 mt-3 mt-lg-0"><%= t('search.date_label') %></h3>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="date-wrapper datepicker">
+                        <%= form.text_field :startDate, "data-input": "", id: "start_date",  class: "form-control shadow-none errors", placeholder: t('search.start_date'), value: (params[:startDate])%>
+                            <a class="icon" title="toggle" data-toggle>
+                        <i class="far fa-calendar-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="date-wrapper datepicker">
+                        <%= form.text_field :endDate,  "data-input": "", id: "end_date", class: "form-control shadow-none errors", placeholder: t('search.end_date'), value: (params[:endDate])%>
+                        <a class="icon" title="toggle" data-toggle>
+                            <i class="far fa-calendar-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 px-3">
+                    <%= form.text_field :keyword, id: "end_date", class: "form-control shadow-none errors", placeholder: t('search.keyword_search'), value: (params[:keyword])%>
+                </div>
+                <div class="col-md-6 col-lg-2 my-3 my-md-0">
+                    <%= form.submit t('btn.student_search'), :class => 'admin-search-btn w-100 com-bg-color text-white py-1', :id => 'search' %>
+                </div>
+            </div>      
+        </div>
+        <div class="search-result company-dashboard col-12  pb-5 mb-5">
+            <div class="row p-2 shadow bg-white info-box">
+                <div class="col-12 col-md-7 col-xl-10 mb-3">
+                    <h1><%= t('search.search_title') %></h1>
+                </div>
+                <div class="col-11 col-md-5 col-xl-2 mb-3 pt-2 border com-border-color com-font-color text-center mx-3 mx-md-0 shadow-sm">
+                    <h3><%= t('search.total_count') %> <%= @results.total_count %> <%= t('search.company_count') %> </h3>
+                </div>
+                
+                <% if @results.present?  %>
+                    <div class="d-none d-md-block w-100">
+                        <table class="table table-bordered table-responsive-md table-responsive-lg-none">
+                            <thead class="com-bg-color text-white">
+                                <tr>
+                                    <th class="w-12" scope="col"><%= t('activerecord.attributes.company/company.company_name') %></th>
+                                    <th class="w-15" scope="col"><%= t('activerecord.attributes.company/company.prefecture_name') %></th>
+                                    <th class="w-15" scope="col"><%= t('title.industry_name') %></th>
+                                    <th class="w-8" scope="col"><%= t('search.vacancy_status') %></th>
+                                    <th class="w-10" scope="col"><%= t('search.event_status') %></th>
+                                    <th class="w-12" scope="col"><%= t('search.date_label') %></th>
+                                    <th class="w-10" scope="col"><%= t('event.title.publish_status') %></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @results.each_with_index do |admin_company,index| %>
+                                    <tr <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => admin_company.id,:status => 1) %>>
+                                        <td class="text-break"><%= admin_company.company_name %></td>
+                                        <th class="text-break font-weight-light"><%= admin_company.pre_name %></th>
+                                        <td class="text-break"><%= admin_company.industry_name%></td>
+                                        <td class="text-break"><%= @vacancy_status.include?(admin_company.id) ? t('search.exist_status') : t('search.non_exist_status') %></td>
+                                        <td class="text-break"><%= @event_status.include?(admin_company.id) ? t('search.exist_status') : t('search.non_exist_status') %></td>
+                                        <td class="text-break"><%= l(admin_company.created_at.strftime('%Y-%m-%d').to_date, default: '-')%></td>
+                                        <td class="text-break">
+                                            <% if admin_company.company_name_kana.nil? %>
+                                                <%= t('search.uncomplete_register_status')%>
+                                            <% else %>
+                                                <%= t('search.complete_register_status')%>
+                                            <% end%>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>  
+                    </div>
+                    <div class="col-12 my-2 px-4 d-content d-md-none">
+                        <% @results.each_with_index do |admin_company,index| %>
+                            <div class="mobile-table row com-info-box p-3 my-4 rounded" <%= 'data-link =' + admin_company_manage_company_details_path(:company_id => admin_company.id,:status => 1) %>>
+                                <span class="h6 com-font-color col-4"><%= Company::Company.human_attribute_name('company_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= admin_company.company_name %></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('activerecord.attributes.company/company.prefecture_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= admin_company.pre_name %></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('title.industry_name') %></span>
+                                <span class="col-8 text-muted text-break"><%= admin_company.industry_name %></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('search.vacancy_status') %></span>
+                                <span class="col-8 text-muted text-break"><%= @vacancy_status.include?(admin_company.id) ? t('search.exist_status') : t('search.non_exist_status') %></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('search.event_status') %></span>
+                                <span class="col-8 text-muted text-break"><%= @event_status.include?(admin_company.id) ? t('search.exist_status') : t('search.non_exist_status') %></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('search.date_label') %></span>
+                                <span class="col-8 text-muted text-break"><%= l(admin_company.created_at.strftime('%Y-%m-%d').to_date, default: '-')%></span><br>
+                                <span class="h6 com-font-color col-4"><%= t('event.title.publish_status') %></span>
+                                <span class="col-8 text-muted text-break">
+                                        <% if admin_company.company_name_kana.nil? %>
+                                            <%= t('search.uncomplete_register_status')%>
+                                        <% else %>
+                                            <%= t('search.complete_register_status')%>
+                                        <% end%></span><br> 
+                            </div>
+                        <% end %>                          
+                    </div>
+                    <div class="col-12 col-sm-7 d-flex justify-content-center justify-content-sm-end">
+                        <%= paginate @results ,class: "mb-0" %>
+                    </div>
+                    <div class="col-12 col-sm-5 d-flex justify-content-center justify-content-sm-end py-3 py-sm-0 px-2 px-sm-0">
+                        <%= link_to admin_company_manage_company_search_path(format: :xlsx, startDate: params[:startDate], endDate: params[:endDate], keyword: params[:keyword]), class: 'd-inline-block btn btn-sm btn-primary shadow-sm' do%>
+                            <i class="fas fa-download fa-sm text-white-50"></i><%= t('search.excel_download') %>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <div class="col-12 m-2">
+                        <h3><%= t('search.no_result') %></h3>
+                    </div>
+                <% end %>
+
+            </div>
+        </div>        
+    <% end %>
+</div> 
+<%= javascript_pack_tag "admin/admin_search.js" %>
+<%= javascript_pack_tag "common.js" %>

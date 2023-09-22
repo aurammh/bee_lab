@@ -1,0 +1,182 @@
+<%= form_with(model: @student_assessment) do |form| %>
+
+<section class="student-quiz student-assessment container-fluid d-flex flex-column align-items-center pt-5">    
+
+    <%# love_and_desire_to_belong %>      
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">
+        <div class="row px-4 d-flex mb-3 mt-3">
+            <div class="assessment-title"><%=t('student.assessment.potential_desire_input_title')%><br><hr class="title-hr"></div>
+        </div>
+
+        <div class="row student-registration px-4">
+            <div class="col-12 col-md-12">
+                <div class="row">
+                 <div class="col-12 pb-4">
+                        <span class='font-weight-bold text-danger'>
+                            <%=t('student.assessment.potential_title_1')%><br>
+                        </span>
+                         <span class='font-weight-bold'>
+                            <%=t('student.assessment.brain_title_2')%>
+                        </span>
+                    </div>
+                    <div class="col-12 pb-4 pt-3">
+                        <span class='font-weight-bold'>
+                            <%=t('student.assessment.potential_desire_check_title_1')%><br>
+                            <%=t('student.assessment.potential_desire_check_title_2')%>
+                        </span>
+                    </div>
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">         
+                        <tbody class= "brain-table">
+                            <%= form.fields_for :love_and_desire_to_belong  do |f| %>   
+                                <% Student::Assessment.love_and_desires_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td class="col-12 col-md-2 col-lg-1"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 1 %></td>
+                                        <td class="col-10 col-md-9 col-lg-10"><label><%= t("student_assessment.love_and_desires_list.#{k}") %></label></td>
+                                        <td class="col-2 col-md-1 col-lg-1">  
+                                            <div class="simple-chkbox std-chk">
+                                                <%= f.check_box "#{k}" ,{ :checked =>@student_assessment.love_and_desire_to_belong.nil?  ? false : @student_assessment.love_and_desire_to_belong[v-1] == 1 } %>
+                                                <label for=<%= "student_assessment_love_and_desire_to_belong_#{k}"%> > </label>
+                                            </div>  
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>       
+                        </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div>          
+    </div>
+
+    <%# desire_for_power_and_value %>  
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">  
+        <div class="row student-registration px-4">
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">                        
+                        <tbody class= "brain-table">
+                            <%= form.fields_for :desire_for_power_and_value  do |f| %>
+                                <% Student::Assessment.desire_for_power_and_values_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td class="col-12 col-md-2 col-lg-1"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 11  %></td>
+                                        <td class="col-10 col-md-9 col-lg-10"><label><%= t("student_assessment.desire_for_power_and_values_lists.#{k}") %></label></td>
+                                        <td class="col-2 col-md-1 col-lg-1">  
+                                            <div class="simple-chkbox std-chk">
+                                                <%= f.check_box "#{k}" ,{ :checked =>@student_assessment.desire_for_power_and_value.nil?  ? false : @student_assessment.desire_for_power_and_value[v-1] == 1 } %>
+                                                <label for=<%= "student_assessment_desire_for_power_and_value_#{k}"%> > </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>    
+                        </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div>     
+    </div>
+
+    <%# desire_for_freedom %>  
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">       
+        <div class="row student-registration px-4">
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">
+                        <tbody class= "brain-table">
+                            <%= form.fields_for :desire_for_freedom  do |f| %>
+                                <% Student::Assessment.desire_for_freedoms_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td class="col-12 col-md-2 col-lg-1"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 21 %></td>
+                                        <td class="col-10 col-md-9 col-lg-10"><label><%= t("student_assessment.desire_for_freedoms_lists.#{k}") %></label></td>
+                                        <td class="col-2 col-md-1 col-lg-1"> 
+                                            <div class="simple-chkbox std-chk">
+                                                <%= f.check_box "#{k}" ,{ :checked =>@student_assessment.desire_for_freedom.nil?  ? false : @student_assessment.desire_for_freedom[v-1] == 1 } %>
+                                                <label for=<%= "student_assessment_desire_for_freedom_#{k}"%> > </label>
+                                            </div>                                        
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>    
+                        </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div>    
+    </div>
+
+    <%# desire_for_fun %>  
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">   
+        <div class="row student-registration px-4">
+            <div class="col-12 col-md-12" >
+                <div class="row">
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">  
+                        <tbody class= "brain-table">
+                            <%= form.fields_for :desire_for_fun  do |f| %>
+                                <% Student::Assessment.desire_for_funs_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td class="col-12 col-md-2 col-lg-1"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 31 %></td>
+                                        <td class="col-10 col-md-9 col-lg-10"><label><%= t("student_assessment.desire_for_funs_lists.#{k}") %></label></td>
+                                        <td class="col-2 col-md-1 col-lg-1">
+                                            <div class="simple-chkbox std-chk">
+                                                <%= f.check_box "#{k}" ,{ :checked =>@student_assessment.desire_for_fun.nil?  ? false : @student_assessment.desire_for_fun[v-1] == 1 } %>
+                                                <label for=<%= "student_assessment_desire_for_fun_#{k}"%> > </label>
+                                            </div>                                         
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>    
+                        </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div>  
+    </div>
+
+    <%# desire_for_survival %>  
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">      
+        <div class="row student-registration px-4">
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">
+                        <tbody class= "brain-table">
+                            <%= form.fields_for :desire_for_survival  do |f| %>
+                                <% Student::Assessment.desire_for_survivals_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td class="col-12 col-md-2 col-lg-1"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 41 %></td>
+                                        <td class="col-10 col-md-9 col-lg-10"><label><%= t("student_assessment.desire_for_survivals_lists.#{k}") %></label></td>
+                                        <td class="col-2 col-md-1 col-lg-1">
+                                            <div class="simple-chkbox std-chk">
+                                                <%= f.check_box "#{k}" ,{ :checked =>@student_assessment.desire_for_survival.nil?  ? false : @student_assessment.desire_for_survival[v-1] == 1 }  %>
+                                                <label for=<%= "student_assessment_desire_for_survival_#{k}"%> > </label>
+                                            </div>                                             
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>    
+                        </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div> 
+        <div class="ml-auto d-flex justify-content-center">
+            <div class=" text-center mr-3">
+                 <%= form.submit t('btn.record') , class: "custom-btn px-4 py-2 text-decoration-none text-white"  %> 
+            </div> 
+        </div>    
+    </div>
+    <%# confirm dialoag start%>
+    <%= render "common/confirm_box" %>
+    <%# confirm dialoag end%>
+</section>
+<%end%>
+<%= javascript_pack_tag 'common.js'%>

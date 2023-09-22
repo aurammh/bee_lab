@@ -1,0 +1,317 @@
+<div class="row p-5 pl-4">
+    <div class="col-12 px-0 text-center mb-4">
+        <% if @user_student.image.attached? && @user_student.image.persisted? %>
+            <div class="upload-preview placeholder-container upload-field">
+                <%= image_tag @user_student.image, :class=> "w-100 h-100" %>
+            </div>
+        <% else %>
+            <div class="upload-preview placeholder-container upload-field">
+                <%= image_tag "avatar/preview.svg", class: "w-100 h-100" %>
+            </div>
+        <% end %>
+    </div>                                   
+    <div class="col-12 px-0 mb-2">
+        <div class="name row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fab fa-adn"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div>
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="name_kana row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fab fa-adn"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="birthday row mr-0">
+            <div class="col-1 pr-0">
+                <i class="far fa-calendar-alt"></i>            
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="nick_name row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fab fa-adn"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="gender row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-venus-mars"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="email row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-envelope-square"></i>            
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="phone_no row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fa fa-phone"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="postalcode row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-map-marked-alt"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+            
+        </div> 
+        <hr class="std-grandient-hr">
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="school_type row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-graduation-cap"></i>            
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="school_name row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-university"></i>             
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="department_name row mr-0">
+            <div class="col-1 pr-0">
+               <i class="fas fa-university"></i>               
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="subject_system row mr-0">
+            <div class="col-1 pr-0">
+               <i class="fas fa-university"></i>                
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="student_student_qualification_category_id row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-book-reader"></i>            
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="student_student_qualification_type_id row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-book-reader"></i>             
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div>
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="graduation_date row mr-0">
+            <div class="col-1 pr-0">
+                <i class="far fa-calendar-alt"></i>         
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+        <hr class="std-grandient-hr">  
+    </div>    
+    <div class="col-12 px-0 mb-2">
+        <div class="student_student_desire_industry_type_id row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-industry"></i>               
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="student_student_desire_job_type_id row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-cogs"></i>            
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="student_student_m_region_id row mr-0">
+            <div class="col-1 pr-0">
+                 <i class="fas fa-map-marked-alt"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="student_student_m_prefecture_id row mr-0">
+            <div class="col-1 pr-0">
+                 <i class="fas fa-map-marked-alt"></i>               
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="student_student_transfer row mr-0">
+            <div class="col-1 pr-0">
+                 <i class="fas fa-map-marked-alt"></i>               
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="job_info row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-plus"></i>             
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+        <hr class="std-grandient-hr">  
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="club_name row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fab fa-adn"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="club_position row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-adjust"></i>             
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="club_detail_activity row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-user-check"></i>               
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="club_guide row mr-0">
+            <div class="col-1 pr-0">
+                 <i class="fas fa-info-circle"></i>             
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="outside_school_activity row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-user-check"></i>               
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="is_beelab_activity_participate row mr-0">
+            <div class="col-1 pr-0">
+                 <i class="fas fa-check-double"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="beelab_college_achievements row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fab fa-diaspora"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="sns_blog_for_pr row mr-0">
+            <div class="col-1 pr-0">
+                <i class="fas fa-globe"></i>              
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>
+    <div class="col-12 px-0 mb-2">
+        <div class="pando_info row mr-0">
+            <div class="col-1 pr-0">
+               <i class="fas fa-globe"></i>             
+            </div>
+            <div class="col-11 text-break">
+                <span></span>
+            </div> 
+        </div> 
+    </div>    
+</div>

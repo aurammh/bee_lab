@@ -1,0 +1,206 @@
+<button type="button" class="col-12 std-bg-color custom-btn px-3 py-2 text-decoration-none text-white" data-toggle="modal" data-target="#result_behavioral">
+<%=t('student_assessment.brain.result.btn')%>
+</button>
+
+<!-- Modal -->
+<div class="modal fade pl-0" id="result_behavioral" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+         <div class="modal-header std-bg-color text-white">
+        <h3 class="modal-title" id="exampleModalLongTitle"><%=t('student_assessment.result_behavioral.popup_result_title')%></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+            <div class="modal-body">
+            <%= image_tag "student/behavioral.jpg", class: "img-fluid potential-img", alt: "Responsive image" %>  
+                <div class="assessment_popup">
+                    <div class="form-card bg-white mt-1 mb-5 py-1 px-2">
+                        <div class="text-justify mt-lg-2 mt-sm-4">
+                            <h5 class="std-border-color sub-title font-weight-bold px-2"><%=t('student_assessment.result_behavioral.title1')%></h5>
+                            <div class="bahavioral-p btn-lg px-4 py-2 text-white mt-4 font-weight-bold "><%=t('student_assessment.result_behavioral.div_text1').html_safe%></div>
+                             <div class="col-12 col-md-12 col-xl-7 mt-3">
+                                <div class="row ">
+                                    <div class="col bahavioral-model text-center bahavioral-fill"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                </div>
+                                <div class="row">
+                                   <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_1')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_2')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_3')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_4')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_5')%></div>
+                                </div>
+                            </div>
+                            <h6 class = "sub-title font-weight-bold mt-3 "><%=t('student_assessment.result_behavioral.sub_title1')%></h6>
+                            <div class="pb-1 std-bg-color w-25"></div>
+                              <p class="mt-2 text-indent">
+                                <%=t('student_assessment.result_behavioral.text1')%>
+                              </p>
+                              <p class="mt-1 mr-3">
+                                <%=t('student_assessment.result_behavioral.list_title1')%>
+                              </p>
+                              <ul class="mr-2" >
+                                <%=t('student_assessment.result_behavioral.list1').html_safe%>
+                              </ul>
+                              <div class="bahavioral-p btn-lg px-4 py-2 text-white mt-3 font-weight-bold "><%=t('student_assessment.result_behavioral.div_text2').html_safe%></div>
+                              <div class="col-12 col-md-12 col-xl-7 mt-3">
+                                <div class="row">
+                                    <div class="col bahavioral-model text-center "></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center bahavioral-fill"></div>
+                                </div>
+                                <div class="row">
+                                   <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_1')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_2')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_3')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_4')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_expression_chart_title_5')%></div>
+                                </div>
+                            </div>
+                            <h6 class = "sub-title font-weight-bold mt-3"><%=t('student_assessment.result_behavioral.sub_title2')%></h6>
+                            <div class="pb-1 std-bg-color w-25"></div>
+                            <p class="mt-2 text-indent">
+                              <%=t('student_assessment.result_behavioral.text2')%>
+                            </p>
+                            <p class="mt-1 mr-3">
+                              <%=t('student_assessment.result_behavioral.list_title2')%>
+                            </p>
+                            <ul class="mr-2">
+                              <%=t('student_assessment.result_behavioral.list2').html_safe%>
+                            </ul>
+                        </div> 
+                        <div class="text-justify mt-lg-5 mt-sm-4">
+                            <h5 class="std-border-color sub-title font-weight-bold px-2"><%=t('student_assessment.result_behavioral.title2')%></h5>
+                            <div class="bahavioral-p btn-lg px-4 py-2  text-white mt-4 font-weight-bold"><%=t('student_assessment.result_behavioral.div_text1').html_safe%></div>
+                             <div class="col-12 col-md-12 col-xl-7 mt-3">
+                                <div class="row">
+                                    <div class="col bahavioral-model text-center bahavioral-fill"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                </div>
+                                <div class="row">
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_1')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_2')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_3')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_4')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_5')%></div>
+                                </div>
+                            </div>
+                            <h6 class = "sub-title font-weight-bold mt-3"><%=t('student_assessment.result_behavioral.sub_title3')%></h6>
+                            <div class="pb-1 std-bg-color w-25"></div>
+                            <p class="mt-2 text-indent">
+                             <%=t('student_assessment.result_behavioral.text3')%>
+                             </p>
+                             <p class="mt-1 mr-3">
+                               <%=t('student_assessment.result_behavioral.list_title3')%>
+                             </p>
+                             <ul class="mr-2">
+                               <%=t('student_assessment.result_behavioral.list3').html_safe%>
+                              </ul>
+                             <div class="bahavioral-p btn-lg px-4 py-2 text-white mt-4 font-weight-bold" ><%=t('student_assessment.result_behavioral.div_text2').html_safe%></div>
+                             <div class="col-12 col-md-12 col-xl-7 mt-3">
+                                <div class="row">
+                                    <div class="col bahavioral-model text-center "></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center bahavioral-fill"></div>
+                                </div>
+                                <div class="row">
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_1')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_2')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_3')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_4')%></div>
+                                  <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_assertion_chart_title_5')%></div>
+                                </div>
+                            </div>
+                            <h6 class = "sub-title font-weight-bold mt-3"><%=t('student_assessment.result_behavioral.sub_title4')%></h6>
+                            <div class="pb-1 std-bg-color w-25"></div>
+                              <p class="mt-2 text-indent">
+                                <%=t('student_assessment.result_behavioral.text4')%>
+                              </p>
+                              <p class="mt-1 mr-3">
+                                 <%=t('student_assessment.result_behavioral.list_title4')%>
+                              </p>
+                              <ul class="mr-2">
+                                <%=t('student_assessment.result_behavioral.list4').html_safe%>
+                              </ul>
+                        </div>
+                        <div class="text-justify mt-lg-5 mt-sm-4">
+                            <h5 class="std-border-color sub-title font-weight-bold px-2"><%=t('student_assessment.result_behavioral.title3')%></h5>
+                            
+                            <div class="bahavioral-p btn-lg px-4 py-2  text-white mt-4 font-weight-bold"><%=t('student_assessment.result_behavioral.div_text1').html_safe%></div>
+                             <div class="col-12 col-md-12 col-xl-7 mt-3">
+                                <div class="row">
+                                    <div class="col bahavioral-model text-center bahavioral-fill"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                </div>
+                                <div class="row">
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_1')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_2')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_3')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_4')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_5')%></div>
+                                </div>
+                            </div>
+                            <h6 class = "sub-title font-weight-bold mt-3"><%=t('student_assessment.result_behavioral.sub_title5')%></h6>
+                            <div class="pb-1 std-bg-color w-25"></div>
+                            <p class="mt-2 text-indent">
+                             <%=t('student_assessment.result_behavioral.text5')%>
+                             </p>
+                             <p class="mt-1 mr-3">
+                              <%=t('student_assessment.result_behavioral.list_title5')%>
+                             </p>
+                             <ul class="mr-2">
+                               <%=t('student_assessment.result_behavioral.list5').html_safe%>
+                              </ul>
+
+                              <div class="bahavioral-p btn-lg px-4 py-2  text-white mt-4 font-weight-bold"><%=t('student_assessment.result_behavioral.div_text2').html_safe%></div>
+                             <div class="col-12 col-md-12 col-xl-7 mt-3">
+                                <div class="row">
+                                    <div class="col bahavioral-model text-center "></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center"></div>
+                                    <div class="col bahavioral-model text-center bahavioral-fill"></div>
+                                </div>
+                                <div class="row">
+                                   <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_1')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_2')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_3')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_4')%></div>
+                                    <div class = "col text-center bahavioral-font"><%= t('student_assessment.self_flexibility_chart_title_5')%></div>
+                                </div>
+                            </div>
+                            <h6 class = "sub-title font-weight-bold mt-3"><%=t('student_assessment.result_behavioral.sub_title6')%></h6>
+                            <div class="pb-1 std-bg-color w-25"></div>
+                            <p class="mt-2 text-indent">
+                            <%=t('student_assessment.result_behavioral.text6')%>
+                             </p>
+                             <p class="mt-1 mr-3">
+                               <%=t('student_assessment.result_behavioral.list_title6')%>
+                             </p>
+                             <ul class="mr-2">
+                                <%=t('student_assessment.result_behavioral.list6').html_safe%>
+                              </ul>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-btn px-4 py-2 text-decoration-none text-white" data-dismiss="modal"><%= t('common.close')%></button>
+            </div>
+        </div>
+    </div>
+</div>

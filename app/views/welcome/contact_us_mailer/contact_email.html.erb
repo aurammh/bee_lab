@@ -1,0 +1,15 @@
+<p><%= t('contact_info.mail_title') %></p>
+<p>-----------------------------------------------------------------<p>
+
+<p><%=  Contact.human_attribute_name('classification') %> ：<%= @contact_us.classification %> </p>
+<p><%=  Contact.human_attribute_name('name') %> ：<%= @contact_us.name %> </p>
+<p><%=  Contact.human_attribute_name('email') %> ：<%= @contact_us.email %> </p>
+<% if @contact_us.company_name.present?%>
+<p><%=  Contact.human_attribute_name('company_name') %> ：<%= @contact_us.company_name %> </p>
+<% end %>
+<% if @contact_us.contact.present?%>
+<p><%=  Contact.human_attribute_name('contact') %> ：<%= @contact_us.contact %> </p>
+<% end %>
+<p><%=  Contact.human_attribute_name('content_inquiry') %> ：<%= @contact_us.content_inquiry %> </p>
+
+<p>-----------------------------------------------------------------<p>

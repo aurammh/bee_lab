@@ -1,0 +1,136 @@
+<section class="admin-details container-fluid d-flex flex-column align-items-center mt-3 px-1 px-sm-4 mb-5">
+    <div class="event-info-box col-12 bg-white py-4 px-4 shadow com-info-box mb-5">
+        <div class="row px-lg-2 mb-3 pt-3">
+            <div class="col-12 col-sm-6 com-font-color h3"><%= t "title.detail_title" %></div>
+            <div class="row text-center ml-md-auto px-2 mx-1">
+                <%= link_to t( 'btn.edit'), admin_company_manage_vacancy_edit_path(:id => @company_vacancy_list.id) , class: "custom-btn com-bg-color px-4 py-2 text-decoration-none text-white" %> 
+            </div>
+            <div class="d-flex d-md-block text-center">
+                <%= render 'vacancy_delete' %>
+            </div>
+        </div>
+        <div class="row px-0 px-lg-2">           
+            <div class="col-12 col-md-12">
+                <div class="row text-break">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('vacancy_title') %></span>
+                        <span class="text-secondary text wrap "><%= @company_vacancy_list.vacancy_title %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('vacancy_description') %> </span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.vacancy_description %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('display_address') %></span>
+                        <span class="text-secondary text-break"><%=  @company_vacancy_list.display_address %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('recruit_industry_type') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.industry_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('recruit_job_type') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.occupation_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('required_applicants') %></span>
+                        <span class="text-secondary text-break"><%=number_with_delimiter(@company_vacancy_list.required_applicants) %><%= t('unit.persons')%></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('basic_salary') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.basic_salary %><%= t('unit.money')%></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('model_salary') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.model_salary %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('allowance') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.allowance %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('bonus') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.bonus %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('promotion') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.promotion? ? t("common.a_yes") : t("common.a_no") %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('probation') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.probation? ? t("common.a_yes") : t("common.a_no") %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('transportation_allowance') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.transportation_allowance? ? t("common.a_yes") : t("common.a_no") %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('dormitory') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.dormitory? ? t("common.a_yes") : t("common.a_no") %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('insurance') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.insurance? ? t("common.a_yes") : t("common.a_no") %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('severance_pay') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.severance_pay? ? t("common.a_yes") : t("common.a_no") %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('working_hours') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.working_hours %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('break_time') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.break_time %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('over_time') %></span>
+                        <span class="text-secondary"><%= @company_vacancy_list.over_time? ? t("common.a_yes") : t("common.a_no") %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('other') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.other %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('hiring_flow_data') %></span>
+                        <span class="text-secondary text-break">
+                            <%= @company_vacancy_list.hiring_flow_data.join(" , ") unless @company_vacancy_list.hiring_flow_data.nil? %> 
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('holiday') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.holiday %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= t('title.company_enhancement') %></span>
+                        <span class="text-secondary">
+                            <% if @company_vacancy_list.company_enhancement.present? %>
+                                <% @company_vacancy_list.company_enhancement.each_with_index do |v,i| %>
+                                    <% if v != 0 %>
+                                        <%= t("company_vacancy_enhancement.#{Company::Vacancy.company_vacancy_enhancements.key(i+1)}") %>, 
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                            <%= @welfare_list %>
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('other_skill') %></span>
+                        <span class="text-secondary text-break"><%= @company_vacancy_list.other_skill %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('display_from') %></span>
+                        <span class="text-secondary"><%= @company_vacancy_list.display_from %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Vacancy.human_attribute_name('display_to') %></span>
+                        <span class="text-secondary"><%= @company_vacancy_list.display_to %></span>
+                    </div>
+                </div>        
+            </div>
+        </div>      
+    </div>
+</section>
+<%= hidden_field_tag(:vacancy_id, @company_vacancy_list.id) %>
+<%= javascript_pack_tag "student/students.js" %>

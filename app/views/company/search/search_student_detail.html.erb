@@ -1,0 +1,428 @@
+<div class="search-details px-3 px-lg-5">
+    <div class="row com-details">
+        <div class="col-xl-8 col-12">
+            <div class="job-details bg-white shadow my-lg-5">
+                <div class = "row p-2 px-md-5 pt-2">
+                    <div class="col-12 px-4 p-md-0">
+                        <div class="d-flex row">
+                            <h2 class="col-7 col-sm-8 font-weight-bolder warp-text text-dark mb-3">
+                                <%= t('title.student_search_detail_title') %> 
+                            </h2>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-2 px-md-5 pb-3">
+                    <div class="col-12 col-md-4">
+                        <% if @student_info.image.attached? %>
+                            <%= image_tag (@student_info.image), :class=> "Responsive image" %>
+                        <% else %>
+                            <% if @student_info.gender == 1 %>
+                                <%= image_tag "avatar/female.svg", :class=> "Responsive image" %>                                
+                            <% else %>
+                                <%= image_tag "avatar/male.svg", :class=> "Responsive image" %>   
+                            <% end %>
+                        <% end %>                              
+                    </div>
+                    <div class="col-12 col-md-8 px-4 p-md-0">
+                        <div class="row">
+                            <h2 class="col-12 col-sm-4 font-weight-bolder warp-text text-dark mb-3"> <%= @student_info.last_name %> <%= @student_info.first_name %></h2>
+                            <div class="ml-auto icon-container favourite-icon <%= @fav_student ? 'active' : 'inactive' %>"  id="favourite-student">
+                                <i class="fas fa-heart icon"></i><span class="label"><%= t('btn.fav-text')%></span>
+                            </div>
+                            <div class="icon-container com_communication_icon ml-3 mr-3">
+                            <%= link_to ('<i class="fas fa-comments icon"></i>').html_safe, new_communication_communication_path(:id => @student_info.id, :forum_id => @student_info.id, :name => "Student"),remote: true%>
+                            </div>
+                            <div  id="communicationModal">
+                                <%= render 'communication/communications/communication_modal'%>
+                            </div>
+                        </div>
+                        <div class="d-flex my-3">
+                            <div class="com-bg-color badge py-2 text-white mr-2">
+                                <i class="fas fa-industry mr-2"></i><%= t("student.gender.#{@student_info.gender}") %>
+                            </div>
+                        </div>
+                        <div class="d-flex m-0 mt-lg-5 flex-column align-items-lg-end align-items-start">
+                            <span class="com-font-color"><%= Student::Student.human_attribute_name('birthday') %></span>
+                            <span><%= @student_info.birthday %></span>
+                        </div>
+                    </div>
+                </div>
+                <hr class="com-grandient-hr"> 
+
+                <%# personal_basic_information %>
+                <div class="row mt-4 px-4 px-md-5">
+                    <div class="col-12 title font-weight-bold">
+                        <%= t('title.personal_information')%><br><hr class="title-hr com-bg-color">
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('nick_name') %></p>           
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.nick_name %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('display_address') %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= get_MPrefecture_by_id(@student_info.postal_prefecture_id) %> <%= @student_info.postalcode_city %></p>
+                    </div>
+                    <hr>
+                </div>
+                <hr class="com-grandient-hr"> 
+                <%# school_information %>
+                <div class="row mt-4 px-4 px-md-5">
+                    <div class="col-12 title font-weight-bold">
+                         <%= t('student.title.school_info') %><br><hr class="title-hr com-bg-color">
+                    </div>
+                    <% unless @student_info.nil?%>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('school_name') %></p>           
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> <p><%=  @student_info.school_name %></p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('school_type') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> <p><%=  t("student.school_type.#{@student_info.school_type}") %></p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('subject_system') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> <p><%=  t("student.subject_system.#{@student_info.subject_system}") %></p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('qualification_type_id') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> <p><%= get_qualification_category(@student_info.qualification_type_id) %></p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('qualification_category_id') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> <p><%= get_qualificaion_type(@student_info.qualification_category_id)  %></p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('graduation_date') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> <p><%= @student_info.graduation_date %></p>
+                        </div>
+                    <%end%> 
+                </div>
+                <hr class="com-grandient-hr"> 
+
+                <%# employement_information %>
+                <div class="row mt-4 px-4 px-md-5">
+                    <div class="col-12 title font-weight-bold">
+                        <%= t( 'title.employement_information_detail') %><br><hr class="title-hr com-bg-color">
+                    </div>                   
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('m_region_id')%></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p> <%= get_region_name(@student_info.m_region_id) %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('m_prefecture_id') %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%=  get_prefecture_name(@student_info.m_prefecture_id)  %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('desire_job_type_id') %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p> <%= get_occupation_name(@student_info.desire_job_type_id) %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('job_info')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.job_info %></p>
+                    </div> 
+                    <hr>
+                </div>
+                <hr class="com-grandient-hr"> 
+
+                <%# assessment_skill_information %>
+                <div class="row mt-4 px-4 px-md-5">
+                    <div class="col-12 title font-weight-bold">
+                         <%= t( 'title.student_assement_informantion') %><br><hr class="title-hr com-bg-color">
+                    </div>
+                    <% unless @student_assessment.nil?%>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= t('student.assessment.first_priority_language')%></p>           
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> 
+                            <p>
+                                <% if @student_assessment.first_priority_language.present? %>  
+                                    <% t("student_assessment.priority_language.#{Student::Assessment.priority_languages.key(@student_assessment.first_priority_language)}") %>      
+                                <% end %>
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= t('student.assessment.second_priority_language') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> 
+                            <p>
+                                <% if @student_assessment.second_priority_language.present? %>
+                                    <%= t("student_assessment.priority_language.#{Student::Assessment.priority_languages.key(@student_assessment.second_priority_language)}") %>
+                                <% end %>
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= t('student.assessment.third_priority_language') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p> 
+                            <p>
+                                <% if @student_assessment.third_priority_language.present? %>
+                                   <%= t("student_assessment.priority_language.#{Student::Assessment.priority_languages.key(@student_assessment.third_priority_language)}") %>
+                                <% end %>
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= t('student.assessment.english_qualification') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p>
+                            <p>
+                                <% if @student_assessment.english_qualification.present? %>
+                                    <%=  t("student_assessment.english_qualification.#{@student_assessment.english_qualification}") %>
+                                <% end %>
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= t('student.assessment.toefl_test') %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p>
+                            <p>
+                                <% if @student_assessment.toefl_test.present? %>
+                                    <%=  t("student_assessment.toefl_test.#{@student_assessment.toefl_test}") %>
+                                <% end %>
+                            </p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 com-sm-8">
+                            <p><i class="fas fa-check com-font-color mr-2"></i><%= t('student.assessment.toeic_test')  %></p>
+                        </div>
+                        <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                            <p class="mr-2">-</p>
+                            <p>
+                                <% if @student_assessment.toeic_test.present? %>
+                                    <%=  t("student_assessment.toeic_test.#{@student_assessment.toeic_test}") %>
+                                <% end %>
+                            </p>
+                        </div>
+                    <%end%> 
+                </div>
+                <hr class="com-grandient-hr">
+                <%# activity container %>
+                <div class="row mt-5 px-4 px-md-5">
+                    <div class="col-12 title font-weight-bold">
+                        <%= t ('title.activity_information') %><br><hr class="title-hr com-bg-color">
+                    </div>          
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('club_name')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.club_name %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('club_position')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.club_position %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('club_detail_activity')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.club_detail_activity %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('club_guide')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.club_guide %></p>
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('outside_school_activity') %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                    <p class="mr-2">-</p>
+                        <% unless @student_info.outside_school_activity.nil? %>
+                            <% check_val = @student_info.outside_school_activity.reject { |i| i.zero? } %>
+                            <% check_val.each_with_index do |v,i| %>
+                                <%= t("student.outside_activity.#{Student::Student.outside_activities.key(i+1)}") %>
+                                <% if check_val.length > 1 && check_val.length != i+1 %>
+                                    <%= ',' %>
+                                <% end %>
+                            <% end %>
+                        <%end%> 
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('is_beelab_activity_participate') %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><% unless @student_info.is_beelab_activity_participate.nil? %>
+                            <%=  t("student.is_beelab_activity_participate.#{@student_info.is_beelab_activity_participate}") %>
+                            <%end %>
+                        </p> 
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('beelab_college_achievements') %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.beelab_college_achievements %></p> 
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('sns_blog_for_pr')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.sns_blog_for_pr %></p> 
+                    </div>
+                    <div class="col-lg-5 col-md-7 com-sm-8">
+                        <p><i class="fas fa-check com-font-color mr-2"></i><%= Student::Student.human_attribute_name('pando_info')  %></p>
+                    </div>
+                    <div class="col-lg-7 col-md-5 com-sm-4 text-break d-flex">
+                        <p class="mr-2">-</p> <p><%= @student_info.pando_info %></p> 
+                    </div>
+                    <hr>
+                </div>
+                <hr class="com-grandient-hr"> 
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-12">
+            <%# 利き脳（思考）タイプ診断 %>
+            <div class="job-details bg-white shadow mt-4 my-lg-5">
+                <div class="row px-4 px-md-5 pb-5">
+                    <div class="col-12 mt-3 mt-md-5 title p-0 font-weight-bold">
+                        <%= t('student.assessment.diagnosis_title')%><br><hr class="title-hr com-bg-color">
+                    </div>                    
+                    <div class="col-12 px-3">                           
+                        <canvas id="selfEevaluationChart" name="detail"></canvas> 
+                    </div>
+                    <div class="col-12 mt-4 mb-4">
+                        <div class="row">
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.logical_and_rational')%></label></div>
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.solid_and_planned')%></label></div>
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.sensory_and_friendly')%></label></div>
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.adventurous_and_original')%></label></div>
+                        </div>
+                    </div> 
+                    <div class="col-12 d-flex flex-column align-items-center justify-content-center graph-rank ">
+                        <div class="text-center"><%= t('student_assessment.self_evaluation_tbl_title_1')%> <br><%= t('student_assessment.self_evaluation_tbl_title_2')%></div> 
+                        <% unless @rankedChartOne.nil? %>
+                            <% @rankedChartOne.each do |k,v|%>
+                                <div class="text-center"><%= v %>位：　<span><%= k %></span></div>
+                            <%end%>
+                        <% end %> 
+                    </div>                     
+                </div>
+            </div>
+            <%# 潜在的欲求タイプ診断 %>
+            <div class="job-details bg-white shadow mt-4 my-lg-5">
+                <div class="row px-4 px-md-5 pb-5">
+                    <div class="col-12 mt-3 mt-md-5 title p-0 font-weight-bold">
+                        <%= t('student.assessment.potential_desire_title')%><br><hr class="title-hr com-bg-color">
+                    </div>                   
+                    <div class="col-12 px-3">                           
+                        <canvas id="potentialDesireChart" name="detail"></canvas>
+                    </div>
+                    <div class="col-12 mt-4 mb-4">
+                        <div class="row">
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.love_and_desire_to_belong')%> </label></div>
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_power_and_value')%></label></div>
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_freedom')%></label></div>
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_fun')%></label></div>
+                            <div class="col chart-des text-center"><label><%= t('student_assessment.desire_for_survival')%></label></div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex flex-column align-items-center justify-content-center graph-rank">
+                        <div class="text-center"><%= t('student_assessment.self_evaluation_tbl_title_1')%> <br><%= t('student_assessment.self_evaluation_tbl_title_2')%></div> 
+                        <% unless @rankedChartTwo.nil? %>
+                            <% @rankedChartTwo.each do |k,v|%>
+                                <div class="text-center"><%= v %>位：　<span><%= k %></span></div>
+                            <%end%>
+                        <% end %> 
+                    </div> 
+                </div>
+            </div>
+            <div class="job-details bg-white shadow mt-4 my-lg-5">
+                <div class="col-12 align-items-center py-5 mb-3">
+                    <div class="col-12 title p-0 font-weight-bold">
+                        <%= t('student.assessment.behavioral_trait_title')%><br><hr class="title-hr com-bg-color">
+                    </div>
+                    <div class="container-fluid bahavioralTraitTypeChart">
+                        <%# self_expression chart %>
+                        <div class = "row"><%= t('student_assessment.self_expression')%></div>
+                        <div class = "row color-section" id ="self_expression_chart">
+                            <div class = "col bg-pink"></div>
+                            <div class = "col bg-lightBlue"></div>
+                            <div class = "col bg-green"></div>
+                            <div class = "col bg-blue"></div>
+                            <div class = "col bg-orange"></div>
+                        </div>
+                        <div class = "row mb-4">
+                            <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_1')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_2')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_3')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_4')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_expression_chart_title_5')%></div>
+                        </div>
+
+                        <%# self_assertion chart %>
+                        <div class = "row"><%= t('student_assessment.self_assertion')%></div>
+                        <div class = "row color-section" id ="self_assertion_chart">
+                            <div class = "col bg-pink"></div>
+                            <div class = "col bg-lightBlue"></div>
+                            <div class = "col bg-green"></div>
+                            <div class = "col bg-blue"></div>
+                            <div class = "col bg-orange"></div>
+                        </div>
+                        <div class = "row mb-4">
+                            <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_1')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_2')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_3')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_4')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_assertion_chart_title_5')%></div>
+                        </div>
+
+                        <%# self_flexibility chart %>
+                        <div class = "row"><%= t('student_assessment.self_flexibility')%></div>
+                        <div class = "row color-section" id ="self_flexibility_chart">
+                            <div class = "col bg-pink"></div>
+                            <div class = "col bg-lightBlue"></div>
+                            <div class = "col bg-green"></div>
+                            <div class = "col bg-blue"></div>
+                            <div class = "col bg-orange"></div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_1')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_2')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_3')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_4')%></div>
+                            <div class = "col text-center"><%= t('student_assessment.self_flexibility_chart_title_5')%></div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= hidden_field_tag(:student_id, @student_info.id) %>
+<script> 
+ var chartOne = <%= @chartOne.inspect.html_safe %>; 
+ var chartTwo = <%= @chartTwo.inspect.html_safe %>; 
+ var chartThree = <%= @chartThree.inspect.html_safe %>; 
+</script> 
+<%= javascript_pack_tag "company/company.js" %>
+<%= javascript_pack_tag "student/assessment.js" %>

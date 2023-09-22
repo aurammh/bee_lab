@@ -1,0 +1,141 @@
+<%= form_with(model: @student_assessment, id: "behavioral-form") do |form| %>
+<section class="student-quiz student-assessment container-fluid d-flex flex-column align-items-center pt-5">    
+
+    <%# self_expression %>      
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">
+        <div class="row px-4 d-flex mb-3 mt-3">
+            <div class="assessment-title"><%=t('student.assessment.behavioral_trait_type_title')%><br><hr class="title-hr"></div>
+        </div>
+
+        <div class="row student-registration px-1">
+            <div class="col-12 col-md-12">
+                <div class="row">
+                 <div class="col-12 pb-4">
+                        <span class='font-weight-bold text-danger'>
+                            <%=t('student.assessment.behavioral_title_1')%><br>
+                        </span>
+                         <span class='font-weight-bold'>
+                            <%=t('student.assessment.brain_title_2')%>
+                        </span>
+                    </div>
+                    <div class="col-12 pb-4 pt-3">
+                        <span class='font-weight-bold'>
+                            <%=t('student.assessment.behavioral_title_2')%>
+                        </span>
+                    </div>
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">      
+                            <tbody class= "brain-table">
+                            <%= form.fields_for :self_expression  do |f| %>   
+                                <% Student::Assessment.self_expression_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td class="col-12 col-md-2 col-lg-2"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 1 %></td>
+                                        <td class="col-12 col-md-5 col-lg-5">
+                                            <%= f.radio_button "#{k}",1, { :checked => @student_assessment.self_expression.nil?  ? false : @student_assessment.self_expression[index] == 1 }  %>
+                                            <label for=<%= "student_assessment_self_expression_#{k}_1"%> > 
+                                                <%= t("student_assessment.self_expression_lists.#{k}.#{v['A']}")  %>
+                                            </label>
+                                        
+                                        </td>
+                                        <td class="col-12 col-md-5 col-lg-5">
+                                            <%= f.radio_button "#{k}",2, { :checked =>@student_assessment.self_expression.nil?  ? false : @student_assessment.self_expression[index] == 2 } %>
+                                            <label for=<%= "student_assessment_self_expression_#{k}_2"%> > 
+                                                <%= t("student_assessment.self_expression_lists.#{k}.#{v['B']}")  %>
+                                            </label>
+                                            
+                                        </td>
+                                    </tr>
+                                <% end %>                            
+                            <% end %>                                
+                            </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div>
+          
+    </div>
+
+    <%# self_assertion %>      
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">
+        <div class="row student-registration px-1">
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">       
+                            <tbody class= "brain-table">
+                            <%= form.fields_for :self_assertion  do |f| %>   
+                                <% Student::Assessment.self_assertion_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td class="col-12 col-md-2 col-lg-2"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 10 %></td>
+                                        <td class="col-12 col-md-5 col-lg-5">
+                                            <%= f.radio_button "#{k}",1,{ :checked => @student_assessment.self_assertion.nil?  ? false : @student_assessment.self_assertion[index] == 1 }  %>
+                                            <label for=<%= "student_assessment_self_assertion_#{k}_1"%> > 
+                                                <%= t("student_assessment.self_assertion_lists.#{k}.#{v['A']}")  %>
+                                            </label>
+                                        
+                                        </td>
+                                        <td class="col-12 col-md-5 col-lg-5">
+                                            <%= f.radio_button "#{k}",2, { :checked =>@student_assessment.self_assertion.nil?  ? false : @student_assessment.self_assertion[index] == 2 } %>
+                                            <label for=<%= "student_assessment_self_assertion_#{k}_2"%> > 
+                                                <%= t("student_assessment.self_assertion_lists.#{k}.#{v['B']}")  %>
+                                            </label>
+                                            
+                                        </td>
+                                    </tr>
+                                <% end %>                            
+                            <% end %>                                
+                            </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div>
+          
+    </div>
+
+    <%# self_flexibility %>      
+    <div class="col-11 bg-white p-2 p-md-5 shadow assess-info-box mb-3">
+        <div class="row student-registration px-1">
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 mb-3 user-register">
+                        <table class="table">      
+                            <tbody class= "brain-table">
+                            <%= form.fields_for :self_flexibility  do |f| %>   
+                                <% Student::Assessment.self_flexibility_lists.each_with_index do |(k, v), index| %>
+                                    <tr class="row">
+                                        <td  class="col-12 col-md-2 col-lg-2"><%= t ('student.assessment.brain_table1_th1') %>   <%= index + 19 %></td>
+                                        <td class="col-12 col-md-5 col-lg-5">
+                                            <%= f.radio_button "#{k}",1, { :checked => @student_assessment.self_flexibility.nil?  ? false : @student_assessment.self_flexibility[index] == 1 }  %>
+                                            <label for=<%= "student_assessment_self_flexibility_#{k}_1"%> > 
+                                                <%= t("student_assessment.self_flexibility_lists.#{k}.#{v['A']}")  %>
+                                            </label>
+                                        </td>
+                                        <td class="col-12 col-md-5 col-lg-5">
+                                            <%= f.radio_button "#{k}",2, { :checked =>@student_assessment.self_flexibility.nil?  ? false : @student_assessment.self_flexibility[index] == 2 }  %>
+                                            <label for=<%= "student_assessment_self_flexibility_#{k}_2"%> > 
+                                                <%= t("student_assessment.self_flexibility_lists.#{k}.#{v['B']}")  %>
+                                            </label> 
+                                        </td>
+                                    </tr>
+                                <% end %>                            
+                            <% end %>                                
+                            </tbody>
+                        </table>
+                    </div>  
+                </div>                   
+            </div>
+        </div>
+        <div class="ml-auto d-flex justify-content-center">
+            <div class=" text-center mr-3">
+                <%= form.submit t('btn.record') , class: "custom-btn px-4 py-2 text-decoration-none text-white",:id => "btn-submit"  %> 
+            </div> 
+        </div>
+    </div>
+    <%# confirm dialoag start%>
+    <%= render "common/confirm_box" %>
+    <%# confirm dialoag end%>
+</section>
+<%end%>
+<%= javascript_pack_tag 'common.js'%>

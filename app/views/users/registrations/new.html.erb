@@ -1,0 +1,117 @@
+<div class="user-register container p-3 p-sm-5">
+  <div class="row justify-content-center p-2">
+    <div class="col-12 col-lg-8 col-xl-8">
+      <div class="card login-card-shadow bg-white p-3 p-sm-5">
+        <div class="text-group-left mb-4">          
+            <% if @user_type.eql?"2"%>   
+              <h3 class="text-center"><%= t('registeration.title.student_registeration') %></h3>
+              <hr class="std-grandient-hr">   
+            <% else %>     
+             <h3 class="text-center"><%= t('registeration.title.company_registeration') %></h3>
+              <hr class="com-grandient-hr">   
+            <% end %>      
+        </div>  
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.hidden_field :user_type ,:value => @user_type %>
+          <%# .................... Company Registration Start ....................%>
+          <% if (@user_type.to_s).eql?"1" %>
+          <%= f.hidden_field :last_name, :value => nil%>
+          <%= f.hidden_field :first_name, :value => nil%>
+            <div class="mb-3">
+              <div class="d-flex">
+                  <%= f.label :user_name, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.text_field :user_name,pattern: "[a-zA-Z0-9-_.]{1,20}",id: "username", class: "form-control shadow-none errors" %>
+              <p class="ms-invalid-feedback"><%= resource.errors.full_messages_for(:user_name)[0] %></p>
+            </div>      
+
+            <div class="mb-3">
+              <div class="d-flex">
+                  <%= f.label :company_name, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.text_field :company_name, class: "form-control shadow-none errors" %>
+              <p class="ms-invalid-feedback"><%= resource.errors.full_messages_for(:company_name)[0] %></p>
+            </div>    
+            <div class="mb-4">
+              <div class="d-flex">
+                  <%= f.label :company_email, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.email_field :email, class: "form-control shadow-none errors" %>
+              <p class="ms-invalid-feedback"><%= resource.errors.full_messages_for(:email)[0] %></p>
+            </div>
+            <div class="terms-and-condition p-2">
+              <%= (t 'welcome.term_and_condition.message_1').html_safe %>
+            </div>
+            <div class="simple-chkbox com-chk terms-and-conditions">
+              <%= f.check_box :terms_and_conditions, checked: false %>
+              <%= f.label :terms_and_conditions,"利用規約に同意する" %>
+              <p class="ms-invalid-feedback"><%= f.object.errors.full_messages_for(:terms_and_conditions)[0] %></p>
+            </div>
+            <div class="terms-and-condition p-2">
+                <%= (t 'welcome.term_and_condition.message_2').html_safe %>
+            </div>
+            <div class="simple-chkbox com-chk privacy-policy">
+              <%= f.check_box :privacy_policy, checked: false %>
+              <%= f.label :privacy_policy,"個人情報保護方針に同意する" %>
+              <p class="ms-invalid-feedback"><%= f.object.errors.full_messages_for(:privacy_policy)[0] %></p>
+            </div>          
+            <%= f.submit "登録", class: "custom-btn text-white w-100 com-bg-color p-1" %>            
+          <% end  %> 
+          <%# .................... Company Registration End ....................%>
+
+          <%# .................... Student Registration Start ....................%>
+          <% if (@user_type.to_s).eql?"2" %> 
+          <%= f.hidden_field :user_name, :value => nil%>
+          <%= f.hidden_field :company_name, :value => nil%>  
+            <div class="mb-3">
+              <div class="d-flex">
+                  <%= f.label :email, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.email_field :email, class: "form-control shadow-none errors" %>
+              <p class="ms-invalid-feedback"><%= resource.errors.full_messages_for(:email)[0] %></p>
+            </div>        
+            <div class="mb-3">
+              <div class="d-flex">
+                  <%= f.label :last_name, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.text_field :last_name, class: "form-control shadow-none errors text-upper" %>
+              <p class="ms-invalid-feedback"><%= resource.errors.full_messages_for(:last_name)[0] %></p>
+            </div>
+            <div class="mb-4">
+              <div class="d-flex">
+                  <%= f.label :first_name, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.text_field :first_name, class: "form-control shadow-none errors text-upper" %>
+              <p class="ms-invalid-feedback"><%= resource.errors.full_messages_for(:first_name)[0] %></p>
+            </div>
+            <div class="terms-and-condition p-2">
+              <%= (t 'welcome.term_and_condition.message_1').html_safe %>
+            </div>
+            <div class="simple-chkbox std-chk terms-and-conditions">
+              <%= f.check_box :terms_and_conditions, checked: false %>
+              <%= f.label :terms_and_conditions,"利用規約に同意する" %>
+              <p class="ms-invalid-feedback"><%= f.object.errors.full_messages_for(:terms_and_conditions)[0] %></p>
+            </div>
+            <div class="terms-and-condition p-2">
+                <%= (t 'welcome.term_and_condition.message_2').html_safe %>
+            </div>
+            <div class="simple-chkbox std-chk privacy-policy">
+              <%= f.check_box :privacy_policy, checked: false %>
+              <%= f.label :privacy_policy,"個人情報保護方針に同意する" %>
+              <p class="ms-invalid-feedback"><%= f.object.errors.full_messages_for(:privacy_policy)[0] %></p>
+            </div>
+            <%= f.submit "登録", class: "custom-btn text-white w-100 std-bg-color p-1" %>    
+          <% end %>            
+          <%# .................... Student Registration End ....................%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_pack_tag "user/user.js" %>

@@ -1,0 +1,78 @@
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light nav-container pr-md-3">
+     <% if current_user.user_type == 2 %>
+       <%= link_to student_students_path(id: current_user.id) ,class: "navbar-brand navbar-width #{(controller_name.to_s) == 'assessments' ? 'assessments_link' : ''}" do %>
+        <%= image_tag "layout/header_logo.jpg", class: "header-logo-size" %>   
+       <% end %>
+    <% end %>
+      <% if current_user.user_type == 1 %>
+       <%= link_to company_companies_path(id: current_user.id) ,class: "navbar-brand navbar-width" do %>
+        <%= image_tag "layout/header_logo.jpg", class: "header-logo-size" %>   
+       <% end %>
+    <% end %>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end px-5" id="navbarNav">        
+               <ul class="navbar-nav align-items-center">
+                <% if current_user.user_type == 2%>
+                    <% if @user_data.birthday != nil %>
+                            <li class="nav-item mr-4 std-link-hover">
+                                <%= link_to(t('student.title.header_link1'), student_students_path(id: current_user.student.id), class: "nav-link #{(controller_name.to_s) == 'assessments' ? 'assessments_link' : ''}") %>
+                            </li>
+                            <li class="nav-item mr-4 std-link-hover">
+                                <%= link_to(t('student.title.header_link_ass'), student_assessments_path(id: current_user.student.id), class: "nav-link #{(controller_name.to_s) == 'assessments' ? 'assessments_link' : ''}") %>
+                            </li>
+                            <li class="nav-item mr-4 std-link-hover">
+                                <%= link_to(t('student.title.header_link2'), student_student_path(@user_data), class: "nav-link #{(controller_name.to_s) == 'assessments' ? 'assessments_link' : ''}") %>
+                            </li> 
+                    <% end %>
+                    <li class="nav-item mr-4 std-link-hover dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <% if (@user_data.last_name.size + @user_data.first_name.size) < 20 %>
+                                <%= @user_data.last_name %> <%= @user_data.first_name %>
+                            <% else %>
+                                <span class="wrap-text"><%= @user_data.last_name %> <%= @user_data.first_name %></span>
+                            <% end %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <%= link_to(t('student.title.logout_link'), destroy_user_session_path, method: :delete, class: "dropdown-item #{(controller_name.to_s) == 'assessments' ? 'assessments_link' : ''}") %>                    
+                        </div>
+                    </li> 
+                <% else %>
+                  <% if  @user_data.m_industry_id != nil && @user_data.phone_no != nil %>
+                        <li class="nav-item mr-4 com-link-hover">
+                            <%= link_to(t('student.title.header_link1'), company_companies_path(id: current_user.id), class: "nav-link") %>
+                        </li>
+                        <% unless @permission_list.include?(3)%>
+                            <li class="nav-item mr-4 com-link-hover">
+                                <%= link_to(t('event.title.event_header'), new_company_event_path(), class: "nav-link") %>
+                            </li>
+                        <% end %>
+                        <% unless @permission_list.include?(2)%>
+                            <li class="nav-item mr-4 com-link-hover">
+                                <%= link_to(t('student.title.header_link3'), new_company_vacancy_path(), class: "nav-link") %>
+                            </li>
+                        <% end %>  
+                        <li class="nav-item mr-4 com-link-hover">
+                        <%= link_to(t('title.header_link2'), company_company_path(@user_data), class: "nav-link") %>
+                        </li>
+                    <% end %>    
+                    <li class="nav-item mr-4 com-link-hover dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <% if @user_data.company_name.size < 20 %>
+                                <%= @user_data.company_name %>
+                            <% else %>
+                                <span class="wrap-text"><%= @user_data.company_name %></span>
+                            <% end %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                         <%= link_to(t('student.title.logout_link'), destroy_user_session_path, method: :delete, class: "dropdown-item") %>                   
+                        </div>
+                    </li> 
+                <% end %>
+            </ul>
+        </div>
+    </nav>
+</header>

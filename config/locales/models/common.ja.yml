@@ -1,0 +1,73 @@
+ja:
+  common:
+    registration_confirm_screen: 本登録確認画面
+    require: 必須
+    default_placeholder: が入ります
+    building_address: ※　町、丁目、番地、ビル・マンション名、部屋番号を続けて入力してください
+    ph_no_remark: 〔半角数字ハイフンなしで入力〕
+    a_yes: "あり"
+    a_no: "なし"
+    favourite_users: "興味ありリスト"
+    favourite_company: "興味あり企業リスト"
+    favourite_vacancy: "興味あり求人リスト"
+    favourite_event: 気になるイベント一覧
+    join_event: エントリーイベント一覧
+    profile_upload_text: 顔写真をアップロードしてください。
+    event_profile_upload: 写真をアップロードしてください。
+    profile_upload: アップロード
+    profile_delete: 削除
+    contact_remark: 〔ご担当者・部署名・電話番号・メールアドレス・受付時間など〕
+    year_remark: （年）
+    day_remark: （日）
+    time_remark: （時間）
+    person_remark: （人）
+    rate_remark: （率）
+    money_remark: （円）
+    close: CLOSE
+    number_input_remark: 〔半角数入力〕
+    modal_confirm_title: 確認メッセージ
+    modal_confirm_text: 保存されていない回答があります。移動していいですか？
+    modal_submit_text: 全項目が選択されてないので、「キャンセル」ボタンを押して全項目の情報を選択してくださ い。「OK」ボタン押す場合、選択された情報が無視されます。
+    communication_dashboard_title: コミュニケーション一覧
+  date:
+    formats:
+      default: "%Y年%m月%d日"
+  select:
+    not_select: 未選択
+    view_area: "希望勤務地"
+  btn:
+    update: 登録
+    edit: 編集
+    save: 更新する
+    record: 登録する
+    cancel: "キャンセル"
+    submit: "保存"
+    change_login_setting: パスワード変更
+    company_search: 企業検索
+    vacancy_search: 求人検索
+    student_search: 検索
+    event_search: イベント検索
+    fav-text: お気に入り
+    join-text: 参加する
+    view_all: 全てを見る
+    confirm_yes: OK
+    confirm_no: キャンセル
+    sent_btn: 送信
+  search:
+    filter_by: "検索条件"
+    clear: "クリア"
+    apply: "実行"
+    no_result: "検索結果に該当するデータがありません。"
+  unit:
+    persons: 人
+    age: "歳"
+    money: 円
+  benefit:
+    title: 私たちが提供できるもの
+    advantage: メリット
+    highlight: ハイライト
+    working_time: 職業時間
+  image_crop:
+    upload: "画像の加工"
+    crop: "登録"
+    cancel: "キャンセル"

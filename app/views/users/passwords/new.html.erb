@@ -1,0 +1,36 @@
+<div class="container p-3 p-sm-5">
+  <div class="row justify-content-center my-5 p-2">
+    <div class="col-12 col-xl-8">
+      <div class="card login-card-shadow bg-white p-3 p-sm-5">
+        <div class="text-group-left mb-4">          
+            <h3 class="text-center"><%= t('password_setting.title.change_password_setting') %></h3>
+            <% if @user_type.eql?"2"%>   
+              <hr class="std-grandient-hr">   
+            <% else %>     
+              <hr class="com-grandient-hr">   
+            <% end %>           
+        </div>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <div class="mb-3">
+            <div class="d-flex">
+                <%= f.label :email, class: "form-label" %>
+                <label class="ml-auto required-label"><%= t('common.require') %> </label>
+            </div>
+            <%= f.email_field :email, class: "form-control shadow-none" %>
+            <p class="ms-invalid-feedback"><%= resource.errors.full_messages_for(:email)[0] %></p>
+          </div>  
+          <% if @user_type.eql?"2"%>   
+            <div class="d-flex justify-content-end mt-5">
+              <%= f.submit "送信", class: "custom-btn text-white w-25 std-bg-color p-1" %>
+            </div>  
+          <% else %>     
+            <div class="d-flex justify-content-end mt-5">
+              <%= f.submit "送信", class: "custom-btn text-white w-25 com-bg-color p-1" %>
+            </div>    
+          <% end %>           
+        <% end %>
+      </div>
+   </div>
+  </div> 
+</div>
+

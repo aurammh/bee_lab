@@ -1,0 +1,202 @@
+<div class="px-sm-4" id="backup-dashborad">
+  <% if @admin_backup_db.id.nil? %>
+    <%= form_with(model: @admin_backup_db, url: admin_backup_db_index_path) do |form|%>
+      <div class="col-12 mt-3 mb-4 mb-lg-5 company-registration">
+        <div class="row d-lg-flex justify-content-start shadow bg-white py-md-3 px-2 px-lg-4">
+          <div class="col-12 col-md-7 col-xl-10 mb-3">
+            <h1><%= t('backup_db.first_title') %></h1>
+          </div>
+          <div class="col-md-6 col-lg-3 px-3">
+            <div class="d-flex">
+              <label class="form-label"><%= Admin::BackupDb.human_attribute_name('name') %> </label>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+            </div>
+            <%= form.text_field :name, class: "form-control shadow-none errors", placeholder: t('search.keyword_search')%>
+            <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:name)[0] %></p>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-2 mt-4 mt-sm-0">
+              <div class="d-flex">
+                <label class="form-label"><%= Admin::BackupDb.human_attribute_name('file_type') %>   </label>
+                <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div> 
+              <%= form.select(:file_type, [['backup','.backup'], ['sql', '.sql'],['dump','.dump']],{:include_blank => ( t'select.not_select')} , {:class => "form-control shadow-none errors"}) %>
+              <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:file_type)[0] %></p>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-2 mt-4 mt-sm-0"> 
+              <div class="d-flex">
+                <label class="form-label"><%= Admin::BackupDb.human_attribute_name('backup_schedule') %> </label>
+                <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= form.select(:backup_schedule, backup_options,{:include_blank => ( t'select.not_select') } , {:class => "form-control shadow-none errors"}) %>
+              <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:backup_schedule)[0] %></p>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-2 mt-4 mt-sm-0">
+              <div class="d-flex">
+                <label class="form-label"><%= Admin::BackupDb.human_attribute_name('destroy_schedule') %></label>
+                <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div> 
+              <%= form.select(:destroy_schedule, destroy_options,{:include_blank => ( t'select.not_select') } , {:class => "form-control shadow-none errors"}) %>
+              <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:destroy_schedule)[0] %></p>
+          </div>
+
+          <div class="col-12 px-3 my-3">
+            <div class="d-flex">
+              <label class="form-label"><%= Admin::BackupDb.human_attribute_name('remark') %>   </label>
+            </div>
+            <%= form.text_area :remark, class: "form-control shadow-none errors", placeholder: t('search.keyword_search')%>
+          </div>
+
+          <div class="col-md-6 col-lg-2 my-3 my-md-0">
+              <%= form.submit t('btn.student_search'), :class => 'admin-search-btn w-100 admin-sidebar-color text-white py-1', :id => 'search' %>
+          </div>
+        </div>      
+      </div>
+    <% end %>
+  <% else %>
+    <%= form_with(model: @admin_backup_db) do |form|%> 
+      <div class="col-12 mt-3 mb-4 mb-lg-5 company-registration">
+        <div class="row d-lg-flex justify-content-start shadow bg-white py-md-3 px-2 px-lg-4">
+          <div class="col-12 col-md-7 col-xl-10 mb-3">
+            <h1><%= t('backup_db.first_title') %></h1>
+          </div>
+          <div class="col-md-6 col-lg-3 px-3">
+            <div class="d-flex">
+            <%= form.hidden_field :backup_job_id,value: @admin_backup_db.backup_job_id%>
+            <%= form.hidden_field :delete_job_id,value: @admin_backup_db.delete_job_id%>
+              <label class="form-label"><%= Admin::BackupDb.human_attribute_name('name') %> </label>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+            </div>
+            <%= form.text_field :name, class: "form-control shadow-none errors", placeholder: t('search.keyword_search')%>
+            <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:name)[0] %></p>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-2 mt-4 mt-sm-0">
+              <div class="d-flex">
+                <label class="form-label"><%= Admin::BackupDb.human_attribute_name('file_type') %>   </label>
+                <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div> 
+              <%= form.select(:file_type, [['backup','.backup'], ['sql', '.sql'],['dump','.dump']],{:include_blank => ( t'select.not_select')} , {:class => "form-control shadow-none errors"}) %>
+              <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:file_type)[0] %></p>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-2 mt-4 mt-sm-0"> 
+              <div class="d-flex">
+                <label class="form-label"><%= Admin::BackupDb.human_attribute_name('backup_schedule') %> </label>
+                <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= form.select(:backup_schedule, backup_options,{:include_blank => ( t'select.not_select') } , {:class => "form-control shadow-none errors"}) %>
+              <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:backup_schedule)[0] %></p>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3 mb-2 mt-4 mt-sm-0">
+              <div class="d-flex">
+                <label class="form-label"><%= Admin::BackupDb.human_attribute_name('destroy_schedule') %>  </label>
+                <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div> 
+              <%= form.select(:destroy_schedule, destroy_options,{:include_blank => ( t'select.not_select') } , {:class => "form-control shadow-none errors"}) %>
+              <p class="ms-invalid-feedback mt-1"><%= @admin_backup_db.errors.full_messages_for(:destroy_schedule)[0] %></p>
+          </div>
+
+          <div class="col-12 px-3 my-3">
+            <div class="d-flex">
+              <label class="form-label"><%= Admin::BackupDb.human_attribute_name('remark') %>   </label>
+            </div>
+            <%= form.text_area :remark, class: "form-control shadow-none errors", placeholder: t('search.keyword_search')%>
+          </div>
+
+          <div class="col-md-6 col-lg-2 my-3 my-md-0">
+              <%= form.submit t('btn.student_search'), :class => 'admin-search-btn w-100 admin-sidebar-color text-white py-1', :id => 'search' %>
+          </div>
+        </div>      
+      </div>
+    <% end %>  
+  <% end %>  
+
+  <%# Lists start %>
+  <div class="search-result company-dashboard col-12  pb-5 mb-5">
+    <div class="row p-2 shadow bg-white info-box">
+      <div class="col-12 col-md-7 col-xl-10 mb-3">
+          <h1><%= t('backup_db.title') %></h1>
+      </div>
+      <% if @admin_backup_dbs.present?  %>
+          <div class="d-none d-md-block w-100">
+              <table class="table table-bordered table-responsive-md table-responsive-lg-none">
+                  <thead class="admin-sidebar-color text-white">
+                      <tr>
+                          <th scope="col"><%= t('backup_db.table_no') %></th>
+                          <th scope="col"><%= Admin::BackupDb.human_attribute_name('name') %>  </th>
+                          <th scope="col"><%= Admin::BackupDb.human_attribute_name('backup_schedule') %>  </th>
+                          <th scope="col"><%= Admin::BackupDb.human_attribute_name('destroy_schedule') %></th>
+                          <th scope="col"><%= Admin::BackupDb.human_attribute_name('file_type') %></th>
+                          <th scope="col"><%= Admin::BackupDb.human_attribute_name('remark') %></th>
+                          <th scope="col"></th>
+                           <th scope="col"></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <% @admin_backup_dbs.each_with_index do |backup_data,index| %>
+                          <tr>
+                            <td class="text-break"><%= index + 1 %></td>
+                            <td class="text-break"><%= backup_data.name %></td>
+                            <td class="text-break"><%= t("backup_db.backup_schedule_options.#{backup_data.backup_schedule}")  %></td>
+                            <td class="text-break"><%= t("backup_db.destroy_schedule_options.#{backup_data.destroy_schedule}") %></td>
+                            <td class="text-break"><%= backup_data.file_type%></td>
+                            <td class="text-break"><%= backup_data.remark%></td>
+                            <td class="text-break">
+                              <%= link_to ('<i class="fas fa-edit"></i>').html_safe,  edit_admin_backup_db_path(backup_data.id),
+                              :class => 'icon-color'%>
+                              <%= link_to ('<i class="fas fa-list"></i>').html_safe, admin_backup_db_path(backup_data.id),:class => 'icon-color' %>
+                            </td>
+                            <td class="text-break">
+                                <%= link_to 'Destroy', backup_data, method: :delete, data: { confirm: 'Are you sure?' } %>
+                              </td>
+                          </tr>
+
+                      <% end %>
+                  </tbody>
+              </table>  
+          </div>
+          <div class="col-12 my-2 px-4 d-content d-md-none">
+              <% @admin_backup_dbs.each_with_index do |backup_data,index| %>
+                  <div class="mobile-table row com-info-box p-3 my-4 rounded">
+                    <span class="h6 com-font-color col-4"><%= t('backup_db.table_no') %></span>
+                    <span class="col-8 text-muted text-break"><%= index+1 %></span><br>
+                    <span class="h6 com-font-color col-4"><%= Admin::BackupDb.human_attribute_name('name') %></span>
+                    <span class="col-8 text-muted text-break"><%= backup_data.name %></span><br>
+                    <span class="h6 com-font-color col-4"><%= Admin::BackupDb.human_attribute_name('file_type') %></span>
+                    <span class="col-8 text-muted text-break"><%= backup_data.file_type %></span><br>
+                    <span class="h6 com-font-color col-4"><%= Admin::BackupDb.human_attribute_name('backup_schedule') %></span>
+                    <span class="col-8 text-muted text-break">
+                    <%= t("backup_db.backup_schedule_options.#{backup_data.backup_schedule}") %></span><br>
+                    <span class="h6 com-font-color col-4"><%= Admin::BackupDb.human_attribute_name('destroy_schedule') %></span>
+                    <span class="col-8 text-muted text-break">
+                    <%= t("backup_db.destroy_schedule_options.#{backup_data.destroy_schedule}")%></span><br>
+
+                    <span class="h6 com-font-color col-4"><%= Admin::BackupDb.human_attribute_name('remark') %></span>
+                    <span class="col-8 text-muted text-break"><%= backup_data.remark %></span><br>
+                    <span class="h6 com-font-color col-4">
+                    </span>
+                    <span class="col-8 text-muted text-break">
+                      <%= link_to ('<i class="fas fa-edit"></i>').html_safe,  edit_admin_backup_db_path(backup_data.id) %>
+                      <%= link_to ('<i class="fas fa-list"></i>').html_safe, admin_backup_db_path(backup_data.id) %>
+                    </span>
+                    <br>
+                    <%= link_to 'Destroy', backup_data, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </div>
+              <% end %>                          
+          </div>
+      <% else %>
+          <div class="col-12 m-2">
+              <h3><%= t('search.no_result') %></h3>
+          </div>
+      <% end %>
+    </div>
+  </div>    
+  <%# Lists end     %>
+ 
+</div> 
+<%= javascript_pack_tag "common.js" %>
+<%= javascript_pack_tag "admin/backup.js" %>

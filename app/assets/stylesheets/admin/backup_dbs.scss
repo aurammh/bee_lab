@@ -1,0 +1,15 @@
+// Place all the styles related to the admin::backup_dbs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "variable";
+#backup-dashborad {
+    .table tbody tr:hover {
+        background-color: #FFFFFF;
+    }
+    .icon-color {
+        color: $adminSidebarBgColor;
+        &:hover {
+            color: #0056b3
+        }
+    }
+}

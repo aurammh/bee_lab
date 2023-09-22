@@ -1,0 +1,105 @@
+<%= form_for('',url: admin_admin_student_setting_path, method: :get) do |form| %>
+    <div class="col-12 bg-white p-3  p-lg-4 mt-0 mt-lg-4 shadow info-box mb-4 mb-lg-5">
+        <div class="row d-lg-flex px-3 px-sm-2">
+            <div class="col-md-4 col-lg-4 px-1 px-sm-4 mb-3">
+                <%= form.text_field :student_name, id: "end_date", class: "form-control shadow-none errors", placeholder: t('event.title.name'), value: (params[:student_name])%>
+            </div>
+            <div class="col-md-4 col-lg-3 px-1 px-sm-3">
+                <%= form.text_field :keyword, id: "end_date", class: "form-control shadow-none errors", placeholder: t('search.keyword_search'), value: (params[:keyword])%>
+            </div>
+            <div class=" col-md-4 col-lg-2 px-1 px-sm-4 my-3 my-sm-0">
+                <%= form.submit t( 'btn.student_search'), :class => 'custom-btn w-100 std-bg-color text-white' %>
+            </div>  
+        </div>      
+    </div>
+    
+    <div class="search-result px-0 ml-0  col-12  pb-5 mb-5 pl-md-2 search">
+        <div class="row p-2 mx-0 shadow bg-white info-box search-filter">
+            <div class="col-12 mb-3">
+                <h1><%= t('search.search_title') %></h1>
+            </div> 
+            <% if @results.present? %> 
+            <div class="d-none d-md-block w-100">     
+                <table class="table table-bordered table-responsive-md" >
+                    <thead class="std-bg-color text-white">
+                        <tr>
+                            <th scope="col"><%= t('student.student_show.name') %></th>
+                            <th scope="col"><%= Student::Student.human_attribute_name('email') %></th>
+                            <% @permission_type.each do |type|%>
+                                <th scope="col"><%= t("admin.permission_type.#{type.permission_type}") %></th>
+                            <% end %>
+                            <th scope="col"><%= t('event.title.publish_status') %></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @results.each do |user| %>
+                            <tr >
+                                <td <%= 'data-link='+ admin_student_manage_student_details_path(:userid => user.std_id,:status => 2) %> ><%= user.name %></td>
+                                <td <%= 'data-link='+ admin_student_manage_student_details_path(:userid => user.std_id,:status => 2) %> ><%= user.email%></td>
+                                <% @permission_type.each do |type|%>
+                                    <td>
+                                        <div class="simple-chkbox std-chk">
+                                            <input type= "hidden" value = <%= type.id %> id =<%="hid_#{type.permission_type}_#{user.id}"%> >
+                                            <input type="checkbox" class ="check_flg" name=<%="#{type.permission_type}_#{user.id}"%> id=<%="#{type.permission_type}_#{user.id}"%>  <%= permission_check_box(type.id,user.id) ? '' : 'checked' %>/>
+                                            <label for=<%="#{type.permission_type}_#{user.id}"%>></label> 
+                                        </div>
+                                    </td>
+                                <% end %>
+                                <td <%= 'data-link='+ admin_student_manage_student_details_path(:userid => user.std_id,:status => 2) %> ><%= user.birthday.nil? ? t('search.uncomplete_register_status') : t('search.complete_register_status')%></td>       
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 my-2 px-4 d-content d-md-none">
+             <% @results.each do |user| %>
+                <div class="mobile-table row std-info-box p-3 my-4 rounded admin-setting">
+                    <div class="row col-12" <%= 'data-link='+ admin_student_manage_student_details_path(:userid => user.std_id,:status => 2) %> >
+                        <div class="h6 std-font-color col-4 pr-2"><%= t('student.student_show.name') %></div>
+                        <div class="col-8 text-muted text-break pl-4"><%= user.name %></div><br>
+                        <div class="h6 std-font-color col-4 pr-2"><%= Student::Student.human_attribute_name('email') %></div>
+                        <div class="col-8 text-muted text-break pr-0 pl-4"><%= user.email %></div><br> 
+                    </div>
+                    <% @permission_type.each do |type|%>
+                            <div class="h6 std-font-color col-4 pr-2"><%= t("admin.permission_type.#{type.permission_type}") %></div>
+                            <div class="simple-chkbox std-chk col-8">
+                                    <input type= "hidden" value = <%= type.id %> id =<%="hid_m#{type.permission_type}_#{user.id}"%> >
+                                    <input type="checkbox" class ="check_flg" name=<%="m"+"#{type.permission_type}_#{user.id}"%> id=<%="m"+"#{type.permission_type}_#{user.id}"%>  <%= permission_check_box(type.id,user.id) ? '' : 'checked' %>/>
+                                    <label for=<%="m"+"#{type.permission_type}_#{user.id}"%>></label> 
+                            </div><br>
+                    <% end %>
+                    <div class="h6 std-font-color col-4 pr-2"><%= t('event.title.publish_status') %></div>
+                    <div class="col-8 text-muted text-break"  <%= 'data-link='+ admin_student_manage_student_details_path(:userid => user.std_id,:status => 2) %> ><%= user.birthday.nil? ? t('search.uncomplete_register_status') : t('search.complete_register_status')%></div> 
+                </div>
+             <% end %>
+            </div>    
+            <% else %>
+                <div class="h3 col-12 mb-3">
+                    <%= t('search.no_result') %>
+                </div>
+            <% end %> 
+            <div class="col-12 d-flex justify-content-center mt-2">
+                <%= paginate @results %>
+            </div>
+        </div>
+    </div>
+<% end %>
+<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+  <div id="liveToast" class="toast border border-4 border-success hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+    <div class="toast-header">
+    <%= favicon_link_tag asset_path('layout/logo.jpg') %>   
+      <strong class="mr-auto"><%= t('admin.setting.change_msg_title') %></strong>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      <%= t('admin.setting.change_complete_msg') %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var BASE_URL = '<%= root_url %>';
+</script>
+<%= javascript_pack_tag "admin/setting.js" %>
+<%= javascript_pack_tag 'common.js'%>

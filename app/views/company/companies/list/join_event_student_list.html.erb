@@ -1,0 +1,47 @@
+<section class="company-detail container-fluid h-50  d-flex flex-column align-items-center mt-2 pt-2">
+    <div class="col-11 bg-white py-5 mt-4 shadow std-info-box mb-5 event-info-box">
+        <div class="h3"> <%= t ('common.join_event') %><br><hr class="title-hr"></div> 
+        <div class="d-none d-md-block d-sm-none event-list">                  
+            <table class="table table-bordered table-responsive-md">
+                <thead class="com-bg-color text-white">
+                    <tr>
+                        <th colspan="3"><%= t('event.title.event_code') %> : <%= @event_code %></th>
+                    </tr>
+                    <tr>
+                        <th><%= t('event.title.student_id') %></th>
+                        <th><%= t('event.title.name') %></th>
+                        <th><%= t('event.title.uni_name') %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @join_event_list.each do |student_join_event| %>
+                        <tr>
+                            <td class="text-break e-col com" data-link="<%= company_student_details_path(:id => student_join_event.id) %>"><%= student_join_event.id %></td>
+                            <td class="text-break"><%= student_join_event.last_name %> <%= student_join_event.first_name %></td>
+                            <td class="text-break"><%= student_join_event.school_name %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+            <span class="mobile-table row event-info-box p-2 my-4 com-font-color">
+                <%= t('event.title.event_code') %> : <%= @event_code %>
+            </span>
+            <% @join_event_list.each do |student_join_event| %>
+                <div class="mobile-table row event-info-box p-2 my-4">                                                   
+                    <span class="h6 com-font-color col-4"><%= t('event.title.student_id')  %></span>
+                    <span class="col-8 text-muted text-break" data-link="<%= company_student_details_path(:id => student_join_event.id) %>"><%= student_join_event.id %></span><br>
+                    <span class="h6 com-font-color col-4"><%= t('event.title.name') %></span>
+                    <span class="col-8 text-muted text-break"><%= student_join_event.last_name %> <%= student_join_event.first_name %></span><br>
+                    <span class="h6 com-font-color col-4"><%= t('event.title.uni_name') %></span>
+                    <span class="col-8 text-muted text-break"><%= student_join_event.school_name %></span><br>
+                </div>
+            <% end %>                           
+        </div>
+        <div class="col-12 d-flex justify-content-center p-4">
+            <%= paginate @join_event_list %>
+        </div>
+    </div>
+</section>
+<%= javascript_pack_tag 'common.js'%>

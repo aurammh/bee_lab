@@ -1,0 +1,33 @@
+<%if current_user %>
+  <% if current_user.user_type == 1%>
+    <% if page.current? %>
+      <li class="page-item active btn-bg-blue">
+       <%= content_tag :a, page, data: { remote: remote }, rel: page.rel, class: 'page-link btn-bg-blue' %>
+     </li>
+    <% else %>
+      <li class="page-item btn-bg-blue">
+      <%= link_to page, url, remote: remote, rel: page.rel, class: 'page-link btn-bg-blue' %>
+      </li>
+   <% end %>
+  <% else %>
+    <% if page.current? %>
+      <li class="page-item active btn-bg-yellow">
+      <%= content_tag :a, page, data: { remote: remote }, rel: page.rel, class: 'page-link btn-bg-yellow' %>
+      </li>
+    <% else %>
+      <li class="page-item btn-bg-yellow">
+       <%= link_to page, url, remote: remote, rel: page.rel, class: 'page-link btn-bg-yellow' %>
+     </li>
+    <% end %>
+  <% end %>
+  <%else %>
+  <% if page.current? %>
+      <li class="page-item active btn-bg-blue">
+       <%= content_tag :a, page, data: { remote: remote }, rel: page.rel, class: 'page-link btn-bg-blue' %>
+     </li>
+    <% else %>
+      <li class="page-item btn-bg-blue">
+      <%= link_to page, url, remote: remote, rel: page.rel, class: 'page-link btn-bg-blue' %>
+      </li>
+   <% end %>
+<%end %>

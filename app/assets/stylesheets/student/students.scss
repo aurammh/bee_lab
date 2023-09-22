@@ -1,0 +1,234 @@
+@import "variable";
+.student-registration{ 
+    .sec-head{
+        margin-top:4.5rem;
+        z-index:1;
+    }
+    .sec-2{
+        background-color:#ffef6c9e;
+    }
+
+    .perview-container  {
+        position: fixed;
+        height: 80vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        span{
+            font-size: 14px;
+        }
+    }
+   
+    .register-container {
+        span{
+            font-size: 14px;
+        }
+    }
+    .upload-preview{
+        height: 300px;        
+        img{
+            object-fit: contain;
+        }
+    }
+
+    [type="radio"]:checked+label:after,
+    [type="radio"]:not(:checked)+label:after {    
+        background: $studentColor;   
+    }
+    .custom-btn{
+        background-color: $studentColor !important;
+        width: 300px;
+        padding: 10px 10px;
+    }
+    ul.stylish-custom-chkbox li input[type="checkbox"]:checked + label {       
+        background-color: $studentColor;
+    } 
+    
+    .date-wrapper .icon{
+        color: $studentColor;
+    }
+    .upload-file {
+        z-index: -1;
+        position: absolute;
+        opacity: 0;
+    } 
+    //Student Image Upload button [start]
+    .student-profile-upload {
+        position: relative;
+        overflow: hidden;
+    }
+    .student-profile-upload input#image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-filter: alpha(opacity=0);
+    }
+    //Student Image Upload button [end]  
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+        border: solid #aaa 1px; 
+        outline: 0;
+    }
+
+    .d-container{
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -30px;
+        margin-left: -30px;
+    }
+    // Crop Image Css
+    .preview {
+        overflow: hidden;
+        width: 160px; 
+        height: 160px;
+        margin: 0 10px ;
+    }
+    // Crop image css end
+
+}
+
+
+.student-detail{
+    min-height: 60vh;
+    .std-info-box{
+        border-radius: 2rem;
+    }
+    .custom-btn{
+        background-color: $studentColor !important;
+    }
+    .title-hr{
+        background-color: $studentColor;
+    }  
+    
+    .table tbody tr:hover{
+        background-color: $lightStudentBgColor;
+    }
+}
+
+
+.student-dashboard{
+       
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) {  
+        span{
+            font-size: 17px !important;
+        }
+        .icon-end{
+            font-size: 42px !important;
+        }
+        h6{
+            font-size: 1.25rem;
+        }
+    }
+
+
+   
+   
+    
+    
+    
+    /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+    @media (min-width: 768px) {   
+        h6{
+            font-size: 18px;
+        }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {          
+        h6{
+            font-size: 1.5rem;
+        }
+    }
+    
+    /* Destop Large devices (desktops, 992px and up) */
+    @media (min-width: 1200px) { 
+        span{
+            font-size: 22px !important;
+        }    
+        .icon-end{
+            font-size: 50px !important;
+        }  
+        h6{
+            font-size: 1.8rem;
+        }        
+    }
+        
+    .notice-panel{
+        background-color: rgba(244, 208, 31, 0.7);
+        border-radius: 10px;       
+    }
+
+    .std-info-box{
+        border-radius: 1rem;
+    }    
+    .icon-mid{
+        font-size: 20px;
+        color: #d1cdcd;
+    }
+    .icon-end{
+        font-size: 34px;
+    }
+    .heart-icon{
+        width: 60%;
+    }
+    .search-panel{
+        min-height: 40vh;
+        background-image: url(image_path("student/student_search_bg.jpg")); 
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .title-hr{
+        background-color: $studentColor;
+    }  
+    
+    .table tbody tr:hover{
+        background-color: $lightStudentBgColor;
+    } 
+    
+    span{
+        font-size: 13px;
+        font-weight: 900;
+    }
+    .assessment-panel{
+        min-height: 45vh;
+        background-image: url(image_path("student/assessment-bg.svg")); 
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        img{
+            width: 60%;
+        }
+        .custom-btn{
+            background-color: $studentColor;
+            width: 180px;
+        }
+    }
+}
+
+.search{
+    .emp-radio{
+        margin-left: -10px;
+    }
+    .com-tile-color{
+        color: $companyColor !important;
+    }
+    .std-tile-color{
+        color: $studentColor !important;
+    }
+
+}
+
+
+
+

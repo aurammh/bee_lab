@@ -1,0 +1,221 @@
+<section class="company-detail h-50  d-flex flex-column align-items-center mt-5 pt-5">
+    <%# First Panel Start %>
+    <div class="col-11 bg-white py-5 mt-4 shadow com-info-box mb-5">
+        <div class="row d-flex px-4 mb-3">
+            <div class="com-font-color h3"><%= t('title.company_basic_information')%></div>
+            <div class="row ml-md-auto d-lg-flex justify-content-end mt-4 mt-md-0">
+                <div class=" text-center ml-3 mr-2 mr-lg-3 mb-4">
+                    <%= link_to (t 'btn.change_login_setting'), user_setting_path(scop_name: "company") , class: "#{current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color' } col-6 col-sm-6 col-md-4 col-lg-3 custom-btn px-4 py-2 text-decoration-none text-white" %> 
+                </div>
+                <div class=" text-center mr-lg-3">
+                    <%= link_to (t 'btn.edit'), edit_company_company_path(@user_company) , class: "#{current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color' } col-4 col-sm-6 col-md-4 col-lg-3 custom-btn px-4 py-2 text-decoration-none text-white mr-2" %> 
+                </div>                 
+            </div>
+        </div>
+        <div class="row px-2 px-lg-4">
+            <div class="col-12 col-lg-3">
+                <%  if @user_company.image.attached? %>
+                    <%= image_tag (@user_company.image), :class=> "w-100" %>
+                <% else %>
+                    <div class="upload-preview">
+                    <%= image_tag "avatar/preview.svg"%>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-12 col-md-12 col-lg-9">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('company_name') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.company_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('company_name_kana') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.company_name_kana %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('user_name') %></span>
+                        <span class="text-secondary"><%= current_user.user_name %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('display_address') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.display_address %></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('m_industry_id') %></span>
+                        <span class="text-secondary"><%=  get_industry_name_by_ID(@user_company.m_industry_id) %> </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('company_info') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.company_info %> </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('job_info') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.job_info %> </span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('website_url') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.website_url? ? @user_company.website_url : t("student.student_show.none") %></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('phone_no') %></span>
+                        <span class="text-secondary"><%= @user_company.phone_no %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('company_established') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.company_established %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('capital_amount') %></span>
+                        <span class="text-secondary"><%= number_with_delimiter(@user_company.capital_amount) %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('employee_count') %></span>
+                        <span class="text-secondary"><%= @user_company.employee_count  %></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('sales_amount') %></span>
+                        <span class="text-secondary"><%= number_with_delimiter(@user_company.sales_amount) %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('related_company') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.related_company %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('main_bank') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.main_bank %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('history') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.history %></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('basic_idea') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.basic_idea %></span>
+                    </div>   
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('representative') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.representative %></span>
+                    </div>                    
+                </div>
+            </div>
+        </div>      
+    </div>
+    <%# First Panel End %>
+
+    <%# Second Panel Start %>
+    <div class="col-11 bg-white py-5 mt-4 shadow com-info-box mb-5">
+        <div class="row d-flex px-2 px-lg-4 mb-3">
+            <div class="com-font-color h3"><%= t('title.company_employee_info')%></div>
+            <div class="ml-auto d-flex pl-5">                
+                <div class=" text-center mr-3">
+                    <%= link_to (t 'btn.edit'), edit_company_company_path(@user_company) , class: "#{current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color' } custom-btn px-4 py-2 text-decoration-none text-white" %> 
+                </div> 
+            </div>
+        </div>
+        <div class="row px-2 px-lg-4">           
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('avg_service_year') %></span>
+                        <span class="text-secondary text-break"><%= number_with_delimiter(@user_company.avg_service_year)  %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('avg_overtime_per_month') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.avg_overtime_per_month %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('avg_paid_leaves') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.avg_paid_leaves %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('number_eligible_childcare_leaves_male') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.number_eligible_childcare_leaves_male %></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2">
+                        <%= Company::Company.human_attribute_name('taken_childcare_leaves_male') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.taken_childcare_leaves_male %></span>
+                    </div>
+                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('childcare_leave_acquisition_rate_male') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.childcare_leave_acquisition_rate_male %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('number_eligible_childcare_leaves_female') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.number_eligible_childcare_leaves_female  %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('taken_childcare_leaves_female') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.taken_childcare_leaves_female %></span>
+                    </div>
+                </div>   
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('rate_taken_childcare_leaves_female') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.rate_taken_childcare_leaves_female %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('percentage_female_ration') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.percentage_female_ration %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('percentage_training') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.percentage_training %></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('mentor_system') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.mentor_system == 1 ? t("common.a_yes") : t("common.a_no")%></span>
+                    </div>                   
+                </div> 
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('career_consulting_system') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.career_consulting_system == 1 ? t("common.a_yes") : t("common.a_no")%></span>
+                    </div> 
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-3 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('in_house_certification_system') %></span>
+                        <span class="text-secondary text-break"><%= @user_company.in_house_certification_system %></span>
+                    </div>                    
+                </div>           
+            </div>
+        </div>      
+    </div>
+    <%# Second Panel End %>
+
+    <%# Third Panel Start %>
+    <div class="col-11 bg-white py-5 mt-4 shadow com-info-box mb-5">
+        <div class="row d-flex px-4 mb-3">
+            <div class="com-font-color h3"><%= t('title.company_inquiry_info')%></div>
+            <div class="ml-auto d-flex pl-5">
+                <div class=" text-center mr-3">
+                    <%= link_to (t 'btn.edit'), edit_company_company_path(@user_company) , class: "#{current_user.user_type == 1 ? 'com-bg-color ' : 'std-bg-color' } custom-btn px-4 py-2 text-decoration-none text-white"  %> 
+                </div> 
+            </div>
+        </div>
+        <div class="row px-2 px-lg-4">           
+            <div class="col-12 col-md-12">
+                <div class="row">
+                    <div class="col-12 col-sm-6 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('contact')  %></span>
+                        <span class="text-secondary  text-break"><%= @user_company.contact %></span>
+                    </div>
+                    <div class="col-12 col-sm-6 my-3 d-flex flex-column">
+                        <span class="h6 com-font-color mb-2"><%= Company::Company.human_attribute_name('transportation_facilities') %></span>
+                        <span class="text-secondary  text-break"><%= @user_company.transportation_facilities %></span>
+                    </div>                    
+                </div>                   
+            </div>
+        </div>      
+    </div>
+    <%# Third Panel End %>
+</section>

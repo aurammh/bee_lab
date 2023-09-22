@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      contact: contact
+    attributes:
+      contact:
+        classification: 区分
+        name: お名前
+        email: メールアドレス
+        company_name: 団体名・企業名
+        contact: 連絡先
+        content_inquiry: お問い合わせ内容
+  errors:
+    attributes:
+      classification:
+        blank: "を選択してください。"
+    messages:
+      blank: "を入力してください。"
+      too_long: "%{count} 文字以下にする必要があります。"
+      wrong_length: "長さが間違っています (%{count} 桁である必要があります)。"
+      invalid: "無効です。"
+      is_wrong: "間違っている"
+      too_short: "少なくとも %{count} 桁が必要です。"   
+  contact_info:
+    title: お問い合わせ
+    mail_title: お客様からの問い合わせです。

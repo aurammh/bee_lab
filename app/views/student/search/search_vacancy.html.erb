@@ -1,0 +1,96 @@
+<%= form_for( '',url: student_vacancy_search_path, :method => "get") do |form| %>
+<section class="search container-fluid d-flex flex-column align-items-center mt-5 pt-lg-5"> 
+    <div class="col-11 bg-white p-4 mt-4 shadow info-box mb-5">
+        <div class="row d-flex justify-content-center">
+           <div class="col-12 col-md-3 mb-2"> 
+                <%=  select_tag :industry_id,options_for_select(industry_type_options.map { |ind| [ind.industry_name, ind.id] },params[:industry_id]),include_blank: t('student.search.view_all_industry_type'),class: 'form-control shadow-none errors' %>  
+            </div> 
+            <div class="col-12 col-md-3 mb-2"> 
+                <%=  select_tag :job_type_id,options_for_select(occupation_options.map { |oc| [oc.occupation_name, oc.id] },params[:job_type_id]),include_blank: t('student.search.view_all_job_type'),class: 'form-control shadow-none errors' %>  
+            </div>
+            <div class="col-12 col-md-3 mb-2">
+                <%= submit_tag t('btn.vacancy_search') , :class => "custom-btn w-100 std-bg-color text-white" %>
+            </div>  
+        </div>      
+    </div>  
+    <div class="px-0 col-11 row mb-5">
+        <div class="search-filter px-0 col-12 col-lg-2">
+            <div class="float-left col-12 col-md-3 col-lg-12 px-0 px-3 py-4 shadow bg-white mb-3 info-box">
+                <div class="mb-3 std-font-color"><span><%= t('search.filter_by') %></span></div>
+                <%= link_to t('search.clear'), student_vacancy_search_path, class: "text-center custom-btn d-block w-100 mb-2 text-decoration-none text-muted" %>
+                <%= form.submit t('search.apply'), class: "custom-btn w-100 bg-white mb-2 text-muted" %>
+            </div>
+            <div class="col-12 col-md-4 col-lg-12 px-0 mx-md-4 mx-lg-0 d-inline-block shadow bg-white mb-3 info-box">
+                <div class="filter-title std-bg-color text-white text-center">
+                    <%= Company::Vacancy.human_attribute_name('promotion') %>
+                </div>  
+                     
+                <div>
+                    <div class="radio-margin p-3 d-flex flex-column">
+                        <div class="simple-chkbox std-chk">
+                            <%= form.check_box("promotion",{:checked =>  params[:promotion].include?("true") ? true : false},true,nil)%>
+                            <%= form.label "promotion", t("common.a_yes") %> 
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-12 col-md-4 col-lg-12 px-0 shadow d-inline-block bg-white mb-3 info-box">
+                <div class="filter-title std-bg-color text-white text-center">
+                    <%= Company::Vacancy.human_attribute_name('over_time') %>
+                </div>  
+                     
+                <div>
+                    <div class="radio-margin p-3 d-flex flex-column">
+                        <div class="simple-chkbox std-chk">
+                            <%= form.check_box("overtime",{:checked =>  params[:overtime].include?("true") ? true : false},true,nil)%>
+                            <%= form.label "overtime", t("common.a_yes") %> 
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div> 
+        <div class="search-result col-12 col-lg-10 px-md-0 pl-lg-3">
+            <div class="row p-lg-3 mx-md-0 shadow bg-white info-box">
+                <div class="col-12 mb-3">
+                    <h1><%= t('title.result') %></h1>
+                </div>
+                <% @vacancies.each do |vacancy| %>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 p-2">
+                        <div class="row mx-0 info-box shadow d-block">
+                            <%= link_to (company_vacancy_path(vacancy)), class: "text-decoration-none" do %>
+                                <div class="col-12 px-0 profile-image">
+                                    <div class="profile-name position-absolute std-bg-color col-6 d-flex align-items-center text-truncate">
+                                        <h5 class="text-white warp-text mb-0"><%= vacancy.vacancy_title %></h5>
+                                    </div>
+                                    <div class="fav-ico position-absolute text-white col-2 mr-2"><i class="fa-heart fa <%= @vacancy_favourite_arr.include?(vacancy.id) ? 'active' : 'inactive' %>"></i></div>
+                                    <%= image_tag "avatar/vacancy.jpg", alt: "Responsive image" %>
+                                </div>
+                                <div class="col-12 profile-info my-3 d-flex flex-column">
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Company.human_attribute_name('company_name') %></label>
+                                    <span class="mb-2"><%= vacancy.company_name %></span>
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Vacancy.human_attribute_name('recruit_industry_type') %></label>
+                                    <span class="mb-2"><%= vacancy.industry_name %></span>
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Vacancy.human_attribute_name('recruit_job_type') %></label>
+                                    <span class="mb-2"><%= vacancy.occupation_name %></span>                       
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Vacancy.human_attribute_name('required_applicants')%></label>
+                                    <span class="mb-2"><%= vacancy.required_applicants %><%= t "unit.persons" %></span>
+                                    <label class="h6 mb-0 std-tile-color"><%= Company::Vacancy.human_attribute_name('basic_salary') %></label>
+                                    <span class="mb-2"><%= vacancy.basic_salary %><%= t "unit.money" %></span>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+                <% unless @vacancies.present?  %>
+                    <div class="col-12 m-2">
+                        <h3> <%= t('search.no_result') %></h3>
+                    </div>
+                <% end %>
+                <div class="col-12 d-flex justify-content-center p-4">
+                    <%= paginate @vacancies %>
+                </div>
+            </div>  
+        </div>
+    </div>
+</section>
+<% end %>

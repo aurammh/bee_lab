@@ -1,0 +1,33 @@
+<div class="container p-3 pl-md-5 p-sm-5 mt-5">
+  <div class="row justify-content-center p-2 mt-5">
+    <div class="col-12 col-lg-8 col-xl-6">
+      <div class="card login-card-shadow bg-white p-3 p-sm-5">
+        <div class="text-group-left mb-4">     
+          <h3 class="text-center"><%= t('管理者ログイン') %></h3>
+          <hr class="admin-grandient-hr">   
+        </div>  
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "users/shared/flash", resource: resource %>            
+            <div class="mb-3">
+              <div class="d-flex">
+                  <%= f.label :email, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.email_field :email, class: "form-control shadow-none" %>
+            </div>              
+
+            <div class="mb-3">
+              <div class="d-flex">
+                  <%= f.label :password, class: "form-label" %>
+                  <label class="ml-auto required-label"><%= t('common.require') %> </label>
+              </div>
+              <%= f.password_field :password, class: "form-control shadow-none" %>
+            </div>                        
+            <div class="my-5">
+              <%= f.submit "ログイン", class: "custom-btn text-white w-100 admin-bg-color p-1" %>
+            </div>  
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,338 @@
+<%= form_with(model: company_vacancy) do |form| %>
+  <div class="row mt-5 pt-5 vacancy-registration">
+    <section class="col-12 com-bg-color text-white p-2 shadow fixed-top sec-head">
+        <span class="h2 align-middle"><%= t('common.registration_confirm_screen')%></span>
+    </section>
+    <section class="perview-container col-xl-4 col-lg-5 col-md-5 px-lg-5 px-md-4 px-3 col-sm-12 mt-3 d-none d-md-block d-sm-none">
+        <%= render partial: "vacancy_perview" %>
+    </section>  
+    <section class="register-container  col-xl-8 offset-xl-4 col-lg-7 offset-lg-5 col-md-7 offset-md-5 col-sm-12 p-5">  
+      <div class="row shadow p-4 bg-white" style="border-radius: 0.8rem">
+        <div class="col-12 pb-4 pt-3">
+            <span class="h4 com-font-color"><%= t('title.vacancy_title')%></span>
+        </div>   
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :vacancy_title, class: "form-label" %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :vacancy_title, id: "vacancy_title", class: "form-control shadow-none errors",placeholder: t("placeholder.vacancy_title"), rows: 4 %>
+          <p class ="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:vacancy_title)[0] %></p>
+        </div>
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :vacancy_description, class: "form-label" %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :vacancy_description, id: "vacancy_description", class: "form-control shadow-none errors", rows: 4  %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:vacancy_description)[0] %></p>
+        </div>
+        <div class="col-12 mb-3 d-flex d-md-block">
+          <% if @copy_postal_address_btn %>
+              <input type="hidden" id = "copy_postal_code" value="<%= @company_postal_address.postal_code %>">
+              <input type="hidden" id = "copy_address" value="<%= @company_postal_address.address %>">
+              <button type="button"  id="address-copy" class="custom-btn text-white com-bg-color py-2 float-right">
+                <%= t('btn.copy_address')%>
+              </button>
+            <% end %>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :postal_code, class: "form-label"  %><%= form.label t("common.ph_no_remark")%>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_field :postal_code, class: "form-control shadow-none errors", placeholder: t("placeholder.postal_code"), autocomplete: "off", maxlength: 7,id: "postalcode" %> 
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:postal_code)[0] %></p>            
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :region_name, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.hidden_field :m_region_id,value: company_vacancy.m_region_id ,id: "region_id" %>
+          <%= form.text_field :region_name, class: "form-control shadow-none errors",placeholder: t("placeholder.region_name"), id: "region",readonly: true %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:region_name)[0] %></p>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :prefecture_name, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.hidden_field :m_prefecture_id,value: company_vacancy.m_prefecture_id ,id: "prefecture_id" %>
+          <%= form.text_field :prefecture_name, class: "form-control shadow-none errors",placeholder: t("placeholder.prefecture_name"), id: "prefecture",readonly: true %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:prefecture_name)[0] %></p>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :postalcode_city, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_field :postalcode_city, class: "form-control shadow-none errors",placeholder: t("placeholder.postalcode_city"), id: "city", readonly: true%>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:postalcode_city)[0] %></p>
+        </div>
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :address, class: "form-label mr-2"  %>
+            <label class="form-label"> <%= t("common.building_address") %> </label>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :address, id: "vacancy_description", class: "form-control shadow-none errors", placeholder: t("placeholder.address"),rows: 4, maxlength: 255, id: "address" %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:address)[0] %></p>
+        </div>
+        <div class="col-12 mb-3 display_address">
+          <div class="d-flex">
+            <%= form.label :display_address, class: "form-label mr-2"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :display_address, class: "form-control shadow-none errors",rows: 4, maxlength: 255 ,id: "display_address" ,readonly: true%>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:display_address)[0] %></p>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :recruit_industry_type, class: "form-label"%>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.collection_select(:recruit_industry_type,industry_type_options , :id ,:industry_name, { :include_blank => "未選択"}, id: "recruit_industry_type", :class=> "form-control form-select shadow-none errors ") %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:recruit_industry_type)[0] %></p>
+        </div> 
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :recruit_job_type, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.collection_select(:recruit_job_type,occupation_options , :id ,:occupation_name, { :include_blank => "未選択"}, id: "recruit_job_type", :class=> "form-control form-select shadow-none errors ") %> 
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:recruit_job_type)[0] %></p>
+        </div>
+        <div class="col-12 col-md-12 col-lg-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :required_applicants, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_field :required_applicants_string, id: "required_applicants", class: "form-control shadow-none number-with-delimeter errors",value: number_with_delimiter(form.object.required_applicants), maxlength: 8 %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:required_applicants_string)[0] %></p>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :basic_salary, class: "form-label"  %><%= form.label t("common.ph_no_remark")%>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_field :basic_salary, id: "basic_salary", class: "form-control shadow-none only-num-stud errors",placeholder: t("placeholder.basic_salary"), maxlength: 8 %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:basic_salary)[0] %></p>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :model_salary, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>                
+          <%= form.text_area :model_salary, id: "model_salary", rows: 4, class: "form-control shadow-none errors" %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:model_salary)[0] %></p>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :allowance, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :allowance, id: "allowance", rows: 4, class: "form-control shadow-none errors", placeholder: t("placeholder.allowance") %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:allowance)[0] %></p>                                  
+        </div>
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :bonus, class: "form-label"  %>
+            <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :bonus, id: "bonus", rows: 4, class: "form-control shadow-none errors", placeholder: t("placeholder.bonus") %>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:bonus)[0] %></p>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :promotion, class: "form-label"  %>
+          </div>
+          <%= form.radio_button :promotion, 1, { :checked => company_vacancy.promotion.nil?  ||  company_vacancy.promotion == true }%>
+          <%= form.label :promotion,  t("common.a_yes"),value: 1,class: "hav_promotion" %>
+          <%= form.radio_button :promotion,0, { :checked => company_vacancy.promotion == false }%> 
+          <%= form.label :promotion,  t("common.a_no"),value: 0,class: "no_promotion" %> 
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :probation, class: "form-label"  %>
+          </div>
+          <%= form.radio_button :probation, 1, { :checked => company_vacancy.probation.nil?  ||  company_vacancy.probation == true }%>
+          <%= form.label :probation,  t("common.a_yes"),value: 1,class: "hav_probation" %>
+          <%= form.radio_button :probation,0, { :checked => company_vacancy.probation == false }%> 
+          <%= form.label :probation,  t("common.a_no"),value: 0,class: "no_probation" %> 
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :transportation_allowance, class: "form-label"  %>
+          </div>
+          <%= form.radio_button :transportation_allowance, 1, { :checked => company_vacancy.transportation_allowance.nil?  ||  company_vacancy.transportation_allowance == true }%>
+          <%= form.label :transportation_allowance,  t("common.a_yes"),value: 1,class: "hav_tran_allowance" %>
+          <%= form.radio_button :transportation_allowance,0, { :checked => company_vacancy.transportation_allowance == false }%> 
+          <%= form.label :transportation_allowance,  t("common.a_no"),value: 0,class: "no_tran_allowance" %> 
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :dormitory, class: "form-label"  %>
+          </div>                
+          <%= form.radio_button :dormitory, 1, { :checked => company_vacancy.dormitory.nil?  ||  company_vacancy.dormitory == true }%>
+          <%= form.label :dormitory,  t("common.a_yes"),value: 1,class: "hav_dormitory" %>
+          <%= form.radio_button :dormitory,0, { :checked => company_vacancy.dormitory == false }%> 
+          <%= form.label :dormitory,  t("common.a_no"),value: 0,class: "no_dormitory" %>  
+        </div>  
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :insurance, class: "form-label"  %>
+          </div>                 
+          <%= form.radio_button :insurance, 1, { :checked => company_vacancy.insurance.nil?  ||  company_vacancy.insurance == true }%>
+          <%= form.label :insurance,  t("common.a_yes"),value: 1,class: "hav_insurance" %>
+          <%= form.radio_button :insurance,0, { :checked => company_vacancy.insurance == false }%> 
+          <%= form.label :insurance,  t("common.a_no"),value: 0,class: "no_insurance" %> 
+        </div>   
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :severance_pay, class: "form-label"  %>
+          </div>
+          <%= form.radio_button :severance_pay, 1, { :checked => company_vacancy.severance_pay.nil?  ||  company_vacancy.severance_pay == true }%>
+          <%= form.label :severance_pay,  t("common.a_yes"),value: 1,class: "hav_severance_pay" %>
+          <%= form.radio_button :severance_pay,0, { :checked => company_vacancy.severance_pay == false }%> 
+          <%= form.label :severance_pay,  t("common.a_no"),value: 0,class: "no_severance_pay" %> 
+        </div>  
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :working_hours, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :working_hours, id: "working_hours", rows: 4, class: "form-control shadow-none errors",placeholder: t("placeholder.working_hours")%>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:working_hours)[0] %></p> 
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :break_time, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :break_time, id: "break_time", rows: 4, class: "form-control shadow-none errors", placeholder: t("placeholder.break_time")%>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:break_time)[0] %></p> 
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :over_time, class: "form-label"  %>
+          </div>
+          <%= form.radio_button :over_time, 1, { :checked => company_vacancy.over_time.nil?  ||  company_vacancy.over_time == true }%>
+          <%= form.label :over_time,  t("common.a_yes"),value: 1,class: "hav_over_time" %>
+          <%= form.radio_button :over_time,0, { :checked => company_vacancy.over_time == false }%> 
+          <%= form.label :over_time,  t("common.a_no"),value: 0,class: "no_over_time" %> 
+        </div> 
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :holiday, class: "form-label"  %>
+            <label class="ml-auto required-label"> <%= t('common.require') %> </label>
+          </div>
+          <%= form.text_area :holiday, id:"holiday", rows: 4, class: "form-control shadow-none errors", placeholder: t("placeholder.holiday")%>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:holiday)[0] %></p> 
+        </div>
+
+        <%# Start of Modal%>
+        <%= render 'modal',vancancy_form: form, vancancy: company_vacancy %>
+        <div class="col-12 mb-3">
+          <section id="outside_activity" class="scroll-content-section">
+            <div class="form-field-group">
+              <div id="welfare">
+              <%= form.text_area :append_data_modal, rows: 4, class: "form-control shadow-none errors",:id => "displayed_text", placeholder: t("placeholder.append_data_modal"), readonly: true%>
+              </div>
+            </div>
+          </section>
+        </div>
+        <%# End of Modal%>
+        
+        <div class="col-12 mb-3 hire_info">
+          <div class="d-flex">
+            <%= form.label :other, class: "form-label"  %>
+          </div>
+          <%= form.text_area :other, class: "form-control shadow-none errors", rows: 4, maxlength: 255%>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:other)[0] %></p> 
+        </div>
+        <%# Start of add rows by btn%>
+        <div class="col-12 mb-3 hire_info">
+          <div class="d-flex">
+            <%= form.label :hiring_flow_data, class: "form-label"  %>
+          </div>
+          <div id ="original-inputs" class="hire-btn">
+            <% unless company_vacancy.hiring_flow_data.nil?%>
+              <% company_vacancy.hiring_flow_data.each_with_index  do |h,i| %>
+                <div class="hire-btn mb-3">
+                  <%= form.text_field :hiring_flow_data, multiple: true, class: "form-control shadow-none", value: h, :id => "company_vacancy_hiring_flow_data_#{i+1}" %>
+                  <% if i == 0 %>
+                    <span class="plus_minus_icon plus_icon" id="add_row"><i class="fas fa-plus-circle"></i></span>
+                  <% else %>
+                    <span class="plus_minus_icon remove_icon" id="add_row"><i class="fas fa-minus-circle"></i></span>
+                  <% end %>
+                </div>
+              <% end %>
+            <%else%>
+              <%= form.text_field :hiring_flow_data, multiple: true, :class=> "form-control shadow-none", placeholder: t("placeholder.hiring_flow_data"),:id => "company_vacancy_hiring_flow_data_1" %>
+              <span class="plus_minus_icon plus_icon" id="add_row"><i class="fas fa-plus-circle"></i></span>
+            <%end%>
+          </div>
+        </div>
+
+        <div class="col-12 mb-3">
+          <div id="dynamic-inputs"></div>
+        </div>
+        <%# end of add rows by btn%>
+
+        <div class="col-12 mb-3">
+          <div class="d-flex">
+            <%= form.label :other_skill, class: "form-label"  %>
+          </div>
+          <%= form.text_area :other_skill, class: "form-control shadow-none errors", placeholder: t("placeholder.other_skill"), rows: 4, maxlength: 255%>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:other_skill)[0] %></p> 
+        </div>
+
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+              <%= form.label :display_from, class: "form-label"  %>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <div class="date-wrapper display-from">
+              <%= form.text_field :display_from, "data-input": "", class: "form-control shadow-none errors", id: "display_from", data: { :placeholder => t("placeholder.display_from") } %>
+              <a class="icon" title="toggle" data-toggle>
+              <i class="far fa-calendar-alt"></i>
+              </a>
+          </div>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:display_from)[0] %></p>                                  
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+              <%= form.label :display_to, class: "form-label"  %>
+              <label class="ml-auto required-label"><%= t('common.require') %> </label>
+          </div>
+          <div class="date-wrapper display-to">
+              <%= form.text_field :display_to, "data-input": "", class: "form-control shadow-none errors", id: "display_to", data: { :placeholder => t("placeholder.display_to") } %>
+              <a class="icon" title="toggle" data-toggle>
+              <i class="far fa-calendar-alt"></i>
+              </a>
+          </div>
+          <p class="ms-invalid-feedback mt-1"><%= company_vacancy.errors.full_messages_for(:display_to)[0] %></p>                                  
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+          <div class="d-flex">
+            <%= form.label :published_flg, class: "form-label"  %>
+          </div>
+          <div class="toggle">
+            <%= form.check_box :published_flg,id: "published-flg" %>
+            <label for="published-flg"></label>
+          </div>
+        </div>
+      </div> 
+      <div class="actions d-flex justify-content-center mt-5">
+          <%= form.submit (t "btn.update"), :class => 'custom-btn text-white' %>
+      </div>        
+    </section>  
+  </div> 
+<% end %>
+<%= javascript_pack_tag "common.js" %>
+<%= javascript_pack_tag "company/vacancy.js" %>
+<%= javascript_pack_tag "postalcode.js" %>

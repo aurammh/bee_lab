@@ -1,0 +1,59 @@
+ja:
+  activerecord:
+    models:
+      company/event: event
+    attributes:
+      company/event:
+        event_start_date: 開催日〔開始〕
+        event_end_date: 開催日〔終了〕
+        event_name: イベント名
+        venue: 開催場所
+        category: カテゴリー
+        applicants_count: 募集人数
+        post_start_date: 掲載日〔開始〕
+        post_end_date: 掲載日〔終了〕
+        application_deadline: 申込締切日
+        event_content: イベント内容
+        event_logo: イベント画像
+  errors:
+    attributes:
+      category:
+        blank: "を選択してください。"
+    messages:
+      blank: "を入力してください。"
+      invalid: "無効です。"
+  event:
+    title:
+      event_header: イベント管理 
+      event_information: イベント情報
+      event_entry_list_tilte: 登録イベント一覧
+      event_code: イベントコード
+      event_date: 開催日〔開催期間〕
+      event_category: イベントカテゴリ 
+      event_entry_count: 登録人数
+      post_date: 掲載期間
+      publish_status: ステータス
+      no_data_text: 登録されたイベントはありません。
+      event_com_name: 会社名
+      edit_text_title: 詳細
+      edit_text: 編集画面
+      publishing: 掲載中
+      un_publish: 準備中
+      published: 完了
+      student_id: 個人ID
+      name: 名前
+      uni_name: 大学名
+    placeholder:
+      date_format: YYYY/MM/DD
+      event_name: 就職セミナー
+      venue: 博多厚生会館３F
+      category: カテゴリー
+      applicants_count: 60名
+      event_content: ※開催時間などのイベントの内容や、必要に応じてオンライン開催の場合はURL等の詳細をご入力ください。
+    category:
+      com_info_explancation: 企業説明会（単独）
+      related_com_explanation: 合同企業説明会
+      internship: インターンシップ
+      part_time_job_recruit: アルバイト募集
+      other_session: その他
+  

@@ -1,0 +1,55 @@
+<section class="company-detail container-fluid h-50  d-flex flex-column align-items-center mt-2 pt-2">
+    <div class="col-11 bg-white py-5 mt-4 shadow com-info-box mb-5">
+        <div class="h3"> <%= t('common.favourite_users')%><br><hr class="title-hr"></div>
+        <div class="d-none d-md-block d-sm-none">                
+            <table class="table table-bordered table-responsive-md">
+                <thead class="com-bg-color text-white">
+                <tr>
+                    <th scope="col"><%= t('student.student_show.name')%></th>
+                    <th scope="col"><%= t('dashboard.age')%></th>
+                    <th scope="col"><%= t('dashboard.gender')%></th>
+                    <th scope="col"><%= Student::Student.human_attribute_name('school_name')%></th>
+                    <th scope="col"><%= Student::Student.human_attribute_name('school_type')%></th>
+                    <th scope="col"><%= Student::Student.human_attribute_name('graduation_date') %></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% @favourite_users_list.each do |favourite_user| %>
+                        <tr data-link="<%= company_student_details_path(:id => favourite_user.id ) %>">
+                            <td>
+                            <%= favourite_user.last_name %> <%= favourite_user.first_name %>                            
+                            </td>
+                            <td><%= Date.today.year-favourite_user.birthday.year %><%= t('unit.age')%></td>
+                            <td><%= t("student.gender.#{favourite_user.gender}") %></td>
+                            <td><%= favourite_user.school_name %></td>
+                            <td><%=  t("student.school_type.#{favourite_user.school_type}") %></td>
+                            <td><%= favourite_user.graduation_date %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 my-2 d-content d-md-none d-lg-none d-xl-none">
+            <% @favourite_users_list.each do |favourite_user| %>
+                <div class="mobile-table row com-info-box shadow p-3 mb-4" data-link="<%= company_student_details_path(:id => favourite_user.id ) %>">                                                   
+                    <span class="h6 com-font-color col-4"><%= t('student.student_show.name')%></span>
+                    <span class="col-8 text-muted text-break"><%= favourite_user.last_name %><%= favourite_user.first_name %></span><br>
+                    <span class="h6 com-font-color col-4"><%= t('dashboard.age')%></span>
+                    <span class="col-8 text-muted text-break"><%= Date.today.year-favourite_user.birthday.year %><%= t "unit.age" %></span><br>
+                    <span class="h6 com-font-color col-4"><%= t('dashboard.gender')%></span>
+                    <span class="col-8 text-muted text-break"><%= t("student.gender.#{favourite_user.gender}") %></span><br>
+                    <span class="h6 com-font-color col-4"><%= Student::Student.human_attribute_name('school_name')%></span>
+                    <span class="col-8 text-muted text-break"><%= favourite_user.school_name %></span><br>
+                    <span class="h6 com-font-color col-4"><%= Student::Student.human_attribute_name('school_type')%></span>
+                    <span class="col-8 text-muted text-break"><%=  t("student.school_type.#{favourite_user.school_type}") %></span><br>
+                    <span class="h6 com-font-color col-4"><%= Student::Student.human_attribute_name('graduation_date') %></span>
+                    <span class="col-8 text-muted text-break"><%= favourite_user.graduation_date %></span><br>            
+                </div>
+            <% end %>                          
+        </div>
+        <div class="col-12 d-flex justify-content-center p-4">
+            <%= paginate @favourite_users_list %>
+        </div>
+    </div>
+</section>
+<%= javascript_pack_tag 'common.js'%>

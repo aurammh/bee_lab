@@ -1,0 +1,2 @@
+module Communication::CommunicationsHelper
+end
